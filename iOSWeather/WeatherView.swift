@@ -18,7 +18,12 @@ final class WeatherView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .gray
-        addSubviewsForAutoLayout([backgroundImage,collectionView,pageControlBar,line])
+        addSubviewsForAutoLayout([
+            backgroundImage,
+            collectionView,
+            pageControlBar,
+            line
+        ])
         activateConstraints()
         
         

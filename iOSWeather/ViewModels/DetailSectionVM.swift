@@ -10,8 +10,8 @@ import Foundation
 
 
 struct DetailSectionVM:  ItemRepresentable, ModelInstantiable {
+   
     typealias ItemViewModel = DetailCellVM
-    
     
     var model: WeatherResponse
     
