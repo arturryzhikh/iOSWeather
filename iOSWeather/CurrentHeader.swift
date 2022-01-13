@@ -5,25 +5,27 @@
 //  Created by Artur Ryzhikh on 13.01.2022.
 //
 import UIKit
+import SnapKit
 
 final class CurrentHeader: ClearCell {
     
     //MARK:Properties
     
-
+    
     static var defaultHeight: CGFloat {
         Screen.height * 0.453
     }
     static var minimumHeight: CGFloat {
         Screen.height * 0.143
     }
-   
-    private var computedAlpha: CGFloat { //calculate alpha of temperature and high low labels depending on view height
+    
+    ///Calculates alpha of temperature and high low labels depending on view height
+    private var computedAlpha: CGFloat {
         let transparentY = temperatureLabel.frame.height + temperatureLabel.frame.origin.y
         return max((frame.height - transparentY) / (CurrentHeader.defaultHeight - transparentY), 0)
     }
     
-    private var topConstraint: NSLayoutConstraint?
+    private var topConstraint: Constraint?
     private var topPadding: CGFloat {
         return frame.height * 0.3
     }
@@ -31,39 +33,33 @@ final class CurrentHeader: ClearCell {
     override func setup() {
         activateConstraints()
     }
+    private lazy var stack: UIStackView = {
+        $0.addArrangedSubview(locationLabel)
+        $0.addArrangedSubview(outlineLabel)
+        $0.addArrangedSubview(temperatureLabel)
+        $0.addArrangedSubview(temperatureRangeLabel)
+        $0.axis = .vertical
+        $0.distribution = .fill
+        return $0
+    }(UIStackView())
+    
     override func activateConstraints() {
         addMultipleSubviews(
-            locationLabel,
-            outlineLabel,
-            temperatureLabel,
-            temperatureRangeLabel
+            stack
+            
         )
         
-        topConstraint = locationLabel.topAnchor.constraint(equalTo: topAnchor,constant: topPadding)
-        topConstraint?.isActive = true
-        locationLabel.snp.makeConstraints { make in
+        stack.snp.makeConstraints { make in
+            topConstraint =  make.top.equalTo(self.snp.top).offset(topPadding).constraint
             make.leading.trailing.equalToSuperview()
-            make.trailing.equalToSuperview()
-            
         }
-        outlineLabel.snp.makeConstraints { make in
-            make.top.equalTo(locationLabel.snp.bottom)
-            make.centerX.equalToSuperview()
-        }
-        temperatureLabel.snp.makeConstraints { make in
-            make.top.equalTo(outlineLabel.snp.bottom)
-            make.centerX.equalToSuperview()
-        }
-        temperatureRangeLabel.snp.makeConstraints { make in
-            make.top.equalTo(temperatureLabel.snp.bottom)
-            make.centerX.equalToSuperview()
-        }
+        
         
     }
     
     override func layoutSubviews() {
         //update top constraint when view changes during scrolling
-        topConstraint?.constant = topPadding
+        topConstraint?.update(offset: topPadding)
         temperatureRangeLabel.alpha = computedAlpha
         temperatureLabel.alpha = computedAlpha
     }
@@ -103,6 +99,6 @@ final class CurrentHeader: ClearCell {
         temperatureLabel.text = viewModel.temperature
         temperatureRangeLabel.text = viewModel.highLowTemp
     }
-
-
+    
+    
 }

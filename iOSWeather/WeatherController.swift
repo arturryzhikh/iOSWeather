@@ -7,10 +7,7 @@
 import UIKit
 
 final class WeatherController: UIViewController {
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
+   
     //MARK: Other Properties
     private var width: CGFloat {
         return collectionView.frame.width
