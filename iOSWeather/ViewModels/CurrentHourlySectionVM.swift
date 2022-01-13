@@ -9,7 +9,7 @@ import Foundation
 
 struct CurrentHourlySectionVM: ModelInstantiable, HeaderRepresentable, FooterRepresentable {
     
-   
+    
     
     var numberOfItems: Int {
         return 0
@@ -32,7 +32,7 @@ struct CurrentHourlySectionVM: ModelInstantiable, HeaderRepresentable, FooterRep
         
     }
     
- 
+    
 }
 
 struct CurrentHeaderVM: ModelInstantiable {
@@ -66,7 +66,7 @@ struct CurrentHeaderVM: ModelInstantiable {
         self.model = model
         
     }
-   
+    
 }
 
 
@@ -90,14 +90,14 @@ struct HourlyFooterVM: ModelInstantiable {
     init(model: WeatherResponse) {
         self.model = model
         
-       
+        
     }
     
     
 }
 
 struct HourlyItemViewModel: ModelInstantiable {
-   
+    
     let model: Current
     
     var hour: String  {
@@ -113,14 +113,14 @@ struct HourlyItemViewModel: ModelInstantiable {
         formatter.dateFormat = "HH"
         return formatter.string(from: hourlyDate)
     }
-
+    
     var weatherEmoji: String {
         
         guard let description = model.weather?.first?.main else {
             return "..."
         }
         switch description {
-        
+            
         case .clear:
             return "☀️"
         case .clouds:

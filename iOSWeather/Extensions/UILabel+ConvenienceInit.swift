@@ -1,5 +1,5 @@
 //
-//  AppDelegate.swift
+//  UILabel+ConvenienceInit.swift
 //  iOSWeather
 //
 //  Created by Artur Ryzhikh on 13.01.2022.

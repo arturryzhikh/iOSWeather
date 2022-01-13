@@ -227,6 +227,14 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
+		340A40062790C32900A616FC /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				348DC86627907DA5000EDCFE /* Screen.swift */,
+			);
+			path = Global;
+			sourceTree = "<group>";
+		};
 		34E936F327906EB1003C5FD7 = {
 			isa = PBXGroup;
 			children = (
@@ -250,6 +258,7 @@
 		34E936FE27906EB1003C5FD7 /* iOSWeather */ = {
 			isa = PBXGroup;
 			children = (
+				340A40062790C32900A616FC /* Global */,
 				34E936FF27906EB1003C5FD7 /* AppDelegate.swift */,
 				34E9370127906EB1003C5FD7 /* SceneDelegate.swift */,
 				340A400027908C6800A616FC /* ViewModels */,
@@ -257,7 +266,6 @@
 				340A3FFF27908C4E00A616FC /* Models */,
 				340A3FFE27908B2C00A616FC /* WeatherViews */,
 				340A3FFD27908B0600A616FC /* Networking */,
-				348DC86627907DA5000EDCFE /* Screen.swift */,
 				34E9370D27906EB1003C5FD7 /* LaunchScreen.storyboard */,
 				34E9370B27906EB1003C5FD7 /* Assets.xcassets */,
 				34E9371027906EB1003C5FD7 /* Info.plist */,

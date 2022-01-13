@@ -1,5 +1,5 @@
 //
-//  AppDelegate.swift
+//  UIFont+WeatherFonts.swift
 //  iOSWeather
 //
 //  Created by Artur Ryzhikh on 13.01.2022.
@@ -9,8 +9,9 @@ import UIKit
 
 extension UIFont {
     class var locationLabel: UIFont {
+        
         UIFont.systemFont(ofSize: (Screen.height * 0.04), weight: .medium)
-
+        
     }
     class var lightTemperature: UIFont {
         UIFont.systemFont(ofSize: (Screen.height * 0.025), weight: .light)
@@ -20,7 +21,7 @@ extension UIFont {
     }
     class var hugeTemperature: UIFont {
         UIFont.systemFont(ofSize: (Screen.height * 0.08), weight: .light)
-     
+        
     }
     class var degree: UIFont {
         UIFont.systemFont(ofSize: (Screen.height * 0.03),weight: .light)

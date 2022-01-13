@@ -12,14 +12,14 @@ final class TodayCell: ClearCell, ViewModelRepresentable {
         todayTxtView.text = viewModel.overview
     }
     
-   
+    
     var viewModel: TodayCellVM? {
         didSet {
             if let vm = viewModel {
                 
                 populateSubviews(with: vm)
             }
-           
+            
         }
     }
     
@@ -39,7 +39,7 @@ final class TodayCell: ClearCell, ViewModelRepresentable {
     }(UITextView())
     //MARK: Life cycle
     override func setup() {
-       activateConstraints()
+        activateConstraints()
         
     }
     //MARK: Instance methods
@@ -52,6 +52,6 @@ final class TodayCell: ClearCell, ViewModelRepresentable {
         
         
     }
-   
+    
     
 }

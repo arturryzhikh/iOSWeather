@@ -8,7 +8,7 @@ import UIKit
 
 ///Base class for all custom transperent UI Collection View Cells
 public class ClearCell: UICollectionViewCell  {
-   
+    
     override init(frame: CGRect) {
         super.init(frame:frame)
         setup()

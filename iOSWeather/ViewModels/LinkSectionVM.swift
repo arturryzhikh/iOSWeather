@@ -36,16 +36,16 @@ struct LinkCellVM: ModelInstantiable {
         }
         let location = timezone.components(separatedBy: "/")[1].replacingOccurrences(of: "_", with: " ")
         let attrSting = NSMutableAttributedString(string: "Weather for \(location). Website")
-//        attrSting.addAttribute(.link, value: "https://openweathermap.org", range: NSRange("Website")!)
+        //        attrSting.addAttribute(.link, value: "https://openweathermap.org", range: NSRange("Website")!)
         return attrSting
     }
     
-   
+    
     init(model: WeatherResponse) {
         self.model = model
         
     }
-   
+    
 }
 
 //    override func viewDidLoad() {

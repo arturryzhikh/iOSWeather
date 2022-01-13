@@ -10,7 +10,7 @@ import Foundation
 
 
 struct DetailSectionVM:  ItemRepresentable, ModelInstantiable {
-   
+    
     typealias ItemViewModel = DetailCellVM
     
     var model: WeatherResponse
@@ -32,7 +32,7 @@ struct DetailSectionVM:  ItemRepresentable, ModelInstantiable {
     var numberOfItems: Int {
         return items.count
     }
-   
+    
 }
 
 
@@ -63,7 +63,7 @@ struct DetailCellVM: ModelInstantiable {
             let formatter = DateFormatter()
             formatter.dateFormat = "HH:MM"
             return  ("SUNRISE", formatter.string(from: sunriseDate))
-        
+            
         case 1:
             guard let sunset = model.current?.sunset else {
                 return ("SUNSET","--")
@@ -72,7 +72,7 @@ struct DetailCellVM: ModelInstantiable {
             let formatter = DateFormatter()
             formatter.dateFormat = "HH:MM"
             return  ("SUNSET", formatter.string(from: sunsetDate))
-       
+            
         case 2:
             guard let humidity = model.current?.humidity else {
                 return ("HUMIDITY", "")
@@ -81,8 +81,8 @@ struct DetailCellVM: ModelInstantiable {
         case 3:
             guard let windDeg = model.current?.windDeg,
                   let windSpeed = model.current?.windSpeed else {
-                return ("WIND", "")
-            }
+                      return ("WIND", "")
+                  }
             return ("WIND", "\(windDeg.windDirectionFromDegrees()) \(Int(windSpeed)) m/s")
         case 4:
             guard let feelsLike = model.current?.feelsLike else {
@@ -99,11 +99,11 @@ struct DetailCellVM: ModelInstantiable {
                 return ("PRESSURE", "")
             }
             let mmHgPressure = (Double(Double(pressure) / 1.333).rounded() * 100 / 100)
-                                
+            
             return ("PRESSURE", "\(mmHgPressure) mm Hg")
         case 7:
             guard let visibility = model.current?.visibility else {
-                 return ("VISIBILITY", "")
+                return ("VISIBILITY", "")
             }
             return ("VISIBILITY", "\(visibility / 1000) km")
         case 8:

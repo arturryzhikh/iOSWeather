@@ -19,7 +19,7 @@ protocol HeaderRepresentable {
     
     var header: HeaderViewModel { get }
     var numberOfItems: Int { get }
-   
+    
 }
 
 protocol ItemRepresentable {

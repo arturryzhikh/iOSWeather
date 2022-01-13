@@ -37,9 +37,8 @@ final class DailyCell: ClearCell {
         return $0
     }(UILabel(font: .regularTemperature))
     
-    
     private let temperatureLowLabel: UILabel = {
-       return $0
+        return $0
     }(UILabel(transparentText: true, alignment: .center, font: .lightTemperature))
     
     private let weatherEmojiLabel: UILabel = {
@@ -53,9 +52,6 @@ final class DailyCell: ClearCell {
     
     private lazy var weatherEmojiStack: UIStackView = {
         $0.axis = .horizontal
-        $0.alignment = .fill
-        $0.distribution = .fill
-        $0.spacing = Screen.width * 0.025
         return $0
     }(UIStackView(arrangedSubviews: [weatherEmojiLabel,percentageLabel]))
     
@@ -72,29 +68,25 @@ final class DailyCell: ClearCell {
         activateConstraints()
         
     }
+    private lazy var stack: UIStackView = {
+        $0.addArrangedSubview(dayLabel)
+        $0.addArrangedSubview(weatherEmojiStack)
+        $0.addArrangedSubview(temperatureStack)
+        $0.axis = .horizontal
+        $0.distribution = .fillEqually
+        return $0
+    }(UIStackView())
     
     override func activateConstraints() {
         addMultipleSubviews(
-            dayLabel,
-            weatherEmojiStack,
-            temperatureStack
-        )
-        
-        dayLabel.snp.makeConstraints { make in
-            make.centerY.leading.equalToSuperview()
-            
-        }
-        weatherEmojiStack.snp.makeConstraints { make in
-            make.leading.equalTo(self.snp.centerX).offset(-Screen.width * 0.1)
-            make.centerY.equalToSuperview()
-            
-        }
-        temperatureStack.snp.makeConstraints { make in
-            make.leading.equalTo(self.snp.centerX).offset(Screen.width * 0.15)
-            make.trailing.equalToSuperview()
-            make.centerY.equalToSuperview()
-        }
+            stack
 
+        )
+        stack.snp.makeConstraints { make in
+            make.centerY.leading.trailing.equalToSuperview()
+
+        
+        }   
+    
     }
- 
 }

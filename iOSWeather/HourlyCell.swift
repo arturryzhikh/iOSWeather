@@ -10,7 +10,7 @@ final class HourlyCell: ClearCell ,ViewModelRepresentable {
     
     var viewModel: HourlyItemViewModel? {
         didSet {
-           
+            
             if let vm = viewModel {
                 populateSubviews(with: vm)
             }
@@ -31,25 +31,25 @@ final class HourlyCell: ClearCell ,ViewModelRepresentable {
     
     
     override func activateConstraints() {
-       addSubview(vStack)
+        addSubview(vStack)
         vStack.snp.makeConstraints { make in
             make.top.leading.bottom.trailing.equalToSuperview()
         }
-  
+        
     }
     //MARK: Subviews
     private lazy var vStack: UIStackView = {
+        $0.addArrangedSubview(hourLabel)
+        $0.addArrangedSubview(weatherEmojiLabel)
+        $0.addArrangedSubview(temperatureLabel)
         $0.axis = .vertical
         $0.alignment = .center
         $0.distribution = .fill
         $0.spacing = 4
         return $0
         
-    }(UIStackView(arrangedSubviews: [
-        hourLabel,
-        weatherEmojiLabel,
-        temperatureLabel
-    ]))
+    }(UIStackView())
+    
     let hourLabel: UILabel = { 
         return $0
     }(UILabel(font: .lightTemperature))
@@ -63,6 +63,6 @@ final class HourlyCell: ClearCell ,ViewModelRepresentable {
     private let weatherEmojiLabel: UILabel = {
         return $0
     }(UILabel(font: .weatherEmoji))
-   
+    
     
 }

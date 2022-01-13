@@ -1,5 +1,5 @@
 //
-//  AppDelegate.swift
+//  Date+StringValue.swift
 //  iOSWeather
 //
 //  Created by Artur Ryzhikh on 13.01.2022.

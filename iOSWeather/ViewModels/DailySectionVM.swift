@@ -63,7 +63,7 @@ struct DailyCellVM: ModelInstantiable {
             return "..."
         }
         switch description {
-        
+            
         case .clear:
             return "☀️"
         case .clouds:

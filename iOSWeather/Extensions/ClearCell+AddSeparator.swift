@@ -1,5 +1,5 @@
 //
-//  AppDelegate.swift
+//  ClearCell+AddSeparator.swift
 //  iOSWeather
 //
 //  Created by Artur Ryzhikh on 13.01.2022.
@@ -34,6 +34,6 @@ extension ClearCell {
             }
             
         }
-    
+        
     }
 }

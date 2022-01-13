@@ -20,8 +20,6 @@ enum Section: Int, CaseIterable {
     
     case link
     
-    
-    
 }
 
 
@@ -50,7 +48,7 @@ final class DataSource: NSObject, ApiConnectable, StaticCollectionRepresentable 
         
     }
     //MARK: Properties
-   
+    
     var sections: [Int] = [
         Section.currentHourly.rawValue,
         Section.daily.rawValue,
@@ -64,23 +62,23 @@ final class DataSource: NSObject, ApiConnectable, StaticCollectionRepresentable 
     var apiService: APIService!
     
     var isFetching: Bool = false
-  
+    
     var numberOfSections: Int {
         return sections.count
     }
     
-   
+    
     func numberOfItemsIn(_ section: Int) -> Int {
         
         let section = Section(rawValue: section)
         switch section {
-        
+            
         case .currentHourly:
             return currentHourlySectionVM?.numberOfItems ?? 0
             
         case .daily:
             return dailySectionVM?.numberOfItems ?? 0
-        
+            
         case .today:
             return todaySectionVM?.numberOfItems ?? 0
             
@@ -104,7 +102,7 @@ final class DataSource: NSObject, ApiConnectable, StaticCollectionRepresentable 
     
     
     
-
+    
 }
 
 //MARK: Fetch Wather

@@ -74,7 +74,7 @@ final class WeatherFlowLayout: UICollectionViewFlowLayout {
         return attributesCache
         
     }
-   
-  
+    
+    
     
 }

@@ -15,7 +15,7 @@ final class LinkCell: ClearCell, ViewModelRepresentable {
                 populateSubviews(with:vm )
             }
         }
-       
+        
     }
     func populateSubviews(with viewModel: LinkCellVM) {
         linkTxtView.attributedText = viewModel.linkAttributedString
@@ -38,7 +38,7 @@ final class LinkCell: ClearCell, ViewModelRepresentable {
         linkTxtView.snp.makeConstraints { make in
             make.centerY.leading.trailing.equalToSuperview()
         }
-      
+        
     }
-  
+    
 }

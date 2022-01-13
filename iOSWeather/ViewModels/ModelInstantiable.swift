@@ -10,10 +10,10 @@ import Foundation
 protocol ModelInstantiable {
     
     associatedtype Model: Codable
-
+    
     var model: Model { get }
-
+    
     init(model: Model)
- 
+    
 }
 

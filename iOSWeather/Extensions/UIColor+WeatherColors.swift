@@ -8,12 +8,12 @@ import UIKit
 
 extension UIColor {
     class var weatherWhite: UIColor {
-        return white.withAlphaComponent(1)
+        return .white
     }
     class var weatherTransparent: UIColor {
-        return white.withAlphaComponent(0.65)
+        return white.withAlphaComponent(0.75)
     }
     class var percentage: UIColor {
-        return  #colorLiteral(red: 0, green: 0.5898008943, blue: 1, alpha: 1)
+        return  #colorLiteral(red: 0, green: 0.5476340055, blue: 0.9840434194, alpha: 1)
     }
 }

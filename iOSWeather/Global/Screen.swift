@@ -9,7 +9,7 @@ import UIKit
 
 //MARK: Screen dimensions
 
-struct Screen {
+public struct Screen {
     
     static var height: CGFloat {
         return UIScreen.main.bounds.height
@@ -20,8 +20,5 @@ struct Screen {
     static var statusBarHeight: CGFloat {
         return UIApplication.shared.statusBarFrame.height
     }
-    static var scale: CGFloat {
-        return UIScreen.main.scale
-    }
-    
+ 
 }

@@ -7,7 +7,7 @@
 import UIKit
 
 final class HourlyFooter: ClearCell, UICollectionViewDelegate {
-
+    
     //MAKR: Static properties
     
     var viewModel: HourlyFooterVM? {
@@ -54,31 +54,27 @@ final class HourlyFooter: ClearCell, UICollectionViewDelegate {
         collectionView.snp.makeConstraints { make in
             make.top.leading.bottom.trailing.equalToSuperview()
         }
-    
+        
     }
-  
+    
 }
 ////MARK: DataSource
 extension HourlyFooter: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-      
+        
         return viewModel?.items.count ?? 0
-       
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HourlyCell.description(), for: indexPath) as! HourlyCell
         
         cell.viewModel = viewModel?.items[indexPath.item]
-       
+        
         return cell
     }
     
     
 }
-//MARK: Delegate Flow Layout
 
-extension HourlyFooter: UICollectionViewDelegateFlowLayout {
-    
-}

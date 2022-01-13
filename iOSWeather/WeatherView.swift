@@ -6,9 +6,11 @@
 //
 
 import UIKit
+
 import SnapKit
+
 final class WeatherView: UIView {
-   
+    
     //MARK: Life Cycle
     
     required init?(coder: NSCoder) {

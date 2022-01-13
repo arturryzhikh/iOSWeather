@@ -7,7 +7,7 @@
 import UIKit
 
 final class DetailCell: ClearCell , ViewModelRepresentable {
-   
+    
     var viewModel: DetailCellVM? {
         
         didSet {
@@ -36,7 +36,7 @@ final class DetailCell: ClearCell , ViewModelRepresentable {
         activateConstraints()
         addSeparator(to: .top, aboveSubview: valueLabel)
         
-}
+    }
     
     
     private lazy var vStack: UIStackView = {
@@ -54,7 +54,7 @@ final class DetailCell: ClearCell , ViewModelRepresentable {
         vStack.snp.makeConstraints { make in
             make.leading.centerY.equalToSuperview()
         }
-      
+        
     }
     
 }

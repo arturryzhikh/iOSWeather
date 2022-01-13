@@ -7,7 +7,7 @@
 import UIKit
 
 final class WeatherController: UIViewController {
-   
+    
     //MARK: Other Properties
     private var width: CGFloat {
         return collectionView.frame.width
@@ -31,11 +31,10 @@ final class WeatherController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         collectionView.delegate = self
         collectionView.dataSource = self
         dataSource = DataSource()
-        dataSource.getWeatherWith(WeatherRequest(latitude: 55.7522200, longitude: 37.6155600))
+        dataSource.getWeatherWith(WeatherRequest(latitude: 34.3344, longitude: 38.1702))
         dataSource.reloadClosure = {
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
@@ -49,7 +48,7 @@ final class WeatherController: UIViewController {
 
 //MARK: UICollectionViewDelegateFlowLayout
 extension WeatherController: UICollectionViewDelegateFlowLayout {
-   
+    
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -110,7 +109,7 @@ extension WeatherController: UICollectionViewDataSource {
         let section = Section(rawValue: indexPath.section)
         
         switch section {
-        
+            
         case .daily:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DailyCell.description(), for: indexPath) as! DailyCell
             cell.viewModel = dataSource.dailySectionVM?.items[indexPath.item]
@@ -121,12 +120,12 @@ extension WeatherController: UICollectionViewDataSource {
             cell.viewModel = dataSource.todaySectionVM?.items[indexPath.item]
             return cell
             
-       case .detail:
+        case .detail:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailCell.description(), for: indexPath) as! DetailCell
             let vm = dataSource.detailSectionVM?.items[indexPath.item]
             cell.viewModel = vm
             return cell
-        
+            
         case .link:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LinkCell.description(), for: indexPath) as! LinkCell
             let vm = dataSource.linkSectionVM
@@ -143,7 +142,7 @@ extension WeatherController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView,
                         viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         switch kind {
-        
+            
         case UICollectionView.elementKindSectionHeader :
             guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CurrentHeader.description(), for: indexPath) as? CurrentHeader else {
                 fatalError("No appropriate view for supplementary view of \(kind) ad \(indexPath)")

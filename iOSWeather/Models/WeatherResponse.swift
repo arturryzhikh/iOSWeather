@@ -16,7 +16,6 @@ struct WeatherResponse: Codable {
     let minutely: [Minutely]?
     let hourly: [Current]?
     let daily: [Daily]?
-
 }
 
 // MARK: - Current
@@ -62,8 +61,7 @@ struct Daily: Codable {
     let weather: [Weather]?
     let clouds: Int?
     let pop, snow, uvi: Double?
-
-   
+    
 }
 
 // MARK: - FeelsLike
