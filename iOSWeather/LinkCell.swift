@@ -6,7 +6,7 @@
 //
 import UIKit
 
-final class LinkCell: ClearCell, ViewModelRepresentable {
+final class LinkCell: TranaperentCell, ViewModelRepresentable {
     
     var viewModel: LinkCellVM? {
         
@@ -18,13 +18,15 @@ final class LinkCell: ClearCell, ViewModelRepresentable {
         
     }
     func populateSubviews(with viewModel: LinkCellVM) {
-        linkTxtView.attributedText = viewModel.linkAttributedString
+        linkLabel.attributedText = viewModel.link
     }
     //MARK: Subviews
-    private let linkTxtView: UITextView = {
-        $0.font = .overView
+    private let linkLabel: UILabel = {
+        $0.font = .regularTemperature
+        $0.numberOfLines = 0
+        $0.textAlignment = .center
         return $0
-    }(UITextView())
+    }(UILabel())
     
     //MARK: Life cycle
     override func setup() {
@@ -33,12 +35,13 @@ final class LinkCell: ClearCell, ViewModelRepresentable {
     }
     //MARK: Instance methods
     override func activateConstraints() {
-        addSubview(linkTxtView)
-        addSeparator(to: .top, aboveSubview: linkTxtView)
-        linkTxtView.snp.makeConstraints { make in
-            make.centerY.leading.trailing.equalToSuperview()
+        addSubview(linkLabel)
+        addSeparator(to: .top, aboveSubview: linkLabel)
+        linkLabel.snp.makeConstraints { make in
+            make.top.leading.bottom.trailing.equalToSuperview()
         }
         
     }
     
 }
+

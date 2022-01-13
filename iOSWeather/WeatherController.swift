@@ -9,6 +9,9 @@ import UIKit
 final class WeatherController: UIViewController {
     
     //MARK: Other Properties
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     private var width: CGFloat {
         return collectionView.frame.width
     }

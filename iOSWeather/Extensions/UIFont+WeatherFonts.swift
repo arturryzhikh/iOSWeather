@@ -13,30 +13,30 @@ extension UIFont {
         UIFont.systemFont(ofSize: (Screen.height * 0.04), weight: .medium)
         
     }
-    class var lightTemperature: UIFont {
+    static var lightTemperature: UIFont {
         UIFont.systemFont(ofSize: (Screen.height * 0.025), weight: .light)
     }
-    class var regularTemperature: UIFont {
+    static var regularTemperature: UIFont {
         UIFont.systemFont(ofSize: (Screen.height * 0.025), weight: .regular)
     }
-    class var hugeTemperature: UIFont {
+    static var hugeTemperature: UIFont {
         UIFont.systemFont(ofSize: (Screen.height * 0.08), weight: .light)
         
     }
-    class var degree: UIFont {
+    static var degree: UIFont {
         UIFont.systemFont(ofSize: (Screen.height * 0.03),weight: .light)
     }
-    class var overView: UIFont {
+    static var overView: UIFont {
         UIFont.systemFont(ofSize: (Screen.height * 0.022), weight: .light)
     }
-    class var weatherEmoji: UIFont {
+    static var weatherEmoji: UIFont {
         UIFont.systemFont(ofSize: (Screen.height * 0.03), weight: .light)
     }
-    class var extendedInfoTitle: UIFont {
+    static var extendedInfoTitle: UIFont {
         UIFont.systemFont(ofSize: (Screen.height * 0.02), weight: .light)
         
     }
-    class var extendedInfoValue: UIFont {
+    static var extendedInfoValue: UIFont {
         UIFont.systemFont(ofSize: (Screen.height * 0.032), weight: .regular)
         
     }

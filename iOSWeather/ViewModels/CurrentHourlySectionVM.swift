@@ -57,7 +57,7 @@ struct CurrentHeaderVM: ModelInstantiable {
         
         if let highTemp = model.daily?.first?.temp?.max,
            let lowTemp = model.daily?.first?.temp?.min {
-            return "H: \(highTemp.stringTemperature)   L: \(lowTemp.stringTemperature)"
+            return "High: \(highTemp.stringTemperature)   Low: \(lowTemp.stringTemperature)"
         }
         return "__"
         

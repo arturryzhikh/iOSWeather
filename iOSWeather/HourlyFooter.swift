@@ -6,7 +6,7 @@
 //
 import UIKit
 
-final class HourlyFooter: ClearCell, UICollectionViewDelegate {
+final class HourlyFooter: TranaperentCell, UICollectionViewDelegate {
     
     //MAKR: Static properties
     

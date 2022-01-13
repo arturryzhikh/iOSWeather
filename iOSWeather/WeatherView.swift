@@ -11,6 +11,15 @@ import SnapKit
 
 final class WeatherView: UIView {
     
+    override static var layerClass: AnyClass { return CAGradientLayer.self }
+    //MARK: properties
+    private var gradientLayer: CAGradientLayer { return layer as! CAGradientLayer }
+    
+    private func generateGradient() {
+        let color1 = #colorLiteral(red: 0.5169862509, green: 0.1906122863, blue: 0.5503773689, alpha: 1).cgColor
+        let color2 = #colorLiteral(red: 0.1352660358, green: 0.6287184954, blue: 0.700309813, alpha: 1).cgColor
+        gradientLayer.colors = [color1, color2]
+    }
     //MARK: Life Cycle
     
     required init?(coder: NSCoder) {
@@ -18,8 +27,8 @@ final class WeatherView: UIView {
     }
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .lightGray
         activateConstraints()
+        generateGradient()
     }
     
     //MARK: Instance methods

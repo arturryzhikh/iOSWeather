@@ -30,13 +30,13 @@ struct LinkCellVM: ModelInstantiable {
     
     let model: WeatherResponse
     
-    var linkAttributedString: NSMutableAttributedString {
+    var link: NSMutableAttributedString {
         guard let timezone = model.timezone else {
             return NSMutableAttributedString(string: "")
         }
-        let location = timezone.components(separatedBy: "/")[1].replacingOccurrences(of: "_", with: " ")
-        let attrSting = NSMutableAttributedString(string: "Weather for \(location). Website")
-        //        attrSting.addAttribute(.link, value: "https://openweathermap.org", range: NSRange("Website")!)
+        let location = timezone.components(separatedBy: "/")[1]
+            .replacingOccurrences(of: "_", with: " ")
+        let attrSting = NSMutableAttributedString(string: "Weather for \(location). Thanks to Open Weather Map!")
         return attrSting
     }
     
@@ -47,16 +47,4 @@ struct LinkCellVM: ModelInstantiable {
     }
     
 }
-
-//    override func viewDidLoad() {
-//        let attributedString = NSMutableAttributedString(string: "Want to learn iOS? You should visit the best source of free iOS tutorials!")
-//        attributedString.addAttribute(.link, value: "https://www.hackingwithswift.com", range: NSRange(location: 19, length: 55))
-//
-//        textView.attributedText = attributedString
-//    }
-//
-//    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
-//        UIApplication.shared.open(URL)
-//        return false
-//    }
 

@@ -6,7 +6,7 @@
 //
 import UIKit
 
-final class TodayCell: ClearCell, ViewModelRepresentable {
+final class TodayCell: TranaperentCell, ViewModelRepresentable {
     
     func populateSubviews(with viewModel: TodayCellVM) {
         todayTxtView.text = viewModel.overview
@@ -16,7 +16,6 @@ final class TodayCell: ClearCell, ViewModelRepresentable {
     var viewModel: TodayCellVM? {
         didSet {
             if let vm = viewModel {
-                
                 populateSubviews(with: vm)
             }
             

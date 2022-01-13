@@ -6,7 +6,7 @@
 //
 import UIKit
 
-final class HourlyCell: ClearCell ,ViewModelRepresentable {
+final class HourlyCell: TranaperentCell ,ViewModelRepresentable {
     
     var viewModel: HourlyItemViewModel? {
         didSet {

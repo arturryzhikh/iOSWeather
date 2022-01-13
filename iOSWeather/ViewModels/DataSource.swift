@@ -9,18 +9,8 @@ import Foundation
 
 
 enum Section: Int, CaseIterable {
-    
-    case currentHourly = 0
-    
-    case daily
-    
-    case today
-    
-    case detail
-    
-    case link
-    
-}
+    case currentHourly, daily, today, detail, link
+ }
 
 
 final class DataSource: NSObject, ApiConnectable, StaticCollectionRepresentable {

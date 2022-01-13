@@ -17,7 +17,15 @@ public extension UIView {
         }
     }
     
-    
-}
+    func addGradientBackground() {
+        let random = UIColor.random().cgColor
+        let random2 = UIColor.random().cgColor
 
+        let gradient = CAGradientLayer()
+        gradient.frame = bounds
+        gradient.colors = [random, random2]
+
+        layer.addSublayer(gradient)
+    }
+}
 

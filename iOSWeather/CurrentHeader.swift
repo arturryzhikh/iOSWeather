@@ -7,7 +7,7 @@
 import UIKit
 import SnapKit
 
-final class CurrentHeader: ClearCell {
+final class CurrentHeader: TranaperentCell {
     
     //MARK:Properties
     

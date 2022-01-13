@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class DailyCell: ClearCell {
+final class DailyCell: TranaperentCell {
     
     var viewModel: DailyCellVM? {
         didSet {
@@ -86,7 +86,7 @@ final class DailyCell: ClearCell {
             make.centerY.leading.trailing.equalToSuperview()
 
         
-        }   
+        }
     
     }
 }
