@@ -9,15 +9,15 @@ import UIKit
 final class CurrentHeader: ClearCell, ViewModelRepresentable {
     
     var viewModel: CurrentHeaderVM? {
-          
-          didSet {
-              if let vm = viewModel {
-                  populateSubviews(with: vm)
-              }
-
-          }
-      }
-
+        
+        didSet {
+            if let vm = viewModel {
+                populateSubviews(with: vm)
+            }
+            
+        }
+    }
+    
     //MARK: Static  Properties
     static var defaultHeight: CGFloat {
         Screen.height * 0.453
@@ -36,21 +36,43 @@ final class CurrentHeader: ClearCell, ViewModelRepresentable {
     }
     //MARK: Life cycle
     override func setup() {
-        super.setup()
-       addSubviewsForAutoLayout([
+        activateConstraints()
+    }
+    override func activateConstraints() {
+        addMultipleSubviews(
             locationLabel,
             descriptionLabel,
             temperatureLabel,
-            highLowLabel,
-        ])
-        activateConstraints()
+            highLowLabel
+        )
+        
+        topConstraint = locationLabel.topAnchor.constraint(equalTo: topAnchor,constant: topPadding)
+        topConstraint?.isActive = true
+        locationLabel.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview()
+            make.trailing.equalToSuperview()
+            
+        }
+        descriptionLabel.snp.makeConstraints { make in
+            make.top.equalTo(locationLabel.snp.bottom)
+            make.centerX.equalToSuperview()
+        }
+        temperatureLabel.snp.makeConstraints { make in
+            make.top.equalTo(descriptionLabel.snp.bottom)
+            make.centerX.equalToSuperview()
+        }
+        highLowLabel.snp.makeConstraints { make in
+            make.top.equalTo(temperatureLabel.snp.bottom)
+            make.centerX.equalToSuperview()
+        }
+        
     }
+    
     override func layoutSubviews() {
-        //update top constraint because origin of view changes during scrolling
+        //update top constraint when view changes during scrolling
         topConstraint?.constant = topPadding
         highLowLabel.alpha = computedAlpha
         temperatureLabel.alpha = computedAlpha
-        
     }
     //MARK: Subviews
     let locationLabel: UILabel = {
@@ -63,38 +85,23 @@ final class CurrentHeader: ClearCell, ViewModelRepresentable {
     }(UILabel(font: .lightTemperature))
     
     private let temperatureLabel: UILabel = {
-       return $0
+        return $0
     }(UILabel(font: .hugeTemperature))
     
     private let highLowLabel: UILabel = {
         return $0
     }(UILabel(font: .lightTemperature))
     
-    override func activateConstraints() {
-        topConstraint = locationLabel.topAnchor.constraint(equalTo: topAnchor,constant: topPadding)
-        topConstraint?.isActive = true
-        let constraints = [
-            locationLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            locationLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            descriptionLabel.topAnchor.constraint(equalTo: locationLabel.bottomAnchor),
-            descriptionLabel.centerXAnchor.constraint(equalTo: locationLabel.centerXAnchor),
-            temperatureLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor),
-            temperatureLabel.centerXAnchor.constraint(equalTo: descriptionLabel.centerXAnchor),
-            highLowLabel.topAnchor.constraint(equalTo: temperatureLabel.bottomAnchor),
-            highLowLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-        ]
-        NSLayoutConstraint.activate(constraints)
-    }
- 
+    
     func populateSubviews(with viewModel: CurrentHeaderVM) {
         locationLabel.text = viewModel.location
         descriptionLabel.text = viewModel.description
         temperatureLabel.text = viewModel.temperature
         highLowLabel.text = viewModel.highLowTemp
     }
-
-
-
+    
+    
+    
     
     
 }

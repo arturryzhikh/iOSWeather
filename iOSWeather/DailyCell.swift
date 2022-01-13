@@ -70,23 +70,31 @@ final class DailyCell: ClearCell {
     //MARK: life Cycle
     
     override func setup() {
-        super.setup()
-        addSubviewsForAutoLayout([dayLabel,weatherEmojiStack,temperatureStack])
         activateConstraints()
         
     }
     
     override func activateConstraints() {
-        NSLayoutConstraint.activate([
-            dayLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-            dayLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
-            weatherEmojiStack.leadingAnchor.constraint(equalTo: centerXAnchor,constant: -Screen.width * 0.1),
-            weatherEmojiStack.centerYAnchor.constraint(equalTo: centerYAnchor),
-            temperatureStack.leadingAnchor.constraint(equalTo: centerXAnchor,constant: Screen.width * 0.15),
-            temperatureStack.trailingAnchor.constraint(equalTo: trailingAnchor),
-            temperatureStack.centerYAnchor.constraint(equalTo: centerYAnchor),
+        addMultipleSubviews(
+            dayLabel,
+            weatherEmojiStack,
+            temperatureStack
+        )
+        dayLabel.snp.makeConstraints { make in
+            make.leading.equalToSuperview()
+            make.centerY.equalToSuperview()
+        }
+        weatherEmojiLabel.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(-Screen.width * 0.1)
+            make.centerY.equalToSuperview()
             
-        ])
+        }
+        temperatureStack.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(Screen.width * 0.15)
+            make.trailing.equalToSuperview()
+            make.centerY.equalToSuperview()
+        }
+       
     }
  
 }

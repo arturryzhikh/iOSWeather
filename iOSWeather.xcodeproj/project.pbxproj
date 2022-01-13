@@ -40,11 +40,10 @@
 		348DC88927907DEE000EDCFE /* UILabel+ConvenienceInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348DC87F27907DEE000EDCFE /* UILabel+ConvenienceInit.swift */; };
 		348DC88A27907DEE000EDCFE /* UIFont+WeatherFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348DC88027907DEE000EDCFE /* UIFont+WeatherFonts.swift */; };
 		348DC88B27907DEE000EDCFE /* ViewModelRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348DC88127907DEE000EDCFE /* ViewModelRepresentable.swift */; };
-		348DC88C27907DEE000EDCFE /* UIView+AddSeparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348DC88227907DEE000EDCFE /* UIView+AddSeparator.swift */; };
-		348DC88D27907DEE000EDCFE /* UIView+AddSubviewsForAutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348DC88327907DEE000EDCFE /* UIView+AddSubviewsForAutoLayout.swift */; };
+		348DC88C27907DEE000EDCFE /* ClearCell+AddSeparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348DC88227907DEE000EDCFE /* ClearCell+AddSeparator.swift */; };
+		348DC88D27907DEE000EDCFE /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348DC88327907DEE000EDCFE /* UIView+Extension.swift */; };
 		348DC88E27907DEE000EDCFE /* LinkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348DC88427907DEE000EDCFE /* LinkCell.swift */; };
 		348DC89027907DEE000EDCFE /* UIColor+WeatherColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348DC88627907DEE000EDCFE /* UIColor+WeatherColors.swift */; };
-		348DC89427907E0B000EDCFE /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348DC89327907E0A000EDCFE /* Header.swift */; };
 		348DC89827907E19000EDCFE /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348DC89527907E19000EDCFE /* WeatherView.swift */; };
 		348DC89927907E19000EDCFE /* WeatherFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348DC89627907E19000EDCFE /* WeatherFlowLayout.swift */; };
 		348DC89A27907E19000EDCFE /* WeatherController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348DC89727907E19000EDCFE /* WeatherController.swift */; };
@@ -108,11 +107,10 @@
 		348DC87F27907DEE000EDCFE /* UILabel+ConvenienceInit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+ConvenienceInit.swift"; sourceTree = "<group>"; };
 		348DC88027907DEE000EDCFE /* UIFont+WeatherFonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+WeatherFonts.swift"; sourceTree = "<group>"; };
 		348DC88127907DEE000EDCFE /* ViewModelRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModelRepresentable.swift; sourceTree = "<group>"; };
-		348DC88227907DEE000EDCFE /* UIView+AddSeparator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+AddSeparator.swift"; sourceTree = "<group>"; };
-		348DC88327907DEE000EDCFE /* UIView+AddSubviewsForAutoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+AddSubviewsForAutoLayout.swift"; sourceTree = "<group>"; };
+		348DC88227907DEE000EDCFE /* ClearCell+AddSeparator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ClearCell+AddSeparator.swift"; sourceTree = "<group>"; };
+		348DC88327907DEE000EDCFE /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		348DC88427907DEE000EDCFE /* LinkCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkCell.swift; sourceTree = "<group>"; };
 		348DC88627907DEE000EDCFE /* UIColor+WeatherColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+WeatherColors.swift"; sourceTree = "<group>"; };
-		348DC89327907E0A000EDCFE /* Header.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
 		348DC89527907E19000EDCFE /* WeatherView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
 		348DC89627907E19000EDCFE /* WeatherFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherFlowLayout.swift; sourceTree = "<group>"; };
 		348DC89727907E19000EDCFE /* WeatherController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherController.swift; sourceTree = "<group>"; };
@@ -167,8 +165,8 @@
 				348DC83D27907D24000EDCFE /* Date+StringValue.swift */,
 				348DC88027907DEE000EDCFE /* UIFont+WeatherFonts.swift */,
 				348DC87F27907DEE000EDCFE /* UILabel+ConvenienceInit.swift */,
-				348DC88227907DEE000EDCFE /* UIView+AddSeparator.swift */,
-				348DC88327907DEE000EDCFE /* UIView+AddSubviewsForAutoLayout.swift */,
+				348DC88227907DEE000EDCFE /* ClearCell+AddSeparator.swift */,
+				348DC88327907DEE000EDCFE /* UIView+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -189,6 +187,9 @@
 		340A3FFE27908B2C00A616FC /* WeatherViews */ = {
 			isa = PBXGroup;
 			children = (
+				348DC89527907E19000EDCFE /* WeatherView.swift */,
+				348DC89727907E19000EDCFE /* WeatherController.swift */,
+				348DC89627907E19000EDCFE /* WeatherFlowLayout.swift */,
 				348DC83627907CD6000EDCFE /* ClearCell.swift */,
 				348DC83827907D0F000EDCFE /* CurrentHeader.swift */,
 				348DC83A27907D1A000EDCFE /* DailyCell.swift */,
@@ -196,10 +197,6 @@
 				348DC83E27907D24000EDCFE /* DetailCell.swift */,
 				348DC83C27907D24000EDCFE /* HourlyFooter.swift */,
 				348DC88427907DEE000EDCFE /* LinkCell.swift */,
-				348DC89327907E0A000EDCFE /* Header.swift */,
-				348DC89627907E19000EDCFE /* WeatherFlowLayout.swift */,
-				348DC89527907E19000EDCFE /* WeatherView.swift */,
-				348DC89727907E19000EDCFE /* WeatherController.swift */,
 				348DC87D27907DEE000EDCFE /* TodayCell.swift */,
 			);
 			name = WeatherViews;
@@ -261,8 +258,8 @@
 				340A3FFE27908B2C00A616FC /* WeatherViews */,
 				340A3FFD27908B0600A616FC /* Networking */,
 				348DC86627907DA5000EDCFE /* Screen.swift */,
-				34E9370B27906EB1003C5FD7 /* Assets.xcassets */,
 				34E9370D27906EB1003C5FD7 /* LaunchScreen.storyboard */,
+				34E9370B27906EB1003C5FD7 /* Assets.xcassets */,
 				34E9371027906EB1003C5FD7 /* Info.plist */,
 				34E9370827906EB1003C5FD7 /* iOSWeather.xcdatamodeld */,
 			);
@@ -434,7 +431,6 @@
 				348DC87927907DA5000EDCFE /* SectionRepresentable.swift in Sources */,
 				348DC83B27907D1A000EDCFE /* DailyCell.swift in Sources */,
 				34E9370027906EB1003C5FD7 /* AppDelegate.swift in Sources */,
-				348DC89427907E0B000EDCFE /* Header.swift in Sources */,
 				348DC84727907D24000EDCFE /* HourlyCell.swift in Sources */,
 				348DC86A27907DA5000EDCFE /* DailySectionVM.swift in Sources */,
 				348DC84627907D24000EDCFE /* HTTPURLResponse+statusOK.swift in Sources */,
@@ -445,7 +441,7 @@
 				348DC89027907DEE000EDCFE /* UIColor+WeatherColors.swift in Sources */,
 				348DC86B27907DA5000EDCFE /* CurrentHourlySectionVM.swift in Sources */,
 				348DC83927907D0F000EDCFE /* CurrentHeader.swift in Sources */,
-				348DC88C27907DEE000EDCFE /* UIView+AddSeparator.swift in Sources */,
+				348DC88C27907DEE000EDCFE /* ClearCell+AddSeparator.swift in Sources */,
 				348DC87527907DA5000EDCFE /* WeatherRequest.swift in Sources */,
 				348DC86F27907DA5000EDCFE /* ModelInstantiable.swift in Sources */,
 				348DC87827907DA5000EDCFE /* LinkSectionVM.swift in Sources */,
@@ -464,7 +460,7 @@
 				348DC86D27907DA5000EDCFE /* DataSource.swift in Sources */,
 				348DC87127907DA5000EDCFE /* DetailSectionVM.swift in Sources */,
 				348DC84327907D24000EDCFE /* HourlyFooter.swift in Sources */,
-				348DC88D27907DEE000EDCFE /* UIView+AddSubviewsForAutoLayout.swift in Sources */,
+				348DC88D27907DEE000EDCFE /* UIView+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

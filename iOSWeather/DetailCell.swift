@@ -33,14 +33,10 @@ final class DetailCell: ClearCell , ViewModelRepresentable {
     
     //MARK: life Cycle
     override func setup() {
-        super.setup()
-        addSubviewForAutoLayout(vStack)
         activateConstraints()
         addSeparator(to: .top, aboveSubview: valueLabel)
         
-        
-        
-    }
+}
     
     
     private lazy var vStack: UIStackView = {
@@ -54,11 +50,11 @@ final class DetailCell: ClearCell , ViewModelRepresentable {
     
     
     override func activateConstraints() {
-        NSLayoutConstraint.activate([
-            vStack.leadingAnchor.constraint(equalTo: leadingAnchor),
-            vStack.centerYAnchor.constraint(equalTo: centerYAnchor)
-            
-        ])
+        addSubview(vStack)
+        vStack.snp.makeConstraints { make in
+            make.leading.centerY.equalToSuperview()
+        }
+      
     }
     
 }

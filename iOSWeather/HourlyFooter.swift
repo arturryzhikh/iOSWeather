@@ -43,23 +43,18 @@ final class HourlyFooter: ClearCell, UICollectionViewDelegate {
     //MARK: Other Properties
     //MARK: Life cycle
     override func setup() {
-        super.setup()
         isUserInteractionEnabled = true//switch back property to allow collection view to be scrolling
-        addSubviewForAutoLayout(collectionView)
-        addSeparator(to: .top, aboveSubview: collectionView)
-        addSeparator(to: .bottom, aboveSubview: collectionView)
         activateConstraints()
-        
-        
     }
     //MARK:Instance methods
     override func activateConstraints() {
-        NSLayoutConstraint.activate([
-            collectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            collectionView.topAnchor.constraint(equalTo: topAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: bottomAnchor)
-        ])
+        addSubview(collectionView)
+        addSeparator(to: .top, aboveSubview: collectionView)
+        addSeparator(to: .bottom, aboveSubview: collectionView)
+        collectionView.snp.makeConstraints { make in
+            make.top.leading.bottom.trailing.equalToSuperview()
+        }
+    
     }
   
 }

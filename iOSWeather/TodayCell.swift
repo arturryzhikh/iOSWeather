@@ -8,7 +8,6 @@ import UIKit
 
 final class TodayCell: ClearCell, ViewModelRepresentable {
     
-    
     func populateSubviews(with viewModel: TodayCellVM) {
         todayTxtView.text = viewModel.overview
     }
@@ -40,20 +39,17 @@ final class TodayCell: ClearCell, ViewModelRepresentable {
     }(UITextView())
     //MARK: Life cycle
     override func setup() {
-        super.setup()
-        addSubviewForAutoLayout(todayTxtView)
-        addSeparator(to: .top, aboveSubview: todayTxtView)
-        activateConstraints()
+       activateConstraints()
         
     }
     //MARK: Instance methods
     override func activateConstraints() {
-        NSLayoutConstraint.activate([
-            todayTxtView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            todayTxtView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            todayTxtView.centerYAnchor.constraint(equalTo: centerYAnchor)
-            
-        ])
+        addSubview(todayTxtView)
+        addSeparator(to: .top, aboveSubview: todayTxtView)
+        todayTxtView.snp.makeConstraints { make in
+            make.centerY.leading.trailing.equalToSuperview()
+        }
+        
         
     }
    

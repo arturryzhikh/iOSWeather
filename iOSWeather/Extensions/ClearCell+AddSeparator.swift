@@ -23,15 +23,17 @@ extension ClearCell {
         separator.backgroundColor = color
         separator.translatesAutoresizingMaskIntoConstraints = false
         insertSubview(separator, aboveSubview: aboveSubview)
-        separator.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-        separator.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-        separator.heightAnchor.constraint(equalToConstant: height).isActive = true
-        if position == .top {
-            separator.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        } else if position == .bottom {
-            separator.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        separator.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(height)
+            switch position {
+            case .top:
+                make.top.equalToSuperview()
+            case .bottom:
+                make.bottom.equalToSuperview()
+            }
+            
         }
-        
-    }
     
+    }
 }

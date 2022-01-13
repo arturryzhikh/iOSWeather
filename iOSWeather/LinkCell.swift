@@ -28,20 +28,17 @@ final class LinkCell: ClearCell, ViewModelRepresentable {
     
     //MARK: Life cycle
     override func setup() {
-        super.setup()
-        addSubviewForAutoLayout(linkTxtView)
-        addSeparator(to: .top, aboveSubview: linkTxtView)
         activateConstraints()
         
     }
     //MARK: Instance methods
     override func activateConstraints() {
-        NSLayoutConstraint.activate([
-            linkTxtView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            linkTxtView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            linkTxtView.centerYAnchor.constraint(equalTo: centerYAnchor)
-            
-        ])
+        addSubview(linkTxtView)
+        addSeparator(to: .top, aboveSubview: linkTxtView)
+        linkTxtView.snp.makeConstraints { make in
+            make.centerY.leading.trailing.equalToSuperview()
+        }
+      
     }
   
 }

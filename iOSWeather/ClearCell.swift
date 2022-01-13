@@ -22,7 +22,7 @@ public class ClearCell: UICollectionViewCell  {
     ///Override this method to provide your initial setup for view and subviews
     func setup() {
         clipsToBounds = true
-        backgroundColor =  .clear
+        contentView.backgroundColor =  .clear
         isUserInteractionEnabled = false
     }
     ///This is placeholder method to incapsulate autoLayout code

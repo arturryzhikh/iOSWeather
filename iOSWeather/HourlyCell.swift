@@ -26,11 +26,16 @@ final class HourlyCell: ClearCell ,ViewModelRepresentable {
     
     //MARK: Life Cycle
     override func setup() {
-        super.setup()
-        addSubviewForAutoLayout(vStack)
         activateConstraints()
-        
-        
+    }
+    
+    
+    override func activateConstraints() {
+       addSubview(vStack)
+        vStack.snp.makeConstraints { make in
+            make.top.leading.bottom.trailing.equalToSuperview()
+        }
+  
     }
     //MARK: Subviews
     private lazy var vStack: UIStackView = {
@@ -59,15 +64,6 @@ final class HourlyCell: ClearCell ,ViewModelRepresentable {
     private let weatherEmojiLabel: UILabel = {
         return $0
     }(UILabel(font: .weatherEmoji))
-    
-    
-    override func activateConstraints() {
-        NSLayoutConstraint.activate([
-            vStack.topAnchor.constraint(equalTo: topAnchor),
-            vStack.bottomAnchor.constraint(equalTo: bottomAnchor),
-            vStack.leadingAnchor.constraint(equalTo: leadingAnchor),
-            vStack.trailingAnchor.constraint(equalTo: trailingAnchor)
-        ])
-    }
+   
     
 }
