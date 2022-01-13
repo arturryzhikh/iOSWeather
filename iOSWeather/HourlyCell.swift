@@ -39,18 +39,17 @@ final class HourlyCell: ClearCell ,ViewModelRepresentable {
     }
     //MARK: Subviews
     private lazy var vStack: UIStackView = {
-        let sv = UIStackView(arrangedSubviews: [
-            hourLabel,
-            weatherEmojiLabel,
-            temperatureLabel
-        ])
-        sv.axis = .vertical
-        sv.alignment = .center
-        sv.distribution = .fill
-        sv.spacing = 4
-        return sv
+        $0.axis = .vertical
+        $0.alignment = .center
+        $0.distribution = .fill
+        $0.spacing = 4
+        return $0
         
-    }()
+    }(UIStackView(arrangedSubviews: [
+        hourLabel,
+        weatherEmojiLabel,
+        temperatureLabel
+    ]))
     let hourLabel: UILabel = { 
         return $0
     }(UILabel(font: .lightTemperature))

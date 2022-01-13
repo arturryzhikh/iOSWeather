@@ -192,10 +192,10 @@
 				348DC89627907E19000EDCFE /* WeatherFlowLayout.swift */,
 				348DC83627907CD6000EDCFE /* ClearCell.swift */,
 				348DC83827907D0F000EDCFE /* CurrentHeader.swift */,
-				348DC83A27907D1A000EDCFE /* DailyCell.swift */,
-				348DC84027907D24000EDCFE /* HourlyCell.swift */,
-				348DC83E27907D24000EDCFE /* DetailCell.swift */,
 				348DC83C27907D24000EDCFE /* HourlyFooter.swift */,
+				348DC84027907D24000EDCFE /* HourlyCell.swift */,
+				348DC83A27907D1A000EDCFE /* DailyCell.swift */,
+				348DC83E27907D24000EDCFE /* DetailCell.swift */,
 				348DC88427907DEE000EDCFE /* LinkCell.swift */,
 				348DC87D27907DEE000EDCFE /* TodayCell.swift */,
 			);

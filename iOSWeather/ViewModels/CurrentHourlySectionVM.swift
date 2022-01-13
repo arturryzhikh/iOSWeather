@@ -43,7 +43,7 @@ struct CurrentHeaderVM: ModelInstantiable {
         return model.timezone?.components(separatedBy: "/")[1].replacingOccurrences(of: "_", with: " ") ?? "__"
     }
     
-    var description: String {
+    var outline: String {
         return model.current?.weather?.first?.main?.rawValue ?? "__"
     }
     

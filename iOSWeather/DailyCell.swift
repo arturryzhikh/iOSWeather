@@ -10,7 +10,6 @@ import UIKit
 final class DailyCell: ClearCell {
     
     var viewModel: DailyCellVM? {
-        
         didSet {
             if let vm = viewModel {
                 populateSubviews(with: vm)
@@ -25,7 +24,7 @@ final class DailyCell: ClearCell {
         weatherEmojiLabel.text = viewModel.weatherEmoji
         percentageLabel.text = viewModel.percentage
     }
-    //MARK: Other properties
+    
     
     //MARK: Subviews
     let dayLabel: UILabel = {
@@ -67,8 +66,8 @@ final class DailyCell: ClearCell {
         $0.spacing = 0
         return $0
     }(UIStackView(arrangedSubviews:[temperatureHighLabel,temperatureLowLabel]))
-    //MARK: life Cycle
     
+    //MARK: life Cycle
     override func setup() {
         activateConstraints()
         
@@ -80,21 +79,22 @@ final class DailyCell: ClearCell {
             weatherEmojiStack,
             temperatureStack
         )
+        
         dayLabel.snp.makeConstraints { make in
-            make.leading.equalToSuperview()
-            make.centerY.equalToSuperview()
+            make.centerY.leading.equalToSuperview()
+            
         }
-        weatherEmojiLabel.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(-Screen.width * 0.1)
+        weatherEmojiStack.snp.makeConstraints { make in
+            make.leading.equalTo(self.snp.centerX).offset(-Screen.width * 0.1)
             make.centerY.equalToSuperview()
             
         }
         temperatureStack.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(Screen.width * 0.15)
+            make.leading.equalTo(self.snp.centerX).offset(Screen.width * 0.15)
             make.trailing.equalToSuperview()
             make.centerY.equalToSuperview()
         }
-       
+
     }
  
 }

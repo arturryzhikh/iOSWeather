@@ -7,10 +7,8 @@
 
 import UIKit
 import SnapKit
-
 final class WeatherView: UIView {
-    //MARK: Other Properties
-    
+   
     //MARK: Life Cycle
     
     required init?(coder: NSCoder) {
@@ -20,8 +18,6 @@ final class WeatherView: UIView {
         super.init(frame: frame)
         backgroundColor = .lightGray
         activateConstraints()
-      
-        
     }
     
     //MARK: Instance methods
@@ -34,7 +30,7 @@ final class WeatherView: UIView {
     }
     
     //create collection view
-    let collectionView: UICollectionView = {
+    lazy var collectionView: UICollectionView = {
         $0.backgroundColor = .clear
         $0.showsVerticalScrollIndicator = false
         $0.showsHorizontalScrollIndicator = false

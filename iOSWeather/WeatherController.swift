@@ -111,9 +111,8 @@ extension WeatherController: UICollectionViewDataSource {
         
         
         let section = Section(rawValue: indexPath.section)
+        
         switch section {
-        
-        
         
         case .daily:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DailyCell.description(), for: indexPath) as! DailyCell
@@ -158,7 +157,7 @@ extension WeatherController: UICollectionViewDataSource {
             
         case UICollectionView.elementKindSectionFooter :
             guard let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HourlyFooter.description(), for: indexPath) as? HourlyFooter else {
-                fatalError("No appropriate view for supplementary view of \(kind) ad \(indexPath)")
+                fatalError("No appropriate view for supplementary view of \(kind) at \(indexPath)")
             }
             let vm = dataSource.currentHourlySectionVM?.footer
             footer.viewModel = vm

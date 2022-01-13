@@ -6,30 +6,23 @@
 //
 import UIKit
 
-final class CurrentHeader: ClearCell, ViewModelRepresentable {
+final class CurrentHeader: ClearCell {
     
-    var viewModel: CurrentHeaderVM? {
-        
-        didSet {
-            if let vm = viewModel {
-                populateSubviews(with: vm)
-            }
-            
-        }
-    }
+    //MARK:Properties
     
-    //MARK: Static  Properties
+
     static var defaultHeight: CGFloat {
         Screen.height * 0.453
     }
     static var minimumHeight: CGFloat {
         Screen.height * 0.143
     }
-    //MARK: Other Properties
+   
     private var computedAlpha: CGFloat { //calculate alpha of temperature and high low labels depending on view height
         let transparentY = temperatureLabel.frame.height + temperatureLabel.frame.origin.y
         return max((frame.height - transparentY) / (CurrentHeader.defaultHeight - transparentY), 0)
     }
+    
     private var topConstraint: NSLayoutConstraint?
     private var topPadding: CGFloat {
         return frame.height * 0.3
@@ -41,9 +34,9 @@ final class CurrentHeader: ClearCell, ViewModelRepresentable {
     override func activateConstraints() {
         addMultipleSubviews(
             locationLabel,
-            descriptionLabel,
+            outlineLabel,
             temperatureLabel,
-            highLowLabel
+            temperatureRangeLabel
         )
         
         topConstraint = locationLabel.topAnchor.constraint(equalTo: topAnchor,constant: topPadding)
@@ -53,15 +46,15 @@ final class CurrentHeader: ClearCell, ViewModelRepresentable {
             make.trailing.equalToSuperview()
             
         }
-        descriptionLabel.snp.makeConstraints { make in
+        outlineLabel.snp.makeConstraints { make in
             make.top.equalTo(locationLabel.snp.bottom)
             make.centerX.equalToSuperview()
         }
         temperatureLabel.snp.makeConstraints { make in
-            make.top.equalTo(descriptionLabel.snp.bottom)
+            make.top.equalTo(outlineLabel.snp.bottom)
             make.centerX.equalToSuperview()
         }
-        highLowLabel.snp.makeConstraints { make in
+        temperatureRangeLabel.snp.makeConstraints { make in
             make.top.equalTo(temperatureLabel.snp.bottom)
             make.centerX.equalToSuperview()
         }
@@ -71,16 +64,17 @@ final class CurrentHeader: ClearCell, ViewModelRepresentable {
     override func layoutSubviews() {
         //update top constraint when view changes during scrolling
         topConstraint?.constant = topPadding
-        highLowLabel.alpha = computedAlpha
+        temperatureRangeLabel.alpha = computedAlpha
         temperatureLabel.alpha = computedAlpha
     }
+    
     //MARK: Subviews
     let locationLabel: UILabel = {
         $0.text = "- -"
         return $0
     }(UILabel(transparentText: false,font: .locationLabel))
     
-    private let descriptionLabel: UILabel = {
+    private let outlineLabel: UILabel = {
         return $0
     }(UILabel(font: .lightTemperature))
     
@@ -88,20 +82,27 @@ final class CurrentHeader: ClearCell, ViewModelRepresentable {
         return $0
     }(UILabel(font: .hugeTemperature))
     
-    private let highLowLabel: UILabel = {
+    private let temperatureRangeLabel: UILabel = {
         return $0
     }(UILabel(font: .lightTemperature))
+    
+    var viewModel: CurrentHeaderVM? {
+        
+        didSet {
+            if let vm = viewModel {
+                populateSubviews(with: vm)
+            }
+            
+        }
+    }
     
     
     func populateSubviews(with viewModel: CurrentHeaderVM) {
         locationLabel.text = viewModel.location
-        descriptionLabel.text = viewModel.description
+        outlineLabel.text = viewModel.outline
         temperatureLabel.text = viewModel.temperature
-        highLowLabel.text = viewModel.highLowTemp
+        temperatureRangeLabel.text = viewModel.highLowTemp
     }
-    
-    
-    
-    
-    
+
+
 }
