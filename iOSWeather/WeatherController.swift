@@ -176,7 +176,7 @@ extension WeatherController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.first else { return }
         locationManager.stopUpdatingLocation()
-        dataSource.getWeatherWith(WeatherRequest(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude))
+        dataSource.getWeatherWith(WeatherRequest(location: location))
         
         dataSource.reloadClosure = {
             DispatchQueue.main.async {

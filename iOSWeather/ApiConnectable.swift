@@ -16,6 +16,4 @@ protocol ApiConnectable {
     var isFetching: Bool { get }
     
     
-  
-
 }

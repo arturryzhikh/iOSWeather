@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 
 struct WeatherRequest: APIRequest {
@@ -21,10 +22,9 @@ struct WeatherRequest: APIRequest {
         "exclude" :  "alerts",
         "units": "metric",
     ]
-    
-    init(latitude: Double, longitude: Double) {
-        queries.updateValue(String(latitude), forKey: "lat")
-        queries.updateValue(String(longitude), forKey: "lon")
-        
+    init (location: CLLocation) {
+        queries.updateValue(String(location.coordinate.latitude), forKey: "lat")
+        queries.updateValue(String(location.coordinate.longitude), forKey: "lon")
     }
+  
 }
