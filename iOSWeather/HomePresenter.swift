@@ -16,15 +16,21 @@ protocol HomePresentationLogic {
     func presentWeather(response: Home.Weather.Response)
 }
 
-class HomePresenter: HomePresentationLogic {
-  
-    weak var viewController: HomeDisplayLogic?
-  // MARK: Do something
-  
-  func presentWeather(response: Home.Weather.Response) {
-      
-    let viewModel = Home.Weather.ViewModel()
-    viewController?.displaySomething(viewModel: viewModel)
-  }
+class HomePresenter: NSObject, HomePresentationLogic {
     
+    weak var viewController: HomeDisplayLogic?
+    // MARK: Present weather
+//    private func makeViewModel() -> Home.Weather.ViewModel {
+//        
+//    }
+    func presentWeather(response: Home.Weather.Response) {
+        
+        //        viewController?.displaySomething(viewModel: viewModel)
+    }
+        
+
 }
+   
+    
+
+

@@ -67,7 +67,6 @@ final class CurrentHeader: TransparentCell {
     
     //MARK: Subviews
     let locationLabel: UILabel = {
-        $0.text = "- -"
         return $0
     }(UILabel(transparentText: false,font: .locationLabel))
     

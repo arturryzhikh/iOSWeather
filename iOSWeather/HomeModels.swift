@@ -103,8 +103,71 @@ enum Home {
             let precipitation: Double?
         }
 
-        struct ViewModel
-        {
+        struct ViewModel {
+            
+            enum Section: Int, CaseIterable {
+            case currentHourly, daily, today, detail, link
+         }
+        
+        init() {
+            
+        }
+        //MARK: Section View Models
+        var currentHourlySectionVM: CurrentHourlySectionVM?
+        var dailySectionVM: DailySectionVM?
+        var todaySectionVM: TodaySectionVM?
+        var detailSectionVM: DetailSectionVM?
+        var linkSectionVM: LinkSectionVM?
+
+        //MARK: Properties
+        
+        var sections: [Int] = [
+            Section.currentHourly.rawValue,
+            Section.daily.rawValue,
+            Section.today.rawValue,
+            Section.detail.rawValue,
+            Section.link.rawValue
+        ]
+       
+        var isFetching: Bool = false
+        
+        var numberOfSections: Int {
+            return sections.count
+        }
+        
+        
+        func numberOfItemsIn(_ section: Int) -> Int {
+            
+            switch Section(rawValue: section) {
+            
+            case .currentHourly:
+                return currentHourlySectionVM?.numberOfItems ?? 0
+                
+            case .daily:
+                return dailySectionVM?.numberOfItems ?? 0
+                
+            case .today:
+                return todaySectionVM?.numberOfItems ?? 0
+                
+            case .detail:
+                return detailSectionVM?.numberOfItems ?? 0
+            case .link:
+                return linkSectionVM?.numberOfItems ?? 0
+                
+            default:
+                return 0
+            }
+        }
+        
+            mutating func generateSectionViewModels(model: Home.Weather.Response) {
+            currentHourlySectionVM = CurrentHourlySectionVM(model: model)
+            dailySectionVM = DailySectionVM(model: model)
+            todaySectionVM = TodaySectionVM(model: model)
+            detailSectionVM = DetailSectionVM(model: model)
+            linkSectionVM = LinkSectionVM(model: model)
+            
+        }
+        
             
         }
     }

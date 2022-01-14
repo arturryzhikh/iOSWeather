@@ -12,36 +12,29 @@
 
 import UIKit
 import CoreLocation
+
 protocol HomeDisplayLogic: AnyObject {
     func displaySomething(viewModel: Home.Weather.ViewModel)
 }
 
-
-
 final class HomeViewController: UIViewController, HomeDisplayLogic {
     //MARK: Other Properties
-    private var dataSource: DataSource!
     private let locationManager: CLLocationManager = CLLocationManager()
+    private var viewModel: Home.Weather.ViewModel?
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
-    private var width: CGFloat {
-        return collectionView.frame.width
-    }
-    
     var interactor: HomeBusinessLogic?
     var router: (NSObjectProtocol & HomeRoutingLogic & HomeDataPassing)?
     
     // MARK: Object lifecycle
     
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
-    {
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         setup()
     }
     
-    required init?(coder aDecoder: NSCoder)
-    {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setup()
     }
@@ -84,16 +77,12 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
     
     
     func displaySomething(viewModel: Home.Weather.ViewModel) {
-        //nameTextField.text = viewModel.name
+       
     }
     
     //MARK: Subviews
-    private var weatherView: WeatherView {
-        return self.view as! WeatherView
-    }
-    
-    private var collectionView: UICollectionView!  {
-        return weatherView.collectionView
+    var collectionView: UICollectionView!  {
+        return (self.view as! WeatherView).collectionView
     }
     
     //MARK: View Life Cycle
@@ -106,16 +95,87 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
         super.viewDidLoad()
         collectionView.delegate = self
         collectionView.dataSource = self
-        dataSource = DataSource()
+    }
+}
+
+//MARK: UICollectionViewDataSource
+extension HomeViewController: UICollectionViewDataSource {
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return viewModel?.numberOfSections ?? 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        viewModel?.numberOfItemsIn(section) ?? 0
+    }
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        
+        let section = Home.Weather.ViewModel.Section(rawValue: indexPath.section)
+        
+        switch section {
+        
+        case .daily:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DailyCell.description(), for: indexPath) as! DailyCell
+            cell.viewModel = viewModel?.dailySectionVM?.items[indexPath.item]
+            return cell
+            
+        case .today:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TodayCell.description(), for: indexPath) as! TodayCell
+            cell.viewModel = viewModel?.todaySectionVM?.items[indexPath.item]
+            return cell
+            
+        case .detail:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailCell.description(), for: indexPath) as! DetailCell
+            let vm = viewModel?.detailSectionVM?.items[indexPath.item]
+            cell.viewModel = vm
+            return cell
+            
+        case .link:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LinkCell.description(), for: indexPath) as! LinkCell
+            let vm = viewModel?.linkSectionVM
+            cell.viewModel = vm?.items[indexPath.item]
+            return cell
+            
+        default:
+            assert(false)
+            
+        }
         
     }
     
-    
+    func collectionView(_ collectionView: UICollectionView,
+                        viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        switch kind {
+            
+        case UICollectionView.elementKindSectionHeader :
+            guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CurrentHeader.description(), for: indexPath) as? CurrentHeader else {
+                fatalError("No appropriate view for supplementary view of \(kind) ad \(indexPath)")
+            }
+            let vm = viewModel?.currentHourlySectionVM?.header
+            header.viewModel = vm
+            return header
+            
+        case UICollectionView.elementKindSectionFooter :
+            guard let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HourlyFooter.description(), for: indexPath) as? HourlyFooter else {
+                fatalError("No appropriate view for supplementary view of \(kind) at \(indexPath)")
+            }
+            let vm = viewModel?.currentHourlySectionVM?.footer
+            footer.viewModel = vm
+            return footer
+            
+        default:
+            assert(false)
+        }
+    }
 }
 
 
 //MARK: UICollectionViewDelegateFlowLayout
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
+    private var width: CGFloat {
+        return collectionView.frame.width
+    }
     
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
@@ -160,79 +220,6 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
     
 }
 
-
-//MARK: UICollectionViewDataSource
-extension HomeViewController: UICollectionViewDataSource {
-    
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return dataSource.numberOfSections
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        dataSource.numberOfItemsIn(section)
-    }
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        
-        let section = Section(rawValue: indexPath.section)
-        
-        switch section {
-            
-        case .daily:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DailyCell.description(), for: indexPath) as! DailyCell
-            cell.viewModel = dataSource.dailySectionVM?.items[indexPath.item]
-            return cell
-            
-        case .today:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TodayCell.description(), for: indexPath) as! TodayCell
-            cell.viewModel = dataSource.todaySectionVM?.items[indexPath.item]
-            return cell
-            
-        case .detail:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailCell.description(), for: indexPath) as! DetailCell
-            let vm = dataSource.detailSectionVM?.items[indexPath.item]
-            cell.viewModel = vm
-            return cell
-            
-        case .link:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LinkCell.description(), for: indexPath) as! LinkCell
-            let vm = dataSource.linkSectionVM
-            cell.viewModel = vm?.items[indexPath.item]
-            return cell
-            
-        default:
-            assert(false)
-            
-        }
-        
-    }
-    
-    func collectionView(_ collectionView: UICollectionView,
-                        viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        switch kind {
-            
-        case UICollectionView.elementKindSectionHeader :
-            guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CurrentHeader.description(), for: indexPath) as? CurrentHeader else {
-                fatalError("No appropriate view for supplementary view of \(kind) ad \(indexPath)")
-            }
-            let vm = dataSource.currentHourlySectionVM?.header
-            header.viewModel = vm
-            return header
-            
-        case UICollectionView.elementKindSectionFooter :
-            guard let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HourlyFooter.description(), for: indexPath) as? HourlyFooter else {
-                fatalError("No appropriate view for supplementary view of \(kind) at \(indexPath)")
-            }
-            let vm = dataSource.currentHourlySectionVM?.footer
-            footer.viewModel = vm
-            return footer
-            
-        default:
-            assert(false)
-        }
-    }
-}
-
 extension HomeViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -242,11 +229,6 @@ extension HomeViewController: CLLocationManagerDelegate {
                                                         lon: location.coordinate.longitude))
         
         interactor?.getForecast(request)
-        //        dataSource.reloadClosure = {
-        //            DispatchQueue.main.async {
-        //                self.collectionView.reloadData()
-        //            }
-        //        }
         
     }
     
@@ -254,4 +236,5 @@ extension HomeViewController: CLLocationManagerDelegate {
         print(error)
     }
 }
+
 
