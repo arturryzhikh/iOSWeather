@@ -50,7 +50,6 @@
 		34BEF456279189B9001C765D /* HomeWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BEF450279189B9001C765D /* HomeWorker.swift */; };
 		34BEF457279189B9001C765D /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BEF451279189B9001C765D /* HomeRouter.swift */; };
 		34BEF458279189B9001C765D /* HomeModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BEF452279189B9001C765D /* HomeModels.swift */; };
-		34BEF459279189B9001C765D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BEF453279189B9001C765D /* HomeViewController.swift */; };
 		34BEF45A279189B9001C765D /* HomeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BEF454279189B9001C765D /* HomeInteractor.swift */; };
 		34E9370027906EB1003C5FD7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E936FF27906EB1003C5FD7 /* AppDelegate.swift */; };
 		34E9370227906EB1003C5FD7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E9370127906EB1003C5FD7 /* SceneDelegate.swift */; };
@@ -121,7 +120,6 @@
 		34BEF450279189B9001C765D /* HomeWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWorker.swift; sourceTree = "<group>"; };
 		34BEF451279189B9001C765D /* HomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
 		34BEF452279189B9001C765D /* HomeModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModels.swift; sourceTree = "<group>"; };
-		34BEF453279189B9001C765D /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		34BEF454279189B9001C765D /* HomeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInteractor.swift; sourceTree = "<group>"; };
 		34E936FC27906EB1003C5FD7 /* iOSWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		34E936FF27906EB1003C5FD7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -192,7 +190,7 @@
 			children = (
 				34BEF45F27919304001C765D /* Views */,
 				34BEF45D2791925D001C765D /* ViewModels */,
-				34BEF453279189B9001C765D /* HomeViewController.swift */,
+				348DC89727907E19000EDCFE /* WeatherController.swift */,
 				34BEF454279189B9001C765D /* HomeInteractor.swift */,
 				34BEF44F279189B9001C765D /* HomePresenter.swift */,
 				34BEF450279189B9001C765D /* HomeWorker.swift */,
@@ -243,7 +241,6 @@
 		34BEF45F27919304001C765D /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				348DC89727907E19000EDCFE /* WeatherController.swift */,
 				348DC89527907E19000EDCFE /* WeatherView.swift */,
 				348DC89627907E19000EDCFE /* WeatherFlowLayout.swift */,
 				348DC83627907CD6000EDCFE /* TransparentCell.swift */,
@@ -452,7 +449,6 @@
 				348DC85027907D70000EDCFE /* APIService.swift in Sources */,
 				348DC84527907D24000EDCFE /* DetailCell.swift in Sources */,
 				348DC88A27907DEE000EDCFE /* UIFont+WeatherFonts.swift in Sources */,
-				34BEF459279189B9001C765D /* HomeViewController.swift in Sources */,
 				348DC88E27907DEE000EDCFE /* LinkCell.swift in Sources */,
 				348DC83727907CD6000EDCFE /* TransparentCell.swift in Sources */,
 				348DC89A27907E19000EDCFE /* WeatherController.swift in Sources */,
