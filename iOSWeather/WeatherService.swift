@@ -8,15 +8,12 @@ import Foundation
 
 final class WeatherService: APIService {
     
-    var apiKey: String
-  
-    private init(apiKey: String = API.apiKey) {
-        self.apiKey = apiKey
+    private init() {
     }
     //Shared Session
     let session = URLSession.shared
     
-    static let shared =  WeatherService(apiKey: API.apiKey)
+    static let shared =  WeatherService()
     
     func request<T: APIRequest>(_ request: T, completion: @escaping ResultClosure<T.Response>)  {
         
@@ -53,10 +50,9 @@ final class WeatherService: APIService {
     
     func makeURL(endPoint: String, queries: [String : String]) -> URL? {
         var urlComponents = URLComponents(string: endPoint)
-        urlComponents?.queryItems = queries.map {//map parameters into query items
+        urlComponents?.queryItems = queries.map {
             URLQueryItem(name: $0.key, value: $0.value)
         }
-        urlComponents?.queryItems?.append(URLQueryItem(name: "appid", value: apiKey))
         return urlComponents?.url
     }
     
@@ -64,10 +60,9 @@ final class WeatherService: APIService {
     func decode<T: Decodable>(data: Data, into model: T.Type)  ->  T?  {
         
         let decoder = JSONDecoder()
-        
         decoder.keyDecodingStrategy = .convertFromSnakeCase
-        
-        return try? decoder.decode(model.self, from: data)
+        let result = try? decoder.decode(T.self, from: data)
+        return result
         
     }
     

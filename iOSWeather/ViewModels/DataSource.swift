@@ -15,9 +15,10 @@ enum Section: Int, CaseIterable {
 
 final class DataSource: NSObject, ApiConnectable, StaticCollectionRepresentable {
     
-    var model: WeatherResponse? {
+    var model: Forecast? {
         didSet {
             if let model = model {
+                print(model)
                 generateSectionViewModels(model: model)
                 reloadClosure?()
             }
@@ -81,7 +82,7 @@ final class DataSource: NSObject, ApiConnectable, StaticCollectionRepresentable 
             return 0
         }
     }
-    func generateSectionViewModels(model: WeatherResponse) {
+    func generateSectionViewModels(model: Forecast) {
         currentHourlySectionVM = CurrentHourlySectionVM(model: model)
         dailySectionVM = DailySectionVM(model: model)
         todaySectionVM = TodaySectionVM(model: model)
@@ -110,6 +111,7 @@ extension DataSource {
                 print(error)
             case .success(let weather):
                 self.model = weather
+                
             }
         }
     }

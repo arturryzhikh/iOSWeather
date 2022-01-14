@@ -6,25 +6,27 @@
 //
 
 import Foundation
-import CoreLocation
-
 
 struct WeatherRequest: APIRequest {
     
-    typealias Response = WeatherResponse
+    typealias Response = Forecast
     
     var endPoint: String {
         return API.oneCallendpoint
     }
-//    String(Locale.current.languageCode ?? "en") //current language code
     var queries: [String : String ] = [
-        "lang" : "ru" ,
-        "exclude" :  "alerts",
-        "units": "metric",
+        "exclude" :  "alerts"
+        
     ]
-    init (location: CLLocation) {
-        queries.updateValue(String(location.coordinate.latitude), forKey: "lat")
-        queries.updateValue(String(location.coordinate.longitude), forKey: "lon")
+    init (coordinate: (lat: Double, lon: Double),
+          language: String = "en",
+          units: String = "metric",
+          apiKey: String = API.key) {
+        queries.updateValue(String(coordinate.lat), forKey: "lat")
+        queries.updateValue(String(coordinate.lon), forKey: "lon")
+        queries.updateValue(language, forKey: "lang")
+        queries.updateValue(units, forKey: "units")
+        queries.updateValue(apiKey, forKey: "appid")
     }
   
 }

@@ -25,9 +25,9 @@ struct CurrentHourlySectionVM: ModelInstantiable, HeaderRepresentable, FooterRep
         return FooterViewModel(model: model)
     }
     
-    var model: WeatherResponse
+    var model: Forecast
     
-    init(model: WeatherResponse) {
+    init(model: Forecast) {
         self.model = model
         
     }
@@ -37,14 +37,14 @@ struct CurrentHourlySectionVM: ModelInstantiable, HeaderRepresentable, FooterRep
 
 struct CurrentHeaderVM: ModelInstantiable {
     
-    let model: WeatherResponse
+    let model: Forecast
     
     var location: String {
         return model.timezone?.components(separatedBy: "/")[1].replacingOccurrences(of: "_", with: " ") ?? "__"
     }
     
     var outline: String {
-        return model.current?.weather?.first?.main?.rawValue ?? "__"
+        return model.current?.weather?.first?.description ?? "__"
     }
     
     var temperature: String {
@@ -62,7 +62,7 @@ struct CurrentHeaderVM: ModelInstantiable {
         return "__"
         
     }
-    init(model: WeatherResponse) {
+    init(model: Forecast) {
         self.model = model
         
     }
@@ -85,9 +85,9 @@ struct HourlyFooterVM: ModelInstantiable {
     }
     
     
-    let model: WeatherResponse
+    let model: Forecast
     
-    init(model: WeatherResponse) {
+    init(model: Forecast) {
         self.model = model
         
         
@@ -116,23 +116,24 @@ struct HourlyItemViewModel: ModelInstantiable {
     
     var weatherEmoji: String {
         
-        guard let description = model.weather?.first?.main else {
-            return "..."
-        }
-        switch description {
-            
-        case .clear:
-            return "☀️"
-        case .clouds:
-            return "☁️"
-        case .rain:
-            return "🌧"
-        case .snow:
-            return "❄️"
-        case .mist:
-            return "🌫"
-            
-        }
+        return "Emoji"
+//        guard let description = model.weather?.first?.main else {
+//            return "..."
+//        }
+//        switch description {
+//
+//        case .clear:
+//            return "☀️"
+//        case .clouds:
+//            return "☁️"
+//        case .rain:
+//            return "🌧"
+//        case .snow:
+//            return "❄️"
+//        case .mist:
+//            return "🌫"
+//
+//        }
         
     }
     var temperature: String {

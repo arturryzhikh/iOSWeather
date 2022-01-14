@@ -13,9 +13,9 @@ struct LinkSectionVM: ItemRepresentable, ModelInstantiable {
     var numberOfItems: Int {
         return items.count
     }
-    var model: WeatherResponse
+    var model: Forecast
     
-    init(model: WeatherResponse) {
+    init(model: Forecast) {
         self.model = model
     }
     var items: [LinkCellVM] {
@@ -28,7 +28,7 @@ struct LinkSectionVM: ItemRepresentable, ModelInstantiable {
 
 struct LinkCellVM: ModelInstantiable {
     
-    let model: WeatherResponse
+    let model: Forecast
     
     var link: NSMutableAttributedString {
         guard let timezone = model.timezone else {
@@ -41,7 +41,7 @@ struct LinkCellVM: ModelInstantiable {
     }
     
     
-    init(model: WeatherResponse) {
+    init(model: Forecast) {
         self.model = model
         
     }

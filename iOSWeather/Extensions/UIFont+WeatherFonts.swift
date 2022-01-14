@@ -8,7 +8,7 @@
 import UIKit
 
 extension UIFont {
-    class var locationLabel: UIFont {
+    static var locationLabel: UIFont {
         
         UIFont.systemFont(ofSize: (Screen.height * 0.04), weight: .medium)
         

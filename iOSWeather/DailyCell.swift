@@ -65,8 +65,7 @@ final class DailyCell: TransparentCell {
     
     //MARK: life Cycle
     override func setup() {
-        activateConstraints()
-        
+       activateConstraints()
     }
     private lazy var stack: UIStackView = {
         $0.addArrangedSubview(dayLabel)

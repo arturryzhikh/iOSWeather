@@ -8,7 +8,7 @@ import Foundation
 
 
 // MARK: - Welcome
-struct WeatherResponse: Codable {
+struct Forecast: Codable {
     let lat, lon: Double?
     let timezone: String?
     let timezoneOffset: Int?
@@ -34,21 +34,11 @@ struct Current: Codable {
 
 // MARK: - Weather
 struct Weather: Codable {
-    let id: Int?
-    let main: Main?
+    let id: Int
+    let main: String
+    let icon: String
+    let description: String
 }
-
-
-
-enum Main: String, Codable {
-    case clouds = "Clouds"
-    case snow = "Snow"
-    case rain = "Rain"
-    case clear = "Clear"
-    case mist = "Mist"
-}
-
-
 
 // MARK: - Daily
 struct Daily: Codable {

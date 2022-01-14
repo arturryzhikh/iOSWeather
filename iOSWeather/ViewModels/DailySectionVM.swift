@@ -26,9 +26,9 @@ struct DailySectionVM: ItemRepresentable, ModelInstantiable {
     
     
     
-    var model: WeatherResponse
+    var model: Forecast
     
-    init(model: WeatherResponse) {
+    init(model: Forecast) {
         self.model = model
         
     }
@@ -59,23 +59,24 @@ struct DailyCellVM: ModelInstantiable {
         return low.stringTemperature
     }
     var weatherEmoji: String {
-        guard let description = model.weather?.first?.main else {
-            return "..."
-        }
-        switch description {
-            
-        case .clear:
-            return "☀️"
-        case .clouds:
-            return "☁️"
-        case .rain:
-            return "🌧"
-        case .snow:
-            return "❄️"
-        case .mist:
-            return "🌫"
-            
-        }
+        return "Description"
+//        guard let description = model.weather?.first?.main else {
+//            return "..."
+//        }
+//        switch description {
+//            
+//        case .clear:
+//            return "☀️"
+//        case .clouds:
+//            return "☁️"
+//        case .rain:
+//            return "🌧"
+//        case .snow:
+//            return "❄️"
+//        case .mist:
+//            return "🌫"
+//            
+//        }
     }
     var percentage: String {
         guard let prob = model.pop else {
@@ -89,6 +90,7 @@ struct DailyCellVM: ModelInstantiable {
     
     init(model: Daily) {
         self.model = model
+        
     }
     
     
