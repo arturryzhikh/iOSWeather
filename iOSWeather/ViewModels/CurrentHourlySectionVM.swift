@@ -9,8 +9,6 @@ import Foundation
 
 struct CurrentHourlySectionVM: HeaderRepresentable, FooterRepresentable {
     
-    
-    
     var numberOfItems: Int {
         return 0
     }
@@ -49,7 +47,7 @@ struct CurrentHeaderVM {
     
     var temperature: String {
         if let temp = model.current?.temp {
-            return temp.stringTemperature
+            return temp.stringTemp
         }
         return "__"
     }
@@ -57,7 +55,7 @@ struct CurrentHeaderVM {
         
         if let highTemp = model.daily?.first?.temp?.max,
            let lowTemp = model.daily?.first?.temp?.min {
-            return "High: \(highTemp.stringTemperature)   Low: \(lowTemp.stringTemperature)"
+            return "High: \(highTemp.stringTemp)   Low: \(lowTemp.stringTemp)"
         }
         return "__"
         
@@ -138,7 +136,7 @@ struct HourlyItemViewModel {
     }
     var temperature: String {
         if let temp = model.temp {
-            return temp.stringTemperature
+            return temp.stringTemp
         }
         return "__"
     }

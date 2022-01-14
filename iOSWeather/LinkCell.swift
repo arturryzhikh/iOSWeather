@@ -17,6 +17,7 @@ final class LinkCell: TransparentCell, ViewModelRepresentable {
         }
         
     }
+    
     func populateSubviews(with viewModel: LinkCellVM) {
         linkLabel.attributedText = viewModel.link
     }

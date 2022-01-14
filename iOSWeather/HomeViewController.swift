@@ -40,7 +40,7 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
     }
     
     // MARK: Setup
-    
+   
     private func setup() {
         let viewController = self
         let interactor = HomeInteractor()
@@ -52,11 +52,16 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
         presenter.viewController = viewController
         router.viewController = viewController
         router.dataStore = interactor
+        setupLocationManager()
+    }
+    
+    private func setupLocationManager() {
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()
     }
+    
     
     // MARK: Routing
     //
@@ -102,11 +107,11 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
 extension HomeViewController: UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return viewModel?.numberOfSections ?? 0
+        return viewModel?.numberOfSections ?? .zero
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        viewModel?.numberOfItemsIn(section) ?? 0
+        viewModel?.numberOfItemsIn(section) ?? .zero
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         

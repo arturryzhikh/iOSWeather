@@ -8,11 +8,13 @@
 import UIKit
 
 extension UIFont {
+    
     static var locationLabel: UIFont {
         
         UIFont.systemFont(ofSize: (Screen.height * 0.04), weight: .medium)
         
     }
+    
     static var lightTemperature: UIFont {
         UIFont.systemFont(ofSize: (Screen.height * 0.025), weight: .light)
     }

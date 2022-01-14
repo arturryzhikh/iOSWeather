@@ -25,13 +25,6 @@ class HomeInteractor: NSObject, HomeBusinessLogic, HomeDataStore {
     var presenter: HomePresentationLogic?
     var worker: HomeWorker?
     
-    //MARK: LIfe cycle
-    
-    override init() {
-        super.init()
-        
-}
-    
     // MARK: Get Forecast
     func getForecast(_ request: Home.Weather.Request) {
         worker = HomeWorker()

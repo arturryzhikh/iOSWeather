@@ -50,13 +50,13 @@ struct DailyCellVM {
         guard let high = model.temp?.max else {
             return "__"
         }
-        return high.stringTemperature
+        return high.stringTemp
     }
     var temperatureLow: String {
         guard let low = model.temp?.min else {
             return "__"
         }
-        return low.stringTemperature
+        return low.stringTemp
     }
     var weatherEmoji: String {
         return "Description"

@@ -16,6 +16,5 @@ extension UILabel {
         textAlignment = alignment
         numberOfLines = 1
         self.font = font
-        
     }
 }

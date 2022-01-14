@@ -89,7 +89,7 @@ struct DetailCellVM {
             guard let feelsLike = model.current?.feelsLike else {
                 return ("FEELS LIKE", "")
             }
-            return ("FEELS LIKE", "\(feelsLike.stringTemperature)")
+            return ("FEELS LIKE", "\(feelsLike.stringTemp)")
         case 5:
             guard let prec = model.minutely?.first?.precipitation else {
                 return ("PRECIPITATION", "")

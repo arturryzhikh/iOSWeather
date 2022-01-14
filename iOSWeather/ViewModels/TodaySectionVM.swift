@@ -37,7 +37,7 @@ struct TodayCellVM {
            let lowTemp = model.daily?.first?.temp?.min,
            let description = model.current?.weather?.first?.main {
             return """
-            Today: \(description) currently. The high will be \(highTemp.stringTemperature). The low tonight will be \(lowTemp.stringTemperature)
+            Today: \(description) currently. The high will be \(highTemp.stringTemp). The low tonight will be \(lowTemp.stringTemp)
             """
         }
         return ""

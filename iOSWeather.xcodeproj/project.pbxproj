@@ -16,7 +16,7 @@
 		348DC84527907D24000EDCFE /* DetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348DC83E27907D24000EDCFE /* DetailCell.swift */; };
 		348DC84627907D24000EDCFE /* HTTPURLResponse+statusOK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348DC83F27907D24000EDCFE /* HTTPURLResponse+statusOK.swift */; };
 		348DC84727907D24000EDCFE /* HourlyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348DC84027907D24000EDCFE /* HourlyCell.swift */; };
-		348DC84827907D24000EDCFE /* Double+StringTemperature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348DC84127907D24000EDCFE /* Double+StringTemperature.swift */; };
+		348DC84827907D24000EDCFE /* Double+StringTemp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348DC84127907D24000EDCFE /* Double+StringTemp.swift */; };
 		348DC84927907D24000EDCFE /* Int+windDirectionFromDegree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348DC84227907D24000EDCFE /* Int+windDirectionFromDegree.swift */; };
 		348DC85327907D70000EDCFE /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348DC84E27907D70000EDCFE /* API.swift */; };
 		348DC86A27907DA5000EDCFE /* DailySectionVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348DC85527907DA5000EDCFE /* DailySectionVM.swift */; };
@@ -27,7 +27,7 @@
 		348DC87A27907DA5000EDCFE /* TodaySectionVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348DC86527907DA5000EDCFE /* TodaySectionVM.swift */; };
 		348DC87B27907DA5000EDCFE /* Screen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348DC86627907DA5000EDCFE /* Screen.swift */; };
 		348DC88727907DEE000EDCFE /* TodayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348DC87D27907DEE000EDCFE /* TodayCell.swift */; };
-		348DC88827907DEE000EDCFE /* UICollectionView+RegisterReusableViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348DC87E27907DEE000EDCFE /* UICollectionView+RegisterReusableViews.swift */; };
+		348DC88827907DEE000EDCFE /* UICollectionView+Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348DC87E27907DEE000EDCFE /* UICollectionView+Register.swift */; };
 		348DC88927907DEE000EDCFE /* UILabel+ConvenienceInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348DC87F27907DEE000EDCFE /* UILabel+ConvenienceInit.swift */; };
 		348DC88A27907DEE000EDCFE /* UIFont+WeatherFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348DC88027907DEE000EDCFE /* UIFont+WeatherFonts.swift */; };
 		348DC88B27907DEE000EDCFE /* ViewModelRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348DC88127907DEE000EDCFE /* ViewModelRepresentable.swift */; };
@@ -80,7 +80,7 @@
 		348DC83E27907D24000EDCFE /* DetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailCell.swift; sourceTree = "<group>"; };
 		348DC83F27907D24000EDCFE /* HTTPURLResponse+statusOK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HTTPURLResponse+statusOK.swift"; sourceTree = "<group>"; };
 		348DC84027907D24000EDCFE /* HourlyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HourlyCell.swift; sourceTree = "<group>"; };
-		348DC84127907D24000EDCFE /* Double+StringTemperature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Double+StringTemperature.swift"; sourceTree = "<group>"; };
+		348DC84127907D24000EDCFE /* Double+StringTemp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Double+StringTemp.swift"; sourceTree = "<group>"; };
 		348DC84227907D24000EDCFE /* Int+windDirectionFromDegree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+windDirectionFromDegree.swift"; sourceTree = "<group>"; };
 		348DC84E27907D70000EDCFE /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		348DC85527907DA5000EDCFE /* DailySectionVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailySectionVM.swift; sourceTree = "<group>"; };
@@ -91,7 +91,7 @@
 		348DC86527907DA5000EDCFE /* TodaySectionVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodaySectionVM.swift; sourceTree = "<group>"; };
 		348DC86627907DA5000EDCFE /* Screen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Screen.swift; sourceTree = "<group>"; };
 		348DC87D27907DEE000EDCFE /* TodayCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodayCell.swift; sourceTree = "<group>"; };
-		348DC87E27907DEE000EDCFE /* UICollectionView+RegisterReusableViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+RegisterReusableViews.swift"; sourceTree = "<group>"; };
+		348DC87E27907DEE000EDCFE /* UICollectionView+Register.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Register.swift"; sourceTree = "<group>"; };
 		348DC87F27907DEE000EDCFE /* UILabel+ConvenienceInit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+ConvenienceInit.swift"; sourceTree = "<group>"; };
 		348DC88027907DEE000EDCFE /* UIFont+WeatherFonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+WeatherFonts.swift"; sourceTree = "<group>"; };
 		348DC88127907DEE000EDCFE /* ViewModelRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModelRepresentable.swift; sourceTree = "<group>"; };
@@ -152,10 +152,10 @@
 			isa = PBXGroup;
 			children = (
 				348DC88627907DEE000EDCFE /* UIColor+WeatherColors.swift */,
-				348DC87E27907DEE000EDCFE /* UICollectionView+RegisterReusableViews.swift */,
+				348DC87E27907DEE000EDCFE /* UICollectionView+Register.swift */,
 				348DC84227907D24000EDCFE /* Int+windDirectionFromDegree.swift */,
 				348DC83F27907D24000EDCFE /* HTTPURLResponse+statusOK.swift */,
-				348DC84127907D24000EDCFE /* Double+StringTemperature.swift */,
+				348DC84127907D24000EDCFE /* Double+StringTemp.swift */,
 				348DC83D27907D24000EDCFE /* Date+StringValue.swift */,
 				348DC88027907DEE000EDCFE /* UIFont+WeatherFonts.swift */,
 				348DC87F27907DEE000EDCFE /* UILabel+ConvenienceInit.swift */,
@@ -171,6 +171,14 @@
 				348DC86627907DA5000EDCFE /* Screen.swift */,
 			);
 			path = Global;
+			sourceTree = "<group>";
+		};
+		344A8185279213E9007601CE /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				348DC88127907DEE000EDCFE /* ViewModelRepresentable.swift */,
+			);
+			name = Protocols;
 			sourceTree = "<group>";
 		};
 		34BEF45B27918C85001C765D /* HomeScene */ = {
@@ -201,13 +209,13 @@
 		34BEF45D2791925D001C765D /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				344A8185279213E9007601CE /* Protocols */,
+				348DC85627907DA5000EDCFE /* CurrentHourlySectionVM.swift */,
 				348DC85527907DA5000EDCFE /* DailySectionVM.swift */,
 				348DC85C27907DA5000EDCFE /* DetailSectionVM.swift */,
-				348DC85627907DA5000EDCFE /* CurrentHourlySectionVM.swift */,
-				348DC86327907DA5000EDCFE /* LinkSectionVM.swift */,
 				348DC86527907DA5000EDCFE /* TodaySectionVM.swift */,
+				348DC86327907DA5000EDCFE /* LinkSectionVM.swift */,
 				348DC86427907DA5000EDCFE /* SectionRepresentable.swift */,
-				348DC88127907DEE000EDCFE /* ViewModelRepresentable.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -419,7 +427,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				348DC87B27907DA5000EDCFE /* Screen.swift in Sources */,
-				348DC84827907D24000EDCFE /* Double+StringTemperature.swift in Sources */,
+				348DC84827907D24000EDCFE /* Double+StringTemp.swift in Sources */,
 				348DC84527907D24000EDCFE /* DetailCell.swift in Sources */,
 				348DC88A27907DEE000EDCFE /* UIFont+WeatherFonts.swift in Sources */,
 				348DC88E27907DEE000EDCFE /* LinkCell.swift in Sources */,
@@ -435,7 +443,7 @@
 				348DC84627907D24000EDCFE /* HTTPURLResponse+statusOK.swift in Sources */,
 				348DC84927907D24000EDCFE /* Int+windDirectionFromDegree.swift in Sources */,
 				348DC87A27907DA5000EDCFE /* TodaySectionVM.swift in Sources */,
-				348DC88827907DEE000EDCFE /* UICollectionView+RegisterReusableViews.swift in Sources */,
+				348DC88827907DEE000EDCFE /* UICollectionView+Register.swift in Sources */,
 				348DC89027907DEE000EDCFE /* UIColor+WeatherColors.swift in Sources */,
 				348DC86B27907DA5000EDCFE /* CurrentHourlySectionVM.swift in Sources */,
 				348DC83927907D0F000EDCFE /* CurrentHeader.swift in Sources */,

@@ -6,8 +6,8 @@
 //
 
 import Foundation
+
 public enum ResponseError: Error {
-    
     case network
     case decoding
     case invalidEndPoint
