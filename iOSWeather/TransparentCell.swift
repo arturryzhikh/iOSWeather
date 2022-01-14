@@ -7,7 +7,7 @@
 import UIKit
 
 ///Base class for all custom transperent UI Collection View Cells
-public class TranaperentCell: UICollectionViewCell  {
+public class TransparentCell: UICollectionViewCell  {
     
     override init(frame: CGRect) {
         super.init(frame:frame)
@@ -40,7 +40,7 @@ enum SeparatorPosition {
     case top
 }
 
-extension TranaperentCell {
+extension TransparentCell {
     
     func addSeparator(to position: SeparatorPosition, color: UIColor = .weatherTransparent,
                       of height: CGFloat = 0.75, aboveSubview: UIView) {

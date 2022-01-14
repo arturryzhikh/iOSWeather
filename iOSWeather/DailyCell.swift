@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class DailyCell: TranaperentCell {
+final class DailyCell: TransparentCell {
     
     var viewModel: DailyCellVM? {
         didSet {

@@ -5,7 +5,7 @@
 //  Created by Artur Ryzhikh on 13.01.2022.
 //
 import UIKit
-
+import CoreLocation
 final class WeatherController: UIViewController {
     
     //MARK: Other Properties
@@ -26,6 +26,7 @@ final class WeatherController: UIViewController {
     }
     //MARK: Other Properties
     private var dataSource: DataSource!
+    private var locationManager: CLLocationManager!
     //MARK: Life Cycle
     override func loadView() {
         view = WeatherView()
@@ -37,12 +38,14 @@ final class WeatherController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         dataSource = DataSource()
-        dataSource.getWeatherWith(WeatherRequest(latitude: 34.3344, longitude: 38.1702))
-        dataSource.reloadClosure = {
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
-            }
-        }
+        //
+        locationManager = CLLocationManager()
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.startUpdatingLocation()
+        //
+
     }
     
     
@@ -165,5 +168,24 @@ extension WeatherController: UICollectionViewDataSource {
         default:
             assert(false)
         }
+    }
+}
+
+extension WeatherController: CLLocationManagerDelegate {
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.first else { return }
+        locationManager.stopUpdatingLocation()
+        dataSource.getWeatherWith(WeatherRequest(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude))
+        
+        dataSource.reloadClosure = {
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
+        }
+        
+    }
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(error)
     }
 }

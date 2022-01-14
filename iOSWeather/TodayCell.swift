@@ -6,7 +6,7 @@
 //
 import UIKit
 
-final class TodayCell: TranaperentCell, ViewModelRepresentable {
+final class TodayCell: TransparentCell, ViewModelRepresentable {
     
     func populateSubviews(with viewModel: TodayCellVM) {
         todayTxtView.text = viewModel.overview
@@ -25,7 +25,7 @@ final class TodayCell: TranaperentCell, ViewModelRepresentable {
     //MARK: Subviews
     private let todayTxtView: UITextView = {
         $0.textAlignment = .left
-        $0.font = .overView
+        $0.font = .regularTemperature
         $0.textColor = .weatherWhite
         $0.backgroundColor = .clear
         $0.isScrollEnabled = false

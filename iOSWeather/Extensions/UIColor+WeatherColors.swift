@@ -14,7 +14,7 @@ extension UIColor {
         return white.withAlphaComponent(0.75)
     }
     class var percentage: UIColor {
-        return  #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)
+        return  #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
     }
     static func random() -> UIColor {
         let red = CGFloat.random(in: 0...1)

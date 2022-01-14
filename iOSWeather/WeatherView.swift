@@ -16,7 +16,7 @@ final class WeatherView: UIView {
     private var gradientLayer: CAGradientLayer { return layer as! CAGradientLayer }
     
     private func generateGradient() {
-        let color1 = #colorLiteral(red: 0.5169862509, green: 0.1906122863, blue: 0.5503773689, alpha: 1).cgColor
+        let color1 = #colorLiteral(red: 0.9411764741, green: 0.4980392158, blue: 0.3529411852, alpha: 1).cgColor
         let color2 = #colorLiteral(red: 0.1352660358, green: 0.6287184954, blue: 0.700309813, alpha: 1).cgColor
         gradientLayer.colors = [color1, color2]
     }
