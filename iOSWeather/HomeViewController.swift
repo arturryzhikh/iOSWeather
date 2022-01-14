@@ -21,7 +21,7 @@ protocol HomeDisplayLogic: AnyObject {
 final class HomeViewController: UIViewController, HomeDisplayLogic {
     //MARK: Other Properties
     private var dataSource: DataSource!
-    private var locationManager: CLLocationManager!
+    private let locationManager: CLLocationManager = CLLocationManager()
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -48,48 +48,45 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
     
     // MARK: Setup
     
-    private func setup()
-    {
+    private func setup() {
         let viewController = self
         let interactor = HomeInteractor()
-        let presenter = HomePresenter()
         let router = HomeRouter()
+        let presenter = HomePresenter()
         viewController.interactor = interactor
         viewController.router = router
         interactor.presenter = presenter
         presenter.viewController = viewController
         router.viewController = viewController
         router.dataStore = interactor
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.startUpdatingLocation()
     }
     
     // MARK: Routing
-//
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
-//    {
-//        if let scene = segue.identifier {
-//            let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
-//            if let router = router, router.responds(to: selector) {
-//                router.perform(selector, with: segue)
-//            }
-//        }
-//    }
-//
-//
+    //
+    //    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    //    {
+    //        if let scene = segue.identifier {
+    //            let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
+    //            if let router = router, router.responds(to: selector) {
+    //                router.perform(selector, with: segue)
+    //            }
+    //        }
+    //    }
+    //
+    //
     // MARK: Do something
     
     //@IBOutlet weak var nameTextField: UITextField!
     
-    func doSomething()
-    {
-//        let request = Home.Weather.Request()
-//        interactor?.doSomething(request: request)
-    }
     
-    func displaySomething(viewModel: Home.Weather.ViewModel)
-    {
+    func displaySomething(viewModel: Home.Weather.ViewModel) {
         //nameTextField.text = viewModel.name
     }
-   
+    
     //MARK: Subviews
     private var weatherView: WeatherView {
         return self.view as! WeatherView
@@ -98,7 +95,7 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
     private var collectionView: UICollectionView!  {
         return weatherView.collectionView
     }
-   
+    
     //MARK: View Life Cycle
     override func loadView() {
         view = WeatherView()
@@ -110,14 +107,7 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
         collectionView.delegate = self
         collectionView.dataSource = self
         dataSource = DataSource()
-        //
-        locationManager = CLLocationManager()
-        locationManager.delegate = self
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.startUpdatingLocation()
-        //
-        doSomething()
+        
     }
     
     
@@ -249,13 +239,14 @@ extension HomeViewController: CLLocationManagerDelegate {
         guard let location = locations.first else { return }
         locationManager.stopUpdatingLocation()
         let request = Home.Weather.Request(coordinate: (lat: location.coordinate.latitude,
-                                                  lon: location.coordinate.longitude))
-        dataSource.getWeatherWith(request)
-        dataSource.reloadClosure = {
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
-            }
-        }
+                                                        lon: location.coordinate.longitude))
+        
+        interactor?.getForecast(request)
+        //        dataSource.reloadClosure = {
+        //            DispatchQueue.main.async {
+        //                self.collectionView.reloadData()
+        //            }
+        //        }
         
     }
     
@@ -263,3 +254,4 @@ extension HomeViewController: CLLocationManagerDelegate {
         print(error)
     }
 }
+

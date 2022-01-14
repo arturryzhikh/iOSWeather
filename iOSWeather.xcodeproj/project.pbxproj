@@ -184,8 +184,8 @@
 				34BEF45D2791925D001C765D /* ViewModels */,
 				348DC89727907E19000EDCFE /* HomeViewController.swift */,
 				34BEF454279189B9001C765D /* HomeInteractor.swift */,
-				34BEF44F279189B9001C765D /* HomePresenter.swift */,
 				34BEF450279189B9001C765D /* HomeWorker.swift */,
+				34BEF44F279189B9001C765D /* HomePresenter.swift */,
 				34BEF451279189B9001C765D /* HomeRouter.swift */,
 				34BEF452279189B9001C765D /* HomeModels.swift */,
 			);

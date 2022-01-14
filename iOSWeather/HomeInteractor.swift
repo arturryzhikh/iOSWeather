@@ -12,30 +12,42 @@
 
 import UIKit
 
-protocol HomeBusinessLogic
-{
-  func doSomething(request: Home.Weather.Request)
+protocol HomeBusinessLogic {
+    func getForecast(_ request: Home.Weather.Request)
 }
 
-protocol HomeDataStore
-{
-  //var name: String { get set }
+protocol HomeDataStore {
+    //var name: String { get set }
 }
 
-class HomeInteractor: HomeBusinessLogic, HomeDataStore
-{
-  var presenter: HomePresentationLogic?
-  var worker: HomeWorker?
-  //var name: String = ""
-  
-  // MARK: Do something
-  
-  func doSomething(request: Home.Weather.Request)
-  {
-    worker = HomeWorker()
-    worker?.doSomeWork()
+class HomeInteractor: NSObject, HomeBusinessLogic, HomeDataStore {
     
-//      let response = Home.Weather.Response
-//    presenter?.presentSomething(response: response)
-  }
+    var presenter: HomePresentationLogic?
+    var worker: HomeWorker?
+    
+    //MARK: LIfe cycle
+    
+    override init() {
+        super.init()
+        
 }
+    
+    // MARK: Get Forecast
+    func getForecast(_ request: Home.Weather.Request) {
+        worker = HomeWorker()
+        worker?.getForecast(request: request) { [weak self] result in
+            guard let self = self else {
+                return
+            }
+            switch result {
+            case.failure(let error):
+                //FIXME: handle error
+                print(error)
+            case.success(let response):
+                self.presenter?.presentWeather(response: response)
+            }
+        }
+    }
+ 
+}
+

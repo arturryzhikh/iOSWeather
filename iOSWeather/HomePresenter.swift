@@ -12,20 +12,19 @@
 
 import UIKit
 
-protocol HomePresentationLogic
-{
-  func presentSomething(response: Home.Weather.Response)
+protocol HomePresentationLogic {
+    func presentWeather(response: Home.Weather.Response)
 }
 
-class HomePresenter: HomePresentationLogic
-{
-  weak var viewController: HomeDisplayLogic?
+class HomePresenter: HomePresentationLogic {
   
+    weak var viewController: HomeDisplayLogic?
   // MARK: Do something
   
-  func presentSomething(response: Home.Weather.Response)
-  {
+  func presentWeather(response: Home.Weather.Response) {
+      
     let viewModel = Home.Weather.ViewModel()
     viewController?.displaySomething(viewModel: viewModel)
   }
+    
 }

@@ -12,9 +12,22 @@
 
 import UIKit
 
-class HomeWorker
-{
-  func doSomeWork()
-  {
-  }
+class HomeWorker {
+    
+    private var apiService: Networking!
+    init(apiService: Networking = ApiService()) {
+        self.apiService = apiService
+    }
+    
+    func getForecast(request: Home.Weather.Request, completion: @escaping (Result<Home.Weather.Response,Error>) -> Void) {
+        apiService.request(request) { result in
+            switch result {
+            case.failure(let error):
+                completion(.failure(error))
+            case.success(let response):
+                completion(.success(response))
+            }
+        }
+    }
 }
+
