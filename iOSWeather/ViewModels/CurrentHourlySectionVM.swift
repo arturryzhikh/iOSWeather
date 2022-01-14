@@ -7,7 +7,7 @@
 import Foundation
 
 
-struct CurrentHourlySectionVM: ModelInstantiable, HeaderRepresentable, FooterRepresentable {
+struct CurrentHourlySectionVM: HeaderRepresentable, FooterRepresentable {
     
     
     
@@ -25,9 +25,9 @@ struct CurrentHourlySectionVM: ModelInstantiable, HeaderRepresentable, FooterRep
         return FooterViewModel(model: model)
     }
     
-    var model: Forecast
+    var model: Home.Weather.Response
     
-    init(model: Forecast) {
+    init(model: Home.Weather.Response) {
         self.model = model
         
     }
@@ -35,9 +35,9 @@ struct CurrentHourlySectionVM: ModelInstantiable, HeaderRepresentable, FooterRep
     
 }
 
-struct CurrentHeaderVM: ModelInstantiable {
+struct CurrentHeaderVM {
     
-    let model: Forecast
+    let model: Home.Weather.Response
     
     var location: String {
         return model.timezone?.components(separatedBy: "/")[1].replacingOccurrences(of: "_", with: " ") ?? "__"
@@ -62,7 +62,7 @@ struct CurrentHeaderVM: ModelInstantiable {
         return "__"
         
     }
-    init(model: Forecast) {
+    init(model: Home.Weather.Response) {
         self.model = model
         
     }
@@ -70,7 +70,7 @@ struct CurrentHeaderVM: ModelInstantiable {
 }
 
 
-struct HourlyFooterVM: ModelInstantiable {
+struct HourlyFooterVM {
     
     var items: [HourlyItemViewModel]  {
         var returnValue: [HourlyItemViewModel]
@@ -85,9 +85,9 @@ struct HourlyFooterVM: ModelInstantiable {
     }
     
     
-    let model: Forecast
+    let model: Home.Weather.Response
     
-    init(model: Forecast) {
+    init(model: Home.Weather.Response) {
         self.model = model
         
         
@@ -96,9 +96,9 @@ struct HourlyFooterVM: ModelInstantiable {
     
 }
 
-struct HourlyItemViewModel: ModelInstantiable {
+struct HourlyItemViewModel {
     
-    let model: Current
+    let model: Home.Weather.Current
     
     var hour: String  {
         guard let dt = model.dt else {
@@ -143,7 +143,7 @@ struct HourlyItemViewModel: ModelInstantiable {
         return "__"
     }
     
-    init(model: Current) {
+    init(model: Home.Weather.Current) {
         self.model = model
         
     }

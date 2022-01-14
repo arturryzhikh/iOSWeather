@@ -9,13 +9,13 @@ import Foundation
 
 
 
-struct DetailSectionVM:  ItemRepresentable, ModelInstantiable {
+struct DetailSectionVM:  ItemRepresentable {
     
     typealias ItemViewModel = DetailCellVM
     
-    var model: Forecast
+    var model: Home.Weather.Response
     
-    init(model: Forecast) {
+    init(model: Home.Weather.Response) {
         self.model = model
         
     }
@@ -37,7 +37,7 @@ struct DetailSectionVM:  ItemRepresentable, ModelInstantiable {
 }
 
 
-struct DetailCellVM: ModelInstantiable {
+struct DetailCellVM {
     
     var item: Int = 0
     
@@ -116,9 +116,9 @@ struct DetailCellVM: ModelInstantiable {
             return ("","")
         }
     }
-    var model: Forecast
+    var model: Home.Weather.Response
     
-    init(model: Forecast) {
+    init(model: Home.Weather.Response) {
         self.model = model
     }
     

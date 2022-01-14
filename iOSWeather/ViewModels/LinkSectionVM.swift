@@ -8,14 +8,14 @@ import Foundation
 
 
 
-struct LinkSectionVM: ItemRepresentable, ModelInstantiable {
+struct LinkSectionVM: ItemRepresentable {
     
     var numberOfItems: Int {
         return items.count
     }
-    var model: Forecast
+    var model: Home.Weather.Response
     
-    init(model: Forecast) {
+    init(model: Home.Weather.Response) {
         self.model = model
     }
     var items: [LinkCellVM] {
@@ -26,9 +26,9 @@ struct LinkSectionVM: ItemRepresentable, ModelInstantiable {
     
 }
 
-struct LinkCellVM: ModelInstantiable {
+struct LinkCellVM {
     
-    let model: Forecast
+    let model: Home.Weather.Response
     
     var link: NSMutableAttributedString {
         guard let timezone = model.timezone else {
@@ -41,7 +41,7 @@ struct LinkCellVM: ModelInstantiable {
     }
     
     
-    init(model: Forecast) {
+    init(model: Home.Weather.Response) {
         self.model = model
         
     }

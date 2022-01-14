@@ -8,9 +8,9 @@ import Foundation
 
 
 
-struct TodaySectionVM:  ItemRepresentable , ModelInstantiable {
+struct TodaySectionVM:  ItemRepresentable {
     
-    var model: Forecast
+    var model: Home.Weather.Response
     
     var numberOfItems: Int {
         return items.count
@@ -22,7 +22,7 @@ struct TodaySectionVM:  ItemRepresentable , ModelInstantiable {
         return returnValue
     }
     
-    init(model: Forecast) {
+    init(model: Home.Weather.Response) {
         self.model = model
         
     }
@@ -30,7 +30,7 @@ struct TodaySectionVM:  ItemRepresentable , ModelInstantiable {
     
 }
 
-struct TodayCellVM: ModelInstantiable {
+struct TodayCellVM {
     
     var overview: String {
         if let highTemp = model.daily?.first?.temp?.max,
@@ -43,9 +43,9 @@ struct TodayCellVM: ModelInstantiable {
         return ""
     }
     
-    var model: Forecast
+    var model: Home.Weather.Response
     
-    init(model: Forecast) {
+    init(model: Home.Weather.Response) {
         self.model = model
     }
     

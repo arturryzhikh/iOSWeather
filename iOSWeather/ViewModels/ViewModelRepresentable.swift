@@ -8,7 +8,7 @@
 
 protocol ViewModelRepresentable {
     
-    associatedtype ViewModel: ModelInstantiable
+    associatedtype ViewModel
     
     var viewModel: ViewModel? { get }
     

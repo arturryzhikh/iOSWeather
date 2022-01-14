@@ -8,14 +8,14 @@ import Foundation
 
 protocol FooterRepresentable {
     
-    associatedtype FooterViewModel: ModelInstantiable
+    associatedtype FooterViewModel
     var footer: FooterViewModel { get }
     var numberOfItems: Int { get }
 }
 
 protocol HeaderRepresentable {
     
-    associatedtype HeaderViewModel: ModelInstantiable
+    associatedtype HeaderViewModel
     
     var header: HeaderViewModel { get }
     var numberOfItems: Int { get }
@@ -24,7 +24,7 @@ protocol HeaderRepresentable {
 
 protocol ItemRepresentable {
     
-    associatedtype ItemViewModel: ModelInstantiable
+    associatedtype ItemViewModel
     
     var items: [ItemViewModel] { get }
     

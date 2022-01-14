@@ -6,7 +6,7 @@
 //
 import Foundation
 
-struct DailySectionVM: ItemRepresentable, ModelInstantiable {
+struct DailySectionVM: ItemRepresentable {
     
     
     var numberOfItems: Int {
@@ -26,9 +26,9 @@ struct DailySectionVM: ItemRepresentable, ModelInstantiable {
     
     
     
-    var model: Forecast
+    var model: Home.Weather.Response
     
-    init(model: Forecast) {
+    init(model: Home.Weather.Response) {
         self.model = model
         
     }
@@ -36,7 +36,7 @@ struct DailySectionVM: ItemRepresentable, ModelInstantiable {
 }
 
 
-struct DailyCellVM: ModelInstantiable {
+struct DailyCellVM {
     
     var day: String {
         guard  let dt = model.dt else {
@@ -86,9 +86,9 @@ struct DailyCellVM: ModelInstantiable {
         return String(probability) + "%"
     }
     
-    let model: Daily
+    let model: Home.Weather.Daily
     
-    init(model: Daily) {
+    init(model: Home.Weather.Daily) {
         self.model = model
         
     }

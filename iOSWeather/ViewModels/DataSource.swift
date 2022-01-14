@@ -13,9 +13,9 @@ enum Section: Int, CaseIterable {
  }
 
 
-final class DataSource: NSObject, ApiConnectable, StaticCollectionRepresentable {
+final class DataSource: NSObject, StaticCollectionRepresentable {
     
-    var model: Forecast? {
+    var model: Home.Weather.Response? {
         didSet {
             if let model = model {
                 print(model)
@@ -34,7 +34,7 @@ final class DataSource: NSObject, ApiConnectable, StaticCollectionRepresentable 
     var linkSectionVM: LinkSectionVM?
     
     //MARK: Life Cycle
-    init(apiService: APIService = WeatherService.shared) {
+    init(apiService: Networking = ApiService()) {
         self.apiService = apiService
         
     }
@@ -50,7 +50,7 @@ final class DataSource: NSObject, ApiConnectable, StaticCollectionRepresentable 
     
     var reloadClosure: (()->Void)?
     
-    var apiService: APIService!
+    var apiService: Networking!
     
     var isFetching: Bool = false
     
@@ -82,7 +82,7 @@ final class DataSource: NSObject, ApiConnectable, StaticCollectionRepresentable 
             return 0
         }
     }
-    func generateSectionViewModels(model: Forecast) {
+    func generateSectionViewModels(model: Home.Weather.Response) {
         currentHourlySectionVM = CurrentHourlySectionVM(model: model)
         dailySectionVM = DailySectionVM(model: model)
         todaySectionVM = TodaySectionVM(model: model)
@@ -100,7 +100,7 @@ final class DataSource: NSObject, ApiConnectable, StaticCollectionRepresentable 
 
 extension DataSource {
     
-    func getWeatherWith(_ request: WeatherRequest) {
+    func getWeatherWith(_ request: Home.Weather.Request) {
         
         isFetching = true
         

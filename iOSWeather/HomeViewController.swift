@@ -12,15 +12,23 @@
 
 import UIKit
 import CoreLocation
-protocol HomeDisplayLogic: AnyObject
-
-{
-    func displaySomething(viewModel: Home.Something.ViewModel)
+protocol HomeDisplayLogic: AnyObject {
+    func displaySomething(viewModel: Home.Weather.ViewModel)
 }
 
 
 
 final class HomeViewController: UIViewController, HomeDisplayLogic {
+    //MARK: Other Properties
+    private var dataSource: DataSource!
+    private var locationManager: CLLocationManager!
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    private var width: CGFloat {
+        return collectionView.frame.width
+    }
+    
     var interactor: HomeBusinessLogic?
     var router: (NSObjectProtocol & HomeRoutingLogic & HomeDataPassing)?
     
@@ -55,40 +63,33 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
     }
     
     // MARK: Routing
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
-    {
-        if let scene = segue.identifier {
-            let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
-            if let router = router, router.responds(to: selector) {
-                router.perform(selector, with: segue)
-            }
-        }
-    }
-    
- 
+//
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+//    {
+//        if let scene = segue.identifier {
+//            let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
+//            if let router = router, router.responds(to: selector) {
+//                router.perform(selector, with: segue)
+//            }
+//        }
+//    }
+//
+//
     // MARK: Do something
     
     //@IBOutlet weak var nameTextField: UITextField!
     
     func doSomething()
     {
-        let request = Home.Something.Request()
-        interactor?.doSomething(request: request)
+//        let request = Home.Weather.Request()
+//        interactor?.doSomething(request: request)
     }
     
-    func displaySomething(viewModel: Home.Something.ViewModel)
+    func displaySomething(viewModel: Home.Weather.ViewModel)
     {
         //nameTextField.text = viewModel.name
     }
-    //MARK: Other Properties
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    private var width: CGFloat {
-        return collectionView.frame.width
-    }
-    
+   
     //MARK: Subviews
     private var weatherView: WeatherView {
         return self.view as! WeatherView
@@ -97,10 +98,8 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
     private var collectionView: UICollectionView!  {
         return weatherView.collectionView
     }
-    //MARK: Other Properties
-    private var dataSource: DataSource!
-    private var locationManager: CLLocationManager!
-    //MARK: Life Cycle
+   
+    //MARK: View Life Cycle
     override func loadView() {
         view = WeatherView()
         
@@ -249,7 +248,7 @@ extension HomeViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.first else { return }
         locationManager.stopUpdatingLocation()
-        let request = WeatherRequest(coordinate: (lat: location.coordinate.latitude,
+        let request = Home.Weather.Request(coordinate: (lat: location.coordinate.latitude,
                                                   lon: location.coordinate.longitude))
         dataSource.getWeatherWith(request)
         dataSource.reloadClosure = {
@@ -259,6 +258,7 @@ extension HomeViewController: CLLocationManagerDelegate {
         }
         
     }
+    
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(error)
     }

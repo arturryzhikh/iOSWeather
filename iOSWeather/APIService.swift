@@ -1,44 +1,73 @@
 //
-//  APIService.swift
+//  ApiService.swift
 //  iOSWeather
 //
-//  Created by Artur Ryzhikh on 13.01.2022.
+//  Created by Artur Ryzhikh on 14.01.2022.
 //
+
 import Foundation
 
-protocol APIService {
+public final class ApiService: Networking {
     
-    typealias ResultClosure<Value> = (Result<Value, ResponseError>) -> Void
-
-    var session: URLSession { get }
-    
-    func request<T:APIRequest>(_ request: T, completion: @escaping ResultClosure<T.Response>)
-    
-    func decode<T:Codable>(data : Data, into model: T.Type) -> T?
-    
-    func makeURL(endPoint: String, queries: [String : String]) -> URL?
-}
-
-
-enum ResponseError: Error {
-    
-    case network
-    case decoding
-    case encoding
-    
-    var reason: String {
-        switch self {
-        case .network:
-            return "Error occurred while fetching data"
-        case .decoding:
-            return "Error occurred while decoding data"
-        case .encoding:
-            return "Error encoding request into url"
+    public func request<Request: NetworkRequest>(_ request: Request, completion: @escaping (Result<Request.NetworkResponse, Error>) -> Void) {
+        
+        guard var urlComponent = URLComponents(string: request.url) else {
+            let error = NSError(
+                domain: ResponseError.invalidEndPoint.reason,
+                code: 404,
+                userInfo: nil
+            )
+            
+            return completion(.failure(error))
         }
+        
+        var queryItems: [URLQueryItem] = []
+        
+        request.queryItems.forEach {
+            let urlQueryItem = URLQueryItem(name: $0.key, value: $0.value)
+            urlComponent.queryItems?.append(urlQueryItem)
+            queryItems.append(urlQueryItem)
+        }
+        
+        urlComponent.queryItems = queryItems
+        
+        
+        guard let url = urlComponent.url else {
+            let error = NSError(
+                domain: ResponseError.invalidEndPoint.reason,
+                code: 404,
+                userInfo: nil
+            )
+            
+            return completion(.failure(error))
+        }
+        
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = request.httpMethod.rawValue
+        urlRequest.allHTTPHeaderFields = request.headers
+        
+        URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
+            if let error = error {
+                return completion(.failure(error))
+            }
+            
+            guard
+                let response = response as? HTTPURLResponse,
+                200..<300 ~= response.statusCode else {
+                    return completion(.failure(NSError()))
+                }
+            
+            guard let data = data else {
+                return completion(.failure(NSError()))
+            }
+            
+            do {
+                try completion(.success(request.decode(data)))
+            } catch let error as NSError {
+                completion(.failure(error))
+            }
+        }
+        .resume()
     }
 }
-
-
-
-
 
