@@ -8,7 +8,7 @@ import Foundation
 
 
 
-struct LinkSectionVM: ItemRepresentable {
+struct LinkSectionVM  {
     
     var numberOfItems: Int {
         return items.count

@@ -7,7 +7,7 @@
 import Foundation
 
 
-struct CurrentHourlySectionVM: HeaderRepresentable, FooterRepresentable {
+struct CurrentHourlySectionVM {
     
     var numberOfItems: Int {
         return 0

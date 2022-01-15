@@ -8,7 +8,7 @@ import UIKit
 import SnapKit
 
 
-final class CurrentHeader: TransparentCell {
+public final class CurrentHeader: TransparentCell {
     
     //MARK:Properties
     
@@ -58,7 +58,7 @@ final class CurrentHeader: TransparentCell {
         
     }
     
-    override func layoutSubviews() {
+    public override func layoutSubviews() {
         //update top constraint when view changes during scrolling
         topConstraint?.update(offset: topPadding)
         temperatureRangeLabel.alpha = computedAlpha

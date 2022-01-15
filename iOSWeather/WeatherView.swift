@@ -6,12 +6,11 @@
 //
 
 import UIKit
-
 import SnapKit
 
-final class WeatherView: UIView {
+public final class WeatherView: UIView {
     
-    override static var layerClass: AnyClass { return CAGradientLayer.self }
+    public override static var layerClass: AnyClass { return CAGradientLayer.self }
     //MARK: properties
     private var gradientLayer: CAGradientLayer { return layer as! CAGradientLayer }
     

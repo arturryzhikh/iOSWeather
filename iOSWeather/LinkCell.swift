@@ -6,7 +6,7 @@
 //
 import UIKit
 
-final class LinkCell: TransparentCell, ViewModelRepresentable {
+final class LinkCell: TransparentCell, ViewRepresentable {
     
     var viewModel: LinkCellVM? {
         

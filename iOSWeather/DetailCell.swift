@@ -6,7 +6,7 @@
 //
 import UIKit
 
-final class DetailCell: TransparentCell , ViewModelRepresentable {
+final class DetailCell: TransparentCell , ViewRepresentable {
     
     var viewModel: DetailCellVM? {
         

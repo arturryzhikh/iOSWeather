@@ -8,7 +8,7 @@ import Foundation
 
 
 
-struct TodaySectionVM:  ItemRepresentable {
+struct TodaySectionVM {
     
     var model: Home.Weather.Response
     

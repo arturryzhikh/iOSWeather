@@ -6,7 +6,7 @@
 //
 import UIKit
 
-final class TodayCell: TransparentCell, ViewModelRepresentable {
+final class TodayCell: TransparentCell, ViewRepresentable {
     
     func populateSubviews(with viewModel: TodayCellVM) {
         todayTxtView.text = viewModel.overview

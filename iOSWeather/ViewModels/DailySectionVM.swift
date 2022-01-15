@@ -6,7 +6,7 @@
 //
 import Foundation
 
-struct DailySectionVM: ItemRepresentable {
+struct DailySectionVM {
     
     
     var numberOfItems: Int {

@@ -9,7 +9,7 @@ import Foundation
 
 
 
-struct DetailSectionVM:  ItemRepresentable {
+struct DetailSectionVM {
     
     typealias ItemViewModel = DetailCellVM
     
