@@ -8,7 +8,7 @@
 
 public protocol CollectionViewModel: AnyObject {
     
-    associatedtype Section: SectionViewModel
+    associatedtype Section: SectionWithItemsViewModel
     
    
     var sections: [Section] { get }

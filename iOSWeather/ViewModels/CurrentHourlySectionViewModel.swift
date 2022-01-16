@@ -7,65 +7,30 @@
 import Foundation
 
 
-struct CurrentHourlySectionVM {
-    
-    var numberOfItems: Int {
+struct CurrentHourlySectionViewModel: SectionWithHeaderViewModel,SectionWithFooterViewModel {
+    var count: Int {
         return 0
     }
-    
-    var header: CurrentHeaderVM {
-        
-        return CurrentHeaderVM(model: model)
-    }
-    
-    var footer: HourlyFooterVM {
-        
-        return HourlyFooterVM(model: model)
-    }
-    
-    var model: Home.Weather.Response
-    
-    init(model: Home.Weather.Response) {
-        self.model = model
-        
-    }
-    
-    
+    let headerViewModel: CurrentHeaderViewModel
+    let footerViewModel : HourlyFooterVM
+//    var headerViewModel: CurrentHeaderVM {
+//
+//        return CurrentHeaderVM(model: model)
+//    }
+//
+//    var footerViewModel: HourlyFooterVM {
+//
+//        return HourlyFooterVM(model: model)
+//    }
+//
+//    var model: Home.Weather.Response
+//
+//    init(model: Home.Weather.Response) {
+//        self.model = model
+//
+//    }
 }
 
-struct CurrentHeaderVM {
-    
-    let model: Home.Weather.Response
-    
-    var location: String {
-        return model.timezone?.components(separatedBy: "/")[1].replacingOccurrences(of: "_", with: " ") ?? "__"
-    }
-    
-    var outline: String {
-        return model.current?.weather?.first?.description ?? "__"
-    }
-    
-    var temperature: String {
-        if let temp = model.current?.temp {
-            return temp.stringTemp
-        }
-        return "__"
-    }
-    var highLowTemp: String {
-        
-        if let highTemp = model.daily?.first?.temp?.max,
-           let lowTemp = model.daily?.first?.temp?.min {
-            return "High: \(highTemp.stringTemp)   Low: \(lowTemp.stringTemp)"
-        }
-        return "__"
-        
-    }
-    init(model: Home.Weather.Response) {
-        self.model = model
-        
-    }
-    
-}
 
 
 struct HourlyFooterVM {

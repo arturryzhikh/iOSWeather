@@ -82,7 +82,7 @@ public final class CurrentHeader: TransparentCell {
         return $0
     }(UILabel(font: .lightTemperature))
     
-    var viewModel: CurrentHeaderVM? {
+    var viewModel: CurrentHeaderViewModel? {
         
         didSet {
             if let vm = viewModel {
@@ -93,11 +93,11 @@ public final class CurrentHeader: TransparentCell {
     }
     
     
-    func populateSubviews(with viewModel: CurrentHeaderVM) {
+    func populateSubviews(with viewModel: CurrentHeaderViewModel) {
         locationLabel.text = viewModel.location
         outlineLabel.text = viewModel.outline
         temperatureLabel.text = viewModel.temperature
-        temperatureRangeLabel.text = viewModel.highLowTemp
+        temperatureRangeLabel.text = viewModel.temperatureRange
     }
     
     

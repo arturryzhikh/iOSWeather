@@ -157,7 +157,7 @@ extension HomeViewController: UICollectionViewDataSource {
             guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CurrentHeader.description(), for: indexPath) as? CurrentHeader else {
                 fatalError("No appropriate view for supplementary view of \(kind) ad \(indexPath)")
             }
-            let vm = viewModel?.currentHourlySectionVM?.header
+            let vm = viewModel?.currentHourlySectionVM?.headerViewModel
             header.viewModel = vm
             return header
             
@@ -165,7 +165,7 @@ extension HomeViewController: UICollectionViewDataSource {
             guard let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HourlyFooter.description(), for: indexPath) as? HourlyFooter else {
                 fatalError("No appropriate view for supplementary view of \(kind) at \(indexPath)")
             }
-            let vm = viewModel?.currentHourlySectionVM?.footer
+            let vm = viewModel?.currentHourlySectionVM?.footerViewModel
             footer.viewModel = vm
             return footer
             

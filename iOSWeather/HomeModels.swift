@@ -39,7 +39,7 @@ enum Home {
             }
             
         }
-
+        
         struct Response: Codable {
             let lat, lon: Double?
             let timezone: String?
@@ -49,7 +49,7 @@ enum Home {
             let hourly: [Current]?
             let daily: [Daily]?
         }
-
+        
         // MARK: - Current
         struct Current: Codable {
             let dt, sunrise, sunset: Int?
@@ -62,8 +62,8 @@ enum Home {
             let weather: [Weather]?
             let pop: Double?
         }
-
-
+        
+        
         // MARK: - Weather
         struct Weather: Codable {
             let id: Int
@@ -71,7 +71,7 @@ enum Home {
             let icon: String
             let description: String
         }
-
+        
         // MARK: - Daily
         struct Daily: Codable {
             let dt, sunrise, sunset: Int?
@@ -85,89 +85,86 @@ enum Home {
             let pop, snow, uvi: Double?
             
         }
-
+        
         // MARK: - FeelsLike
         struct FeelsLike: Codable {
             let day, night, eve, morn: Double?
         }
-
+        
         // MARK: - Temp
         struct Temp: Codable {
             let day, min, max, night: Double?
             let eve, morn: Double?
         }
-
+        
         // MARK: - Minutely
         struct Minutely: Codable {
             let dt: Int?
             let precipitation: Double?
         }
-
+        
         struct ViewModel {
-            
             enum Section: Int, CaseIterable {
-            case currentHourly, daily, today, detail, link
-         }
-        
-        init() {
-            
-        }
-        //MARK: Section View Models
-        var currentHourlySectionVM: CurrentHourlySectionVM?
-        var dailySectionVM: DailySectionVM?
-        var todaySectionVM: TodaySectionVM?
-        var detailSectionVM: DetailSectionVM?
-        var linkSectionVM: LinkSectionVM?
-
-        //MARK: Properties
-        
-        var sections: [Int] = [
-            Section.currentHourly.rawValue,
-            Section.daily.rawValue,
-            Section.today.rawValue,
-            Section.detail.rawValue,
-            Section.link.rawValue
-        ]
-       
-        var isFetching: Bool = false
-        
-        var numberOfSections: Int {
-            return sections.count
-        }
-        
-        
-        func numberOfItemsIn(_ section: Int) -> Int {
-            
-            switch Section(rawValue: section) {
-            
-            case .currentHourly:
-                return currentHourlySectionVM?.numberOfItems ?? 0
-                
-            case .daily:
-                return dailySectionVM?.numberOfItems ?? 0
-                
-            case .today:
-                return todaySectionVM?.numberOfItems ?? 0
-                
-            case .detail:
-                return detailSectionVM?.numberOfItems ?? 0
-            case .link:
-                return linkSectionVM?.numberOfItems ?? 0
-                
-            default:
-                return 0
+                case currentHourly, daily, today, detail, link
             }
-        }
-        
-            mutating func generateSectionViewModels(model: Home.Weather.Response) {
-            currentHourlySectionVM = CurrentHourlySectionVM(model: model)
-            dailySectionVM = DailySectionVM(model: model)
-            todaySectionVM = TodaySectionVM(model: model)
-            detailSectionVM = DetailSectionVM(model: model)
-            linkSectionVM = LinkSectionVM(model: model)
             
-        }
-        
+            init() {
+                
+            }
+            //MARK: Section View Models
+            var currentHourlySectionVM: CurrentHourlySectionViewModel?
+            var dailySectionVM: DailySectionVM?
+            var todaySectionVM: TodaySectionVM?
+            var detailSectionVM: DetailSectionVM?
+            var linkSectionVM: LinkSectionVM?
+            
+            //MARK: Properties
+            
+            var sections: [Int] = [
+                Section.currentHourly.rawValue,
+                Section.daily.rawValue,
+                Section.today.rawValue,
+                Section.detail.rawValue,
+                Section.link.rawValue
+            ]
+            
+            var isFetching: Bool = false
+            
+            var numberOfSections: Int {
+                return sections.count
+            }
+            func numberOfItemsIn(_ section: Int) -> Int {
+                
+                switch Section(rawValue: section) {
+                    
+                case .currentHourly:
+                    return currentHourlySectionVM?.count ?? 0
+                    
+                case .daily:
+                    return dailySectionVM?.numberOfItems ?? 0
+                    
+                case .today:
+                    return todaySectionVM?.numberOfItems ?? 0
+                    
+                case .detail:
+                    return detailSectionVM?.numberOfItems ?? 0
+                case .link:
+                    return linkSectionVM?.numberOfItems ?? 0
+                    
+                default:
+                    return 0
+                }
+            }
+            
+            mutating func generateSectionViewModels(model: Home.Weather.Response) {
+                currentHourlySectionVM = CurrentHourlySectionViewModel(headerViewModel: <#T##CurrentHeaderViewModel#>, footerViewModel: <#T##HourlyFooterVM#>)
+                dailySectionVM = DailySectionVM(model: model)
+                todaySectionVM = TodaySectionVM(model: model)
+                detailSectionVM = DetailSectionVM(model: model)
+                linkSectionVM = LinkSectionVM(model: model)
+                
+            }
+            
             
         }
     }
