@@ -20,7 +20,7 @@ struct CurrentHourlySectionVM {
     
     var footer: HourlyFooterVM {
         
-        return FooterViewModel(model: model)
+        return HourlyFooterVM(model: model)
     }
     
     var model: Home.Weather.Response

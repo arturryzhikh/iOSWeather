@@ -37,6 +37,7 @@ class HomeInteractor: NSObject, HomeBusinessLogic, HomeDataStore {
                 //FIXME: handle error
                 print(error)
             case.success(let response):
+                print(response)
                 self.presenter?.presentWeather(response: response)
             }
         }
