@@ -86,10 +86,21 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
     //MARK: HomeDisplayLogic
     
     func displayWeather(viewModel: Home.ViewModels.ViewModel) {
-       
+        self.viewModel.currentHourlySectionVM = viewModel.currentHourlySectionVM
+        self.viewModel.dailySectionVM = viewModel.dailySectionVM
+        self.viewModel.todaySectionVM = viewModel.todaySectionVM
+        self.viewModel.detailSectionVM = viewModel.detailSectionVM
+        self.viewModel.linkSectionVM = viewModel.linkSectionVM
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else {
+                return
+            }
+            self.collectionView.reloadData()
+            
+        }
     }
     func displayError(message: String) {
-        
+        print("\(self.description)",message)
     }
     //MARK: Subviews
     var collectionView: UICollectionView!  {

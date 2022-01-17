@@ -131,7 +131,7 @@ enum Home {
     }
     //MARK: ViewModels
     enum ViewModels {
-        struct ViewModel {
+        class ViewModel {
             enum Section: Int, CaseIterable {
                 case currentHourly,
                      daily,
@@ -141,7 +141,7 @@ enum Home {
             }
             
             init(currentHourlySectionVM: CurrentHourlySectionViewModel = CurrentHourlySectionViewModel.init(),
-                 dailySectionVM: DailySectionViewModel = DailySectionViewModel(),
+                 dailySectionVM: DailySectionViewModel = DailySectionViewModel.init(),
                  todaySectionVM: TodaySectionViewModel = .init(),
                  detailSectionVM: DetailSectionViewModel = .init(),
                  linkSectionVM: LinkSectionViewModel = .init()) {
@@ -168,8 +168,8 @@ enum Home {
                 Section.detail.rawValue,
                 Section.link.rawValue
             ]
-            
-            var isFetching: Bool = false
+          
+            var isFetching = false
             
             var numberOfSections: Int {
                 return sections.count

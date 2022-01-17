@@ -19,24 +19,24 @@ protocol HomePresentationLogic {
 }
 
 class HomePresenter: NSObject, HomePresentationLogic {
-   
+    
     var builder: ViewModelBuilder?
     weak var viewController: HomeDisplayLogic?
-    // MARK: Present weather
-//    private func makeViewModel() -> Home.Weather.ViewModel {
-//        
-//    }
+    //MARK: Present
     func presentWeather(response: Home.Responses.Response) {
         builder = ViewModelBuilder(model: response)
-        let vm = builder?.buildViewModel()
-        print(vm)
-        //        viewController?.displaySomething(viewModel: viewModel)
+        guard let viewModel = builder?.buildViewModel() else {
+            viewController?.displayError(message: "Error constructing View Model from weather data")
+            return
+        }
+        viewController?.displayWeather(viewModel: viewModel)
+       
     }
     func presentError(message: String) {
-        
+        viewController?.displayError(message: message)
     }
-
-}
-   
     
+}
+
+
 

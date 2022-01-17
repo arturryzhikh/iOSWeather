@@ -8,12 +8,11 @@
 import Foundation
 
 protocol ViewModelBuilding {
-    associatedtype T
-    func buildViewModel() -> T
+    associatedtype ViewModel
+    func buildViewModel() -> ViewModel
 }
 
 public final class ViewModelBuilder: ViewModelBuilding {
-    
     let model: Home.Responses.Response
     
     init(model: Home.Responses.Response) {
@@ -30,7 +29,8 @@ public final class ViewModelBuilder: ViewModelBuilding {
             dailySectionVM: daily,
             todaySectionVM: today,
             detailSectionVM: detail,
-            linkSectionVM: link)
+            linkSectionVM: link
+        )
     }
     //MARK: Current Hoyrly Section
     private func buildCurrentHourlySectionViewModel() -> Home.ViewModels.CurrentHourlySectionViewModel {

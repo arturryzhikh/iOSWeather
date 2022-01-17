@@ -136,6 +136,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		340944BE2795662300640938 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				3412E1BD2792CE48000FE043 /* ViewModelBuilder.swift */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
 		340A3FFC2790856F00A616FC /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -181,8 +189,8 @@
 		34BEF45B27918C85001C765D /* HomeScene */ = {
 			isa = PBXGroup;
 			children = (
+				340944BE2795662300640938 /* Helpers */,
 				34BEF45F27919304001C765D /* Subviews */,
-				3412E1BD2792CE48000FE043 /* ViewModelBuilder.swift */,
 				348DC89727907E19000EDCFE /* HomeViewController.swift */,
 				34BEF454279189B9001C765D /* HomeInteractor.swift */,
 				34BEF450279189B9001C765D /* HomeWorker.swift */,
