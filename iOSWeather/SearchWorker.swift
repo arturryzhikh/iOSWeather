@@ -12,9 +12,22 @@
 
 import UIKit
 
-class SearchWorker
-{
-  func doSomeWork()
-  {
-  }
+class SearchWorker {
+    init(apiService: Networking = ApiService()) {
+        self.apiService = apiService
+    }
+    
+    private let apiService: Networking
+    
+    func getCities(request: Search.Requests.CitiesRequest, completion: @escaping (Result<[Search.Responses.Place],Error>) -> Void) {
+        
+        apiService.request(request) { result in
+            switch result {
+            case.failure(let error):
+                completion(.failure(error))
+            case.success(let response):
+                completion(.success(response))
+            }
+        }
+    }
 }

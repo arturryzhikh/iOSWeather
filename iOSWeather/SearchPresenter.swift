@@ -14,7 +14,7 @@ import UIKit
 
 protocol SearchPresentationLogic {
     func presentError(message: String)
-    func presentCities(response: Search.Responses.ForecastResponse)
+    func presentCities(response: [Search.Responses.Place])
     
 }
 
@@ -27,13 +27,13 @@ class SearchPresenter: SearchPresentationLogic {
     func presentError(message: String) {
         
     }
-    func presentCities(response: Search.Responses.ForecastResponse) {
+    func presentCities(response: [Search.Responses.Place]) {
         builder = SearchViewModelBuilder(model: response)
         guard let builder = builder else {
             return
         }
         let viewModel = builder.buildViewModel()
-        print(viewModel)
+        print(viewModel.itemViewModels.count)
         viewController?.displaySomething(viewModel: viewModel)
     }
 }

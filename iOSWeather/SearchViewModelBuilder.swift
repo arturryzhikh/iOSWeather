@@ -8,16 +8,21 @@
 import Foundation
 
 class SearchViewModelBuilder: ViewModelBuilding {
-    init(model: Search.Responses.ForecastResponse) {
+    init(model: [Search.Responses.Place]) {
         self.model = model
     }
     
-    private let model: Search.Responses.ForecastResponse
+    private let model: [Search.Responses.Place]
     
     func buildViewModel() -> Search.ViewModels.ViewModel {
-        let name = model.name
-        let temp = temperatureString(temperature: model.main.temp)
-        return Search.ViewModels.ViewModel(coord: model.coord, name: name, temperature: temp)
+        let items = model.map {
+            Search.ViewModels.CityViewModel(
+                lat: $0.lat,
+                lon: $0.lon,
+                name: $0.displayName
+            )
+        }
+        return Search.ViewModels.ViewModel(itemViewModels: items)
     }
     
 }
