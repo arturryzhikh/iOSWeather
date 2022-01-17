@@ -50,11 +50,11 @@ final class HourlyCell: TransparentCell ,ViewRepresentable {
     }
     let hourLabel: UILabel = { 
         return $0
-    }(UILabel(font: .lightTemperature))
+    }(UILabel(font: .temperatureLight))
     
     private let temperatureLabel: UILabel = {
         return $0
-    }(UILabel(font: .regularTemperature))
+    }(UILabel(font: .temperatureRegular))
     
     
     private let weatherImageView: UIImageView = {

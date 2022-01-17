@@ -29,18 +29,18 @@ final class DailyCell: TransparentCell {
     
     //MARK: Subviews
     let dayLabel: UILabel = {
-        $0.font = .weatherEmoji
+        $0.font = .dayTitle
         $0.textColor = .weatherWhite
         return $0
     }(UILabel())
     
     private let maxTemperatureLabel: UILabel = {
         return $0
-    }(UILabel(font: .regularTemperature))
+    }(UILabel(font: .temperatureRegular))
     
     private let minTemperatureLabel: UILabel = {
         return $0
-    }(UILabel(transparent: true, alignment: .center, font: .lightTemperature))
+    }(UILabel(transparent: true, alignment: .center, font: .temperatureLight))
     
     private let weatherImageView: UIImageView = {
         $0.contentMode = .scaleAspectFit

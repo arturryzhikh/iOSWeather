@@ -72,15 +72,15 @@ public final class CurrentHeader: TransparentCell  {
     
     private let outlineLabel: UILabel = {
         return $0
-    }(UILabel(font: .lightTemperature))
+    }(UILabel(font: .temperatureLight))
     
     private let temperatureLabel: UILabel = {
         return $0
-    }(UILabel(font: .hugeTemperature))
+    }(UILabel(font: .temperatureHeader))
     
     private let temperatureRangeLabel: UILabel = {
         return $0
-    }(UILabel(font: .lightTemperature))
+    }(UILabel(font: .temperatureLight))
     
     var viewModel: Home.ViewModels.CurrentHeaderViewModel? {
         

@@ -15,16 +15,16 @@ extension UIFont {
         
     }
     
-    static var lightTemperature: UIFont {
+    static var temperatureLight: UIFont {
         UIFont.systemFont(ofSize: (Screen.height * 0.025), weight: .light)
     }
     static var day: UIFont {
         UIFont.systemFont(ofSize: (Screen.height * 0.02), weight: .regular)
     }
-    static var regularTemperature: UIFont {
+    static var temperatureRegular: UIFont {
         UIFont.systemFont(ofSize: (Screen.height * 0.025), weight: .regular)
     }
-    static var hugeTemperature: UIFont {
+    static var temperatureHeader: UIFont {
         UIFont.systemFont(ofSize: (Screen.height * 0.08), weight: .light)
         
     }
@@ -34,8 +34,8 @@ extension UIFont {
     static var overView: UIFont {
         UIFont.systemFont(ofSize: (Screen.height * 0.022), weight: .light)
     }
-    static var weatherEmoji: UIFont {
-        UIFont.systemFont(ofSize: (Screen.height * 0.03), weight: .light)
+    static var dayTitle: UIFont {
+        UIFont.systemFont(ofSize: (Screen.height * 0.025), weight: .light)
     }
     static var extendedInfoTitle: UIFont {
         UIFont.systemFont(ofSize: (Screen.height * 0.02), weight: .light)

@@ -25,7 +25,7 @@ final class TodayCell: TransparentCell, ViewRepresentable {
     //MARK: Subviews
     private let todayTxtView: UITextView = {
         $0.textAlignment = .left
-        $0.font = .regularTemperature
+        $0.font = .temperatureRegular
         $0.textColor = .weatherWhite
         $0.backgroundColor = .clear
         $0.isScrollEnabled = false
