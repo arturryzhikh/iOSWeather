@@ -27,6 +27,7 @@ final class HourlyCell: TransparentCell ,ViewRepresentable {
     //MARK: Life Cycle
     override func setup() {
         activateConstraints()
+        
     }
     
     
@@ -37,34 +38,16 @@ final class HourlyCell: TransparentCell ,ViewRepresentable {
             make.bottom.equalTo(weatherImageView.snp.top)
         }
         weatherImageView.snp.makeConstraints { make in
-            make.height.equalTo((Screen.height * 0.16) / 3)
+            make.height.equalTo(frame.height)
+            make.width.equalTo(weatherImageView.snp.height)
             make.centerX.equalToSuperview()
-            
-            
-        }
+           }
         temperatureLabel.snp.makeConstraints { make in
             make.top.equalTo(weatherImageView.snp.bottom)
             make.leading.bottom.trailing.equalToSuperview()
         }
-//        addMultipleSubviews(vStack)
-//        vStack.snp.makeConstraints { make in
-//            make.top.leading.bottom.trailing.equalToSuperview()
-//        }
-        
-    }
-//    //MARK: Subviews
-//    private lazy var vStack: UIStackView = {
-//        $0.addArrangedSubview(hourLabel)
-//        $0.addArrangedSubview(weatherImageView)
-//        $0.addArrangedSubview(temperatureLabel)
-//        $0.axis = .vertical
-//        $0.alignment = .center
-//        $0.distribution = .fill
-//        $0.spacing = 1
-//        return $0
-//
-//    }(UIStackView())
     
+    }
     let hourLabel: UILabel = { 
         return $0
     }(UILabel(font: .lightTemperature))

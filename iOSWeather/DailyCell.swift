@@ -58,7 +58,6 @@ final class DailyCell: TransparentCell {
         $0.distribution = .fillEqually
         return $0
     }(UIStackView(arrangedSubviews: [weatherImageView,percentageLabel]))
-    
     private lazy var temperatureRangeStack: UIStackView = {
         $0.axis = .horizontal
         $0.alignment = .trailing
