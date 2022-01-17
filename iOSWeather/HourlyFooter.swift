@@ -63,14 +63,14 @@ extension HourlyFooter: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return viewModel?.items.count ?? 0
+        return viewModel?.itemViewModels.count ?? 0
         
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HourlyCell.description(), for: indexPath) as! HourlyCell
         
-        cell.viewModel = viewModel?.items[indexPath.item]
+        cell.viewModel = viewModel?.itemViewModels[indexPath.item]
         
         return cell
     }
