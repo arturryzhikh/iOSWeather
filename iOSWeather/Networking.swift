@@ -28,7 +28,6 @@ public enum ResponseError: Error {
 }
 
 public protocol Networking {
-    
     func request<Request: NetworkRequest>(_ request: Request, completion: @escaping (Result<Request.NetworkResponse, Error>) -> Void)
     
 }

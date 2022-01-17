@@ -23,7 +23,7 @@ enum Home {
             }
             var httpMethod: HTTPMethod = .get
             typealias NetworkResponse = Home.Weather.Response
-            var queryItems: [String : String] = [
+            var queries: [String : String] = [
                 "exclude" :  "alerts"
             ]
             
@@ -31,11 +31,11 @@ enum Home {
                   language: String = "en",
                   units: String = "metric",
                   apiKey: String = API.key) {
-                queryItems.updateValue(String(coordinate.lat), forKey: "lat")
-                queryItems.updateValue(String(coordinate.lon), forKey: "lon")
-                queryItems.updateValue(language, forKey: "lang")
-                queryItems.updateValue(units, forKey: "units")
-                queryItems.updateValue(apiKey, forKey: "appid")
+                queries.updateValue(String(coordinate.lat), forKey: "lat")
+                queries.updateValue(String(coordinate.lon), forKey: "lon")
+                queries.updateValue(language, forKey: "lang")
+                queries.updateValue(units, forKey: "units")
+                queries.updateValue(apiKey, forKey: "appid")
             }
             
         }

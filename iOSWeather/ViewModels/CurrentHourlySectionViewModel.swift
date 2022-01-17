@@ -6,7 +6,6 @@
 //
 import Foundation
 
-
 struct CurrentHourlySectionViewModel: SectionWithHeaderViewModel, SectionWithFooterViewModel {
     init(headerViewModel: CurrentHeaderViewModel = .init(),
          footerViewModel: HourlyFooterViewModel = .init()) {
@@ -20,3 +19,4 @@ struct CurrentHourlySectionViewModel: SectionWithHeaderViewModel, SectionWithFoo
     let headerViewModel: CurrentHeaderViewModel
     let footerViewModel : HourlyFooterViewModel
 }
+

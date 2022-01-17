@@ -14,13 +14,16 @@ import UIKit
 import CoreLocation
 
 protocol HomeDisplayLogic: AnyObject {
-    func displaySomething(viewModel: Home.Weather.ViewModel)
+    func displayWeather(viewModel: Home.Weather.ViewModel)
+    func displayError(message: String)
 }
 
 final class HomeViewController: UIViewController, HomeDisplayLogic {
+    
+    
     //MARK: Other Properties
     private let locationManager: CLLocationManager = CLLocationManager()
-    private var viewModel: Home.Weather.ViewModel?
+    private let viewModel = Home.Weather.ViewModel()
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -79,12 +82,14 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
     // MARK: Do something
     
     //@IBOutlet weak var nameTextField: UITextField!
+    //MARK: HomeDisplayLogic
     
-    
-    func displaySomething(viewModel: Home.Weather.ViewModel) {
+    func displayWeather(viewModel: Home.Weather.ViewModel) {
        
     }
-    
+    func displayError(message: String) {
+        
+    }
     //MARK: Subviews
     var collectionView: UICollectionView!  {
         return (self.view as! WeatherView).collectionView
@@ -107,11 +112,11 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
 extension HomeViewController: UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return viewModel?.numberOfSections ?? .zero
+        return viewModel.numberOfSections
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        viewModel?.numberOfItemsIn(section) ?? .zero
+        viewModel.numberOfItemsIn(section)
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
@@ -122,24 +127,24 @@ extension HomeViewController: UICollectionViewDataSource {
         
         case .daily:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DailyCell.description(), for: indexPath) as! DailyCell
-            cell.viewModel = viewModel?.dailySectionVM.itemViewModels[indexPath.item]
+            cell.viewModel = viewModel.dailySectionVM.itemViewModels[indexPath.item]
             return cell
             
         case .today:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TodayCell.description(), for: indexPath) as! TodayCell
-            cell.viewModel = viewModel?.todaySectionVM.itemViewModels[indexPath.item]
+            cell.viewModel = viewModel.todaySectionVM.itemViewModels[indexPath.item]
             return cell
             
         case .detail:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailCell.description(), for: indexPath) as! DetailCell
-            let vm = viewModel?.detailSectionVM.itemViewModels[indexPath.item]
+            let vm = viewModel.detailSectionVM.itemViewModels[indexPath.item]
             cell.viewModel = vm
             return cell
             
         case .link:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LinkCell.description(), for: indexPath) as! LinkCell
-            let vm = viewModel?.linkSectionVM
-            cell.viewModel = vm?.itemViewModels[indexPath.item]
+            let vm = viewModel.linkSectionVM
+            cell.viewModel = vm.itemViewModels[indexPath.item]
             return cell
             
         default:
@@ -157,7 +162,7 @@ extension HomeViewController: UICollectionViewDataSource {
             guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CurrentHeader.description(), for: indexPath) as? CurrentHeader else {
                 fatalError("No appropriate view for supplementary view of \(kind) ad \(indexPath)")
             }
-            let vm = viewModel?.currentHourlySectionVM.headerViewModel
+            let vm = viewModel.currentHourlySectionVM.headerViewModel
             header.viewModel = vm
             return header
             
@@ -165,7 +170,7 @@ extension HomeViewController: UICollectionViewDataSource {
             guard let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HourlyFooter.description(), for: indexPath) as? HourlyFooter else {
                 fatalError("No appropriate view for supplementary view of \(kind) at \(indexPath)")
             }
-            let vm = viewModel?.currentHourlySectionVM.footerViewModel
+            let vm = viewModel.currentHourlySectionVM.footerViewModel
             footer.viewModel = vm
             return footer
             

@@ -13,10 +13,12 @@
 import UIKit
 
 protocol HomePresentationLogic {
-  func presentWeather(response: Home.Weather.Response)
+    func presentWeather(response: Home.Weather.Response)
+    func presentError(message: String)
 }
 
 class HomePresenter: NSObject, HomePresentationLogic {
+   
     var builder: ViewModelBuilder?
     weak var viewController: HomeDisplayLogic?
     // MARK: Present weather
@@ -29,7 +31,9 @@ class HomePresenter: NSObject, HomePresentationLogic {
         print(vm)
         //        viewController?.displaySomething(viewModel: viewModel)
     }
+    func presentError(message: String) {
         
+    }
 
 }
    

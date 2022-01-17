@@ -23,7 +23,7 @@ public final class ApiService: Networking {
         
         var queryItems: [URLQueryItem] = []
         
-        request.queryItems.forEach {
+        request.queries.forEach {
             let urlQueryItem = URLQueryItem(name: $0.key, value: $0.value)
             urlComponent.queryItems?.append(urlQueryItem)
             queryItems.append(urlQueryItem)

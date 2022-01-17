@@ -20,13 +20,13 @@ public protocol NetworkRequest {
     var url: String { get }
     var httpMethod: HTTPMethod { get }
     var headers: [String: String] { get }
-    var queryItems: [String: String] { get }
+    var queries: [String: String] { get }
     func decode(_ data: Data) throws -> NetworkResponse
 }
 
 extension NetworkRequest {
     var headers: [String: String] { return [:] }
-    var queryItems: [String: String] { [:] }
+    var queries: [String: String] { [:] }
 }
 
 extension NetworkRequest where NetworkResponse: Decodable {

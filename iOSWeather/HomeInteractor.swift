@@ -35,7 +35,7 @@ class HomeInteractor: NSObject, HomeBusinessLogic, HomeDataStore {
             switch result {
             case.failure(let error):
                 //FIXME: handle error
-                print(error)
+                self.presenter?.presentError(message: "Error occured while fetching weather. Error: \(error)")
             case.success(let response):
                 self.presenter?.presentWeather(response: response)
             }

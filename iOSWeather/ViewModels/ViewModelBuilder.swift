@@ -102,7 +102,7 @@ public final class ViewModelBuilder: ViewModelBuilding {
         }
         
         var weatherEmoji: String {
-            return "Emoji"
+            return model.weather?.first?.icon ?? "))))))))"
             //        guard let description = model.weather?.first?.main else {
             //            return "..."
             //        }
