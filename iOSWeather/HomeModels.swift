@@ -105,18 +105,31 @@ enum Home {
         
         struct ViewModel {
             enum Section: Int, CaseIterable {
-                case currentHourly, daily, today, detail, link
+                case currentHourly,
+                     daily,
+                     today,
+                     detail,
+                     link
             }
             
-            init() {
-                
+            init(currentHourlySectionVM: CurrentHourlySectionViewModel = CurrentHourlySectionViewModel.init(),
+                dailySectionVM: DailySectionViewModel = DailySectionViewModel(),
+                todaySectionVM: TodaySectionViewModel = .init(),
+                detailSectionVM: DetailSectionViewModel = .init(),
+                linkSectionVM: LinkSectionViewModel = .init()) {
+                    self.currentHourlySectionVM = currentHourlySectionVM
+                    self.dailySectionVM = dailySectionVM
+                    self.todaySectionVM = todaySectionVM
+                    self.detailSectionVM = detailSectionVM
+                    self.linkSectionVM = linkSectionVM
             }
+            
             //MARK: Section View Models
-            var currentHourlySectionVM: CurrentHourlySectionViewModel?
-            var dailySectionVM: DailySectionViewModel?
-            var todaySectionVM: TodaySectionViewModel?
-            var detailSectionVM: DetailSectionViewModel?
-            var linkSectionVM: LinkSectionViewModel?
+            var currentHourlySectionVM: CurrentHourlySectionViewModel
+            var dailySectionVM: DailySectionViewModel
+            var todaySectionVM: TodaySectionViewModel
+            var detailSectionVM: DetailSectionViewModel
+            var linkSectionVM: LinkSectionViewModel
             
             //MARK: Properties
             
@@ -138,18 +151,18 @@ enum Home {
                 switch Section(rawValue: section) {
                     
                 case .currentHourly:
-                    return currentHourlySectionVM?.count ?? 0
+                    return currentHourlySectionVM.count
                     
                 case .daily:
-                    return dailySectionVM?.count ?? 0
+                    return dailySectionVM.count
                     
                 case .today:
-                    return todaySectionVM?.count ?? 0
+                    return todaySectionVM.count
                     
                 case .detail:
-                    return detailSectionVM?.count ?? 0
+                    return detailSectionVM.count
                 case .link:
-                    return linkSectionVM?.count ?? 0
+                    return linkSectionVM.count
                     
                 default:
                     return 0

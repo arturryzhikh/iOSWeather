@@ -122,17 +122,17 @@ extension HomeViewController: UICollectionViewDataSource {
         
         case .daily:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DailyCell.description(), for: indexPath) as! DailyCell
-            cell.viewModel = viewModel?.dailySectionVM?.itemViewModels[indexPath.item]
+            cell.viewModel = viewModel?.dailySectionVM.itemViewModels[indexPath.item]
             return cell
             
         case .today:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TodayCell.description(), for: indexPath) as! TodayCell
-            cell.viewModel = viewModel?.todaySectionVM?.itemViewModels[indexPath.item]
+            cell.viewModel = viewModel?.todaySectionVM.itemViewModels[indexPath.item]
             return cell
             
         case .detail:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailCell.description(), for: indexPath) as! DetailCell
-            let vm = viewModel?.detailSectionVM?.itemViewModels[indexPath.item]
+            let vm = viewModel?.detailSectionVM.itemViewModels[indexPath.item]
             cell.viewModel = vm
             return cell
             
@@ -157,7 +157,7 @@ extension HomeViewController: UICollectionViewDataSource {
             guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CurrentHeader.description(), for: indexPath) as? CurrentHeader else {
                 fatalError("No appropriate view for supplementary view of \(kind) ad \(indexPath)")
             }
-            let vm = viewModel?.currentHourlySectionVM?.headerViewModel
+            let vm = viewModel?.currentHourlySectionVM.headerViewModel
             header.viewModel = vm
             return header
             
@@ -165,7 +165,7 @@ extension HomeViewController: UICollectionViewDataSource {
             guard let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HourlyFooter.description(), for: indexPath) as? HourlyFooter else {
                 fatalError("No appropriate view for supplementary view of \(kind) at \(indexPath)")
             }
-            let vm = viewModel?.currentHourlySectionVM?.footerViewModel
+            let vm = viewModel?.currentHourlySectionVM.footerViewModel
             footer.viewModel = vm
             return footer
             

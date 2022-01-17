@@ -20,7 +20,17 @@ public final class ViewModelBuilder: ViewModelBuilding {
         self.model = model
     }
     func buildViewModel() -> Home.Weather.ViewModel {
-        return Home.Weather.ViewModel()
+        let current = buildCurrentHourlySectionViewModel()
+        let daily = buildDailySectionViewModel()
+        let today = buildTodaySectionViewModel()
+        let detail = buildDetailSectionViewModel()
+        let link = buildLinkSectionViewModel()
+        return Home.Weather.ViewModel(
+            currentHourlySectionVM: current,
+            dailySectionVM: daily,
+            todaySectionVM: today,
+            detailSectionVM: detail,
+            linkSectionVM: link)
     }
     //MARK: Current Hoyrly Section
     private func buildCurrentHourlySectionViewModel() -> CurrentHourlySectionViewModel {

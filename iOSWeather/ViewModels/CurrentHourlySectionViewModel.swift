@@ -8,8 +8,8 @@ import Foundation
 
 
 struct CurrentHourlySectionViewModel: SectionWithHeaderViewModel, SectionWithFooterViewModel {
-    init(headerViewModel: CurrentHeaderViewModel,
-         footerViewModel: HourlyFooterViewModel) {
+    init(headerViewModel: CurrentHeaderViewModel = .init(),
+         footerViewModel: HourlyFooterViewModel = .init()) {
         self.headerViewModel = headerViewModel
         self.footerViewModel = footerViewModel
     }

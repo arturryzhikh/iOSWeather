@@ -25,6 +25,8 @@ class HomePresenter: NSObject, HomePresentationLogic {
 //    }
     func presentWeather(response: Home.Weather.Response) {
         builder = ViewModelBuilder(model: response)
+        let vm = builder?.buildViewModel()
+        print(vm)
         //        viewController?.displaySomething(viewModel: viewModel)
     }
         
