@@ -57,6 +57,7 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
         presenter.viewController = viewController
         router.viewController = viewController
         router.dataStore = interactor
+        weatherView.tabbar.delegate = router
         setupLocationManager()
     }
     
@@ -106,8 +107,8 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
         return (self.view as! WeatherView).collectionView
     }
     
-    private var weatherView: UIView! {
-        return self.view as! WeatherView
+    private var weatherView: WeatherView! {
+        return (self.view as! WeatherView)
     }
     private lazy var activityIndicator: UIActivityIndicatorView = {
         $0.hidesWhenStopped = true
@@ -260,5 +261,4 @@ extension HomeViewController: CLLocationManagerDelegate {
         print(error)
     }
 }
-
 

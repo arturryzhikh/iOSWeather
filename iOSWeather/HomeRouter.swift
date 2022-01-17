@@ -68,3 +68,10 @@ class HomeRouter: NSObject, HomeRoutingLogic, HomeDataPassing {
     //    destination.name = source.name
     //  }
 }
+
+
+extension HomeRouter: UITabBarDelegate {
+    func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        print(item)
+    }
+}

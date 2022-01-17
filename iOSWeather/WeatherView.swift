@@ -41,10 +41,13 @@ public final class WeatherView: UIView {
             make.leading.trailing.equalToSuperview()
             make.bottom.equalTo(self.snp.bottomMargin)
         }
-        
+ 
     }
-    private lazy var tabbar: UITabBar = {
+
+    lazy var tabbar: UITabBar = {
         $0.addSeparator(to: .top, aboveSubview: $0)
+        let search = UITabBarItem(tabBarSystemItem: .search, tag: 0)
+        $0.items = [search]
         return $0
     }(UITabBar())
     //create collection view
