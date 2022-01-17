@@ -33,13 +33,3 @@ public class TransparentCell: UICollectionViewCell  {
     
     
 }
-
-enum SeparatorPosition {
-    case bottom
-    case top
-}
-
-extension UIView {
-    
-   
-}

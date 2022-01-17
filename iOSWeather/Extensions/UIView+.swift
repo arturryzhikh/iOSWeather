@@ -6,6 +6,11 @@
 //
 import UIKit
 
+enum SeparatorPosition {
+    case bottom
+    case top
+}
+
 extension UIView {
     /// Adds multiple UI Views as subviews
     ///
@@ -48,6 +53,13 @@ extension UIView {
             
         }
         
+    }
+    func addBlur() {
+        let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.dark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = self.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        self.addSubview(blurEffectView)
     }
 }
 
