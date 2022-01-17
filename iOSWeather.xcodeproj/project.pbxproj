@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		340A400327908FC700A616FC /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 340A400227908FC700A616FC /* SnapKit */; };
 		3412E1BE2792CE48000FE043 /* ViewModelBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3412E1BD2792CE48000FE043 /* ViewModelBuilder.swift */; };
+		3414786F279542EC00735EF4 /* TodayCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3414786E279542EC00735EF4 /* TodayCellViewModel.swift */; };
+		341478712795446C00735EF4 /* LinkCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341478702795446C00735EF4 /* LinkCellViewModel.swift */; };
 		34170FDE279450BB00AFD7A8 /* CurrentHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34170FDD279450BB00AFD7A8 /* CurrentHeaderViewModel.swift */; };
 		34170FE0279450F800AFD7A8 /* String+emptyString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34170FDF279450F800AFD7A8 /* String+emptyString.swift */; };
 		34170FE2279453B400AFD7A8 /* HourlyFooterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34170FE1279453B400AFD7A8 /* HourlyFooterViewModel.swift */; };
@@ -30,9 +32,9 @@
 		348DC86A27907DA5000EDCFE /* DailySectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348DC85527907DA5000EDCFE /* DailySectionViewModel.swift */; };
 		348DC86B27907DA5000EDCFE /* CurrentHourlySectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348DC85627907DA5000EDCFE /* CurrentHourlySectionViewModel.swift */; };
 		348DC87127907DA5000EDCFE /* DetailSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348DC85C27907DA5000EDCFE /* DetailSectionViewModel.swift */; };
-		348DC87827907DA5000EDCFE /* LinkSectionVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348DC86327907DA5000EDCFE /* LinkSectionVM.swift */; };
+		348DC87827907DA5000EDCFE /* LinkSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348DC86327907DA5000EDCFE /* LinkSectionViewModel.swift */; };
 		348DC87927907DA5000EDCFE /* SectionWithItemsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348DC86427907DA5000EDCFE /* SectionWithItemsViewModel.swift */; };
-		348DC87A27907DA5000EDCFE /* TodaySectionVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348DC86527907DA5000EDCFE /* TodaySectionVM.swift */; };
+		348DC87A27907DA5000EDCFE /* TodaySectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348DC86527907DA5000EDCFE /* TodaySectionViewModel.swift */; };
 		348DC87B27907DA5000EDCFE /* Screen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348DC86627907DA5000EDCFE /* Screen.swift */; };
 		348DC88727907DEE000EDCFE /* TodayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348DC87D27907DEE000EDCFE /* TodayCell.swift */; };
 		348DC88827907DEE000EDCFE /* UICollectionView+Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348DC87E27907DEE000EDCFE /* UICollectionView+Register.swift */; };
@@ -81,6 +83,8 @@
 
 /* Begin PBXFileReference section */
 		3412E1BD2792CE48000FE043 /* ViewModelBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelBuilder.swift; sourceTree = "<group>"; };
+		3414786E279542EC00735EF4 /* TodayCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayCellViewModel.swift; sourceTree = "<group>"; };
+		341478702795446C00735EF4 /* LinkCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkCellViewModel.swift; sourceTree = "<group>"; };
 		34170FDD279450BB00AFD7A8 /* CurrentHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentHeaderViewModel.swift; sourceTree = "<group>"; };
 		34170FDF279450F800AFD7A8 /* String+emptyString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+emptyString.swift"; sourceTree = "<group>"; };
 		34170FE1279453B400AFD7A8 /* HourlyFooterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyFooterViewModel.swift; sourceTree = "<group>"; };
@@ -102,9 +106,9 @@
 		348DC85527907DA5000EDCFE /* DailySectionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailySectionViewModel.swift; sourceTree = "<group>"; };
 		348DC85627907DA5000EDCFE /* CurrentHourlySectionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentHourlySectionViewModel.swift; sourceTree = "<group>"; };
 		348DC85C27907DA5000EDCFE /* DetailSectionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailSectionViewModel.swift; sourceTree = "<group>"; };
-		348DC86327907DA5000EDCFE /* LinkSectionVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkSectionVM.swift; sourceTree = "<group>"; };
+		348DC86327907DA5000EDCFE /* LinkSectionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkSectionViewModel.swift; sourceTree = "<group>"; };
 		348DC86427907DA5000EDCFE /* SectionWithItemsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionWithItemsViewModel.swift; sourceTree = "<group>"; };
-		348DC86527907DA5000EDCFE /* TodaySectionVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodaySectionVM.swift; sourceTree = "<group>"; };
+		348DC86527907DA5000EDCFE /* TodaySectionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodaySectionViewModel.swift; sourceTree = "<group>"; };
 		348DC86627907DA5000EDCFE /* Screen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Screen.swift; sourceTree = "<group>"; };
 		348DC87D27907DEE000EDCFE /* TodayCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodayCell.swift; sourceTree = "<group>"; };
 		348DC87E27907DEE000EDCFE /* UICollectionView+Register.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Register.swift"; sourceTree = "<group>"; };
@@ -238,8 +242,10 @@
 				34170FE52795369300AFD7A8 /* DailyCellViewModel.swift */,
 				348DC85C27907DA5000EDCFE /* DetailSectionViewModel.swift */,
 				34170FE727953B6A00AFD7A8 /* DetailCellViewModel.swift */,
-				348DC86527907DA5000EDCFE /* TodaySectionVM.swift */,
-				348DC86327907DA5000EDCFE /* LinkSectionVM.swift */,
+				348DC86527907DA5000EDCFE /* TodaySectionViewModel.swift */,
+				3414786E279542EC00735EF4 /* TodayCellViewModel.swift */,
+				348DC86327907DA5000EDCFE /* LinkSectionViewModel.swift */,
+				341478702795446C00735EF4 /* LinkCellViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -469,7 +475,7 @@
 				34170FE62795369300AFD7A8 /* DailyCellViewModel.swift in Sources */,
 				348DC84627907D24000EDCFE /* HTTPURLResponse+statusOK.swift in Sources */,
 				348DC84927907D24000EDCFE /* Int+windDirectionFromDegree.swift in Sources */,
-				348DC87A27907DA5000EDCFE /* TodaySectionVM.swift in Sources */,
+				348DC87A27907DA5000EDCFE /* TodaySectionViewModel.swift in Sources */,
 				348DC88827907DEE000EDCFE /* UICollectionView+Register.swift in Sources */,
 				348DC89027907DEE000EDCFE /* UIColor+WeatherColors.swift in Sources */,
 				348DC86B27907DA5000EDCFE /* CurrentHourlySectionViewModel.swift in Sources */,
@@ -478,10 +484,11 @@
 				349B17962791DBCD00FF46BB /* Networking.swift in Sources */,
 				34170FE42795319700AFD7A8 /* HourlyItemViewModel.swift in Sources */,
 				34BEF456279189B9001C765D /* HomeWorker.swift in Sources */,
-				348DC87827907DA5000EDCFE /* LinkSectionVM.swift in Sources */,
+				348DC87827907DA5000EDCFE /* LinkSectionViewModel.swift in Sources */,
 				348DC88727907DEE000EDCFE /* TodayCell.swift in Sources */,
 				348DC88927907DEE000EDCFE /* UILabel+ConvenienceInit.swift in Sources */,
 				34BEF455279189B9001C765D /* HomePresenter.swift in Sources */,
+				3414786F279542EC00735EF4 /* TodayCellViewModel.swift in Sources */,
 				34BEF458279189B9001C765D /* HomeModels.swift in Sources */,
 				348DC89927907E19000EDCFE /* WeatherFlowLayout.swift in Sources */,
 				348DC89827907E19000EDCFE /* WeatherView.swift in Sources */,
@@ -496,6 +503,7 @@
 				34170FDE279450BB00AFD7A8 /* CurrentHeaderViewModel.swift in Sources */,
 				34170FE827953B6A00AFD7A8 /* DetailCellViewModel.swift in Sources */,
 				348DC84327907D24000EDCFE /* HourlyFooter.swift in Sources */,
+				341478712795446C00735EF4 /* LinkCellViewModel.swift in Sources */,
 				348DC88D27907DEE000EDCFE /* UIView+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

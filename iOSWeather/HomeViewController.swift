@@ -127,7 +127,7 @@ extension HomeViewController: UICollectionViewDataSource {
             
         case .today:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TodayCell.description(), for: indexPath) as! TodayCell
-            cell.viewModel = viewModel?.todaySectionVM?.items[indexPath.item]
+            cell.viewModel = viewModel?.todaySectionVM?.itemViewModels[indexPath.item]
             return cell
             
         case .detail:
@@ -139,7 +139,7 @@ extension HomeViewController: UICollectionViewDataSource {
         case .link:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LinkCell.description(), for: indexPath) as! LinkCell
             let vm = viewModel?.linkSectionVM
-            cell.viewModel = vm?.items[indexPath.item]
+            cell.viewModel = vm?.itemViewModels[indexPath.item]
             return cell
             
         default:

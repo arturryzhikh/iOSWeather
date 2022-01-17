@@ -271,5 +271,41 @@ public final class ViewModelBuilder: ViewModelBuilding {
             value: detail.value
         )
     }
-
+    //MARK: Today Section
+    private func buildTodaySectionViewModel() -> TodaySectionViewModel {
+        let item = buildTodayCellViewModel()
+        return TodaySectionViewModel(itemViewModels: [item])
+    }
+    private func buildTodayCellViewModel() -> TodayCellViewModel {
+        var overview: String {
+            if let highTemp = model.daily?.first?.temp?.max,
+               let lowTemp = model.daily?.first?.temp?.min,
+               let description = model.current?.weather?.first?.description {
+                return """
+                Today: \(description) currently. The high will be \(highTemp.stringTemp). The low tonight will be \(lowTemp.stringTemp)
+                """
+            }
+            return .emptyString
+        }
+        return TodayCellViewModel(overview: overview)
+        
+    }
+    //MARK: Link Section
+    private func buildLinkSectionViewModel() -> LinkSectionViewModel {
+        let item = buildLinkCellViewModel()
+        return LinkSectionViewModel(itemViewModels: [item])
+    }
+    private func buildLinkCellViewModel() -> LinkCellViewModel {
+        var link: NSMutableAttributedString {
+            guard let timezone = model.timezone else {
+                return NSMutableAttributedString()
+            }
+            let location = timezone.components(separatedBy: "/")[1]
+                .replacingOccurrences(of: "_", with: " ")
+            let attrSting = NSMutableAttributedString(string: "Weather for \(location). Thanks to Open Weather Map!")
+            return attrSting
+        }
+        return LinkCellViewModel(link: link)
+    }
+    
 }
