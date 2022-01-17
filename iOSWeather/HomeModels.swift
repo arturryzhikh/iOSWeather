@@ -13,16 +13,14 @@
 import UIKit
 
 enum Home {
-    // MARK: Use cases
-    
-    enum Weather
-    {
+    //MARK: Requests
+    enum Requests {
         struct Request: NetworkRequest {
             var url: String {
                 return API.oneCallendpoint
             }
             var httpMethod: HTTPMethod = .get
-            typealias NetworkResponse = Home.Weather.Response
+            typealias NetworkResponse = Home.Responses.Response
             var queries: [String : String] = [
                 "exclude" :  "alerts"
             ]
@@ -40,6 +38,9 @@ enum Home {
             
         }
         
+    }
+    // MARK: Responses
+    enum Responses {
         struct Response: Codable {
             let lat, lon: Double?
             let timezone: String?
@@ -103,6 +104,9 @@ enum Home {
             let precipitation: Double?
         }
         
+    }
+    //MARK: ViewModels
+    enum ViewModels {
         struct ViewModel {
             enum Section: Int, CaseIterable {
                 case currentHourly,
@@ -113,15 +117,15 @@ enum Home {
             }
             
             init(currentHourlySectionVM: CurrentHourlySectionViewModel = CurrentHourlySectionViewModel.init(),
-                dailySectionVM: DailySectionViewModel = DailySectionViewModel(),
-                todaySectionVM: TodaySectionViewModel = .init(),
-                detailSectionVM: DetailSectionViewModel = .init(),
-                linkSectionVM: LinkSectionViewModel = .init()) {
-                    self.currentHourlySectionVM = currentHourlySectionVM
-                    self.dailySectionVM = dailySectionVM
-                    self.todaySectionVM = todaySectionVM
-                    self.detailSectionVM = detailSectionVM
-                    self.linkSectionVM = linkSectionVM
+                 dailySectionVM: DailySectionViewModel = DailySectionViewModel(),
+                 todaySectionVM: TodaySectionViewModel = .init(),
+                 detailSectionVM: DetailSectionViewModel = .init(),
+                 linkSectionVM: LinkSectionViewModel = .init()) {
+                self.currentHourlySectionVM = currentHourlySectionVM
+                self.dailySectionVM = dailySectionVM
+                self.todaySectionVM = todaySectionVM
+                self.detailSectionVM = detailSectionVM
+                self.linkSectionVM = linkSectionVM
             }
             
             //MARK: Section View Models
@@ -168,7 +172,154 @@ enum Home {
                     return 0
                 }
             }
-  
+            
         }
+        
+        //MARK: CurrentHourlySectionViewModel
+        struct CurrentHourlySectionViewModel: SectionWithHeaderViewModel, SectionWithFooterViewModel {
+            init(headerViewModel: CurrentHeaderViewModel = .init(),
+                 footerViewModel: HourlyFooterViewModel = .init()) {
+                self.headerViewModel = headerViewModel
+                self.footerViewModel = footerViewModel
+            }
+            
+            var count: Int {
+                return 0
+            }
+            let headerViewModel: CurrentHeaderViewModel
+            let footerViewModel : HourlyFooterViewModel
+        }
+        //MARK: CurrentHeaderViewModel
+        struct CurrentHeaderViewModel {
+            
+            let location: String
+            let outline: String
+            let temperature: String
+            let temperatureRange: String
+            
+            init(location: String = .emptyString,
+                 outline: String = .emptyString,
+                 temperature: String = .emptyString,
+                 temperatureRange: String = .emptyString) {
+                self.location = location
+                self.outline = outline
+                self.temperature = temperature
+                self.temperatureRange = temperatureRange
+            }
+            
+        }
+
+        //MARK: HourlyFooterViewModel
+        struct HourlyFooterViewModel: SectionWithItemsViewModel {
+            
+            init(itemViewModels: [HourlyItemViewModel] = []) {
+                self.itemViewModels = itemViewModels
+            }
+            
+            let itemViewModels: [HourlyItemViewModel]
+
+        }
+        //MARK: HourlyItemViewModel
+        struct HourlyItemViewModel {
+            init(hour: String = .emptyString,
+                 weatherEmoji: String = .emptyString,
+                 temperature: String = .emptyString) {
+                self.hour = hour
+                self.weatherEmoji = weatherEmoji
+                self.temperature = temperature
+            }
+            let hour: String
+            let weatherEmoji: String
+            let temperature: String
+
+        }
+        //MARK: DailySectionViewModel
+        struct DailySectionViewModel: SectionWithItemsViewModel {
+            init(itemViewModels: [DailyCellViewModel] = []) {
+                self.itemViewModels = itemViewModels
+            }
+            
+            let itemViewModels: [DailyCellViewModel]
+
+        }
+        //MARK: DailyCellViewModel
+
+        struct DailyCellViewModel {
+            init(day: String = .emptyString,
+                 maxTemperature: String = .emptyString,
+                 minTemperature: String,
+                 weatherEmoji: String = .emptyString,
+                 probability: String = .emptyString) {
+                self.day = day
+                self.maxTemperature = maxTemperature
+                self.minTemperature = minTemperature
+                self.weatherEmoji = weatherEmoji
+                self.probability = probability
+            }
+            
+            let day: String
+            let maxTemperature: String
+            let minTemperature: String
+            let weatherEmoji: String
+            let probability: String
+
+        }
+
+        //MARK: DetailSectionViewModel
+        struct DetailSectionViewModel: SectionWithItemsViewModel {
+            init(itemViewModels: [DetailCellViewModel] = []) {
+                self.itemViewModels = itemViewModels
+            }
+            let itemViewModels: [DetailCellViewModel]
+          
+        }
+        //MARK: DetailCellViewModel
+        struct DetailCellViewModel {
+            init(title: String = .emptyString,
+                 value: String = .emptyString) {
+                self.title = title
+                self.value = value
+            }
+            let title: String
+            let value: String
+        }
+        //MARK: TodaySectionViewModel
+        struct TodaySectionViewModel: SectionWithItemsViewModel {
+            init(itemViewModels: [TodayCellViewModel] = []) {
+                self.itemViewModels = itemViewModels
+            }
+            
+            
+            let itemViewModels: [TodayCellViewModel]
+        }
+        //MARK: TodayCellViewModel
+        struct TodayCellViewModel {
+            init(overview: String = .emptyString) {
+                self.overview = overview
+            }
+            
+            let overview: String
+            
+        }
+        //MARK: LinkSectionViewModel
+        struct LinkSectionViewModel: SectionWithItemsViewModel  {
+            init(itemViewModels: [LinkCellViewModel] = []) {
+                self.itemViewModels = itemViewModels
+            }
+            let itemViewModels: [LinkCellViewModel]
+         
+        }
+        //MARK: LinkCellViewModel
+        struct LinkCellViewModel {
+            init(link: NSMutableAttributedString = .init()) {
+                self.link = link
+            }
+            
+            let link: NSMutableAttributedString
+           
+        }
+
+        
     }
+    
 }

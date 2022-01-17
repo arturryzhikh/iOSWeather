@@ -14,7 +14,7 @@ import UIKit
 import CoreLocation
 
 protocol HomeDisplayLogic: AnyObject {
-    func displayWeather(viewModel: Home.Weather.ViewModel)
+    func displayWeather(viewModel: Home.ViewModels.ViewModel)
     func displayError(message: String)
 }
 
@@ -23,7 +23,7 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
     
     //MARK: Other Properties
     private let locationManager: CLLocationManager = CLLocationManager()
-    private let viewModel = Home.Weather.ViewModel()
+    private let viewModel = Home.ViewModels.ViewModel()
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -84,7 +84,7 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
     //@IBOutlet weak var nameTextField: UITextField!
     //MARK: HomeDisplayLogic
     
-    func displayWeather(viewModel: Home.Weather.ViewModel) {
+    func displayWeather(viewModel: Home.ViewModels.ViewModel) {
        
     }
     func displayError(message: String) {
@@ -121,7 +121,7 @@ extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         
-        let section = Home.Weather.ViewModel.Section(rawValue: indexPath.section)
+        let section = Home.ViewModels.ViewModel.Section(rawValue: indexPath.section)
         
         switch section {
         
@@ -235,7 +235,7 @@ extension HomeViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.first else { return }
         locationManager.stopUpdatingLocation()
-        let request = Home.Weather.Request(coordinate: (lat: location.coordinate.latitude,
+        let request = Home.Requests.Request(coordinate: (lat: location.coordinate.latitude,
                                                         lon: location.coordinate.longitude))
         
         interactor?.getForecast(request)

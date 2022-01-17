@@ -14,18 +14,18 @@ protocol ViewModelBuilding {
 
 public final class ViewModelBuilder: ViewModelBuilding {
     
-    let model: Home.Weather.Response
+    let model: Home.Responses.Response
     
-    init(model: Home.Weather.Response) {
+    init(model: Home.Responses.Response) {
         self.model = model
     }
-    func buildViewModel() -> Home.Weather.ViewModel {
+    func buildViewModel() -> Home.ViewModels.ViewModel {
         let current = buildCurrentHourlySectionViewModel()
         let daily = buildDailySectionViewModel()
         let today = buildTodaySectionViewModel()
         let detail = buildDetailSectionViewModel()
         let link = buildLinkSectionViewModel()
-        return Home.Weather.ViewModel(
+        return Home.ViewModels.ViewModel(
             currentHourlySectionVM: current,
             dailySectionVM: daily,
             todaySectionVM: today,
@@ -33,14 +33,14 @@ public final class ViewModelBuilder: ViewModelBuilding {
             linkSectionVM: link)
     }
     //MARK: Current Hoyrly Section
-    private func buildCurrentHourlySectionViewModel() -> CurrentHourlySectionViewModel {
+    private func buildCurrentHourlySectionViewModel() -> Home.ViewModels.CurrentHourlySectionViewModel {
         let header = buildCurrentHeaderViewModel()
         let footer = buildHourlyFooterViewModel()
-        return CurrentHourlySectionViewModel(
+        return Home.ViewModels.CurrentHourlySectionViewModel(
             headerViewModel: header,
             footerViewModel: footer)
     }
-    private func buildCurrentHeaderViewModel() -> CurrentHeaderViewModel {
+    private func buildCurrentHeaderViewModel() -> Home.ViewModels.CurrentHeaderViewModel {
         var location: String {
             return model
                 .timezone?
@@ -71,7 +71,7 @@ public final class ViewModelBuilder: ViewModelBuilding {
             return .emptyString
             
         }
-        return CurrentHeaderViewModel(
+        return Home.ViewModels.CurrentHeaderViewModel(
             location: location,
             outline: outline,
             temperature: temperature,
@@ -79,14 +79,14 @@ public final class ViewModelBuilder: ViewModelBuilding {
     }
     
     
-    private func buildHourlyFooterViewModel() -> HourlyFooterViewModel {
+    private func buildHourlyFooterViewModel() -> Home.ViewModels.HourlyFooterViewModel {
         let items = model.hourly?.map { current in
             buildHourlyItemViewModel(model: current)
         } ?? []
-        return HourlyFooterViewModel(itemViewModels: items)
+        return Home.ViewModels.HourlyFooterViewModel(itemViewModels: items)
         
     }
-    private func buildHourlyItemViewModel(model: Home.Weather.Current) -> HourlyItemViewModel {
+    private func buildHourlyItemViewModel(model: Home.Responses.Current) -> Home.ViewModels.HourlyItemViewModel {
         var hour: String  {
             guard let dt = model.dt else {
                 return "--"
@@ -128,21 +128,21 @@ public final class ViewModelBuilder: ViewModelBuilding {
             }
             return "__"
         }
-        return HourlyItemViewModel(
+        return Home.ViewModels.HourlyItemViewModel(
             hour: hour,
             weatherEmoji: weatherEmoji,
             temperature: temperature)
     }
     //MARK: Daily Section
-    private func buildDailySectionViewModel() -> DailySectionViewModel {
+    private func buildDailySectionViewModel() -> Home.ViewModels.DailySectionViewModel {
         let items = model.daily?.compactMap { daily in
             return buildDailyCellViewModel(model: daily)
             
         } ?? []
-        return DailySectionViewModel(itemViewModels: items)
+        return Home.ViewModels.DailySectionViewModel(itemViewModels: items)
     }
     
-    private func buildDailyCellViewModel(model: Home.Weather.Daily) -> DailyCellViewModel {
+    private func buildDailyCellViewModel(model: Home.Responses.Daily) -> Home.ViewModels.DailyCellViewModel {
         
         var day: String {
             guard  let dt = model.dt else {
@@ -191,7 +191,7 @@ public final class ViewModelBuilder: ViewModelBuilding {
             let percentage = Int(prob * 100)
             return String(percentage) + "%"
         }
-        return DailyCellViewModel(
+        return Home.ViewModels.DailyCellViewModel(
             day: day,
             maxTemperature: maxTemperature,
             minTemperature: minTemperature,
@@ -200,20 +200,20 @@ public final class ViewModelBuilder: ViewModelBuilding {
         
     }
     //MARK: Detail Section
-    private func buildDetailSectionViewModel() -> DetailSectionViewModel {
-        var itemViewModels: [DetailCellViewModel] {
-            var items: [DetailCellViewModel] = []
+    private func buildDetailSectionViewModel() -> Home.ViewModels.DetailSectionViewModel {
+        var itemViewModels: [Home.ViewModels.DetailCellViewModel] {
+            var items: [Home.ViewModels.DetailCellViewModel] = []
             for number in 0...8 {
                 let vm = buildDetailCellViewModel(item: number)
                 items.append(vm)
             }
             return items
         }
-        return DetailSectionViewModel(itemViewModels: itemViewModels)
+        return Home.ViewModels.DetailSectionViewModel(itemViewModels: itemViewModels)
         
     }
     
-    private func buildDetailCellViewModel(item: Int) -> DetailCellViewModel {
+    private func buildDetailCellViewModel(item: Int) -> Home.ViewModels.DetailCellViewModel {
         var detail: (title: String, value: String) {
             switch item {
             case 0:
@@ -276,17 +276,17 @@ public final class ViewModelBuilder: ViewModelBuilding {
                 return ("","")
             }
         }
-        return DetailCellViewModel(
+        return Home.ViewModels.DetailCellViewModel(
             title: detail.title,
             value: detail.value
         )
     }
     //MARK: Today Section
-    private func buildTodaySectionViewModel() -> TodaySectionViewModel {
+    private func buildTodaySectionViewModel() -> Home.ViewModels.TodaySectionViewModel {
         let item = buildTodayCellViewModel()
-        return TodaySectionViewModel(itemViewModels: [item])
+        return Home.ViewModels.TodaySectionViewModel(itemViewModels: [item])
     }
-    private func buildTodayCellViewModel() -> TodayCellViewModel {
+    private func buildTodayCellViewModel() -> Home.ViewModels.TodayCellViewModel {
         var overview: String {
             if let highTemp = model.daily?.first?.temp?.max,
                let lowTemp = model.daily?.first?.temp?.min,
@@ -297,15 +297,15 @@ public final class ViewModelBuilder: ViewModelBuilding {
             }
             return .emptyString
         }
-        return TodayCellViewModel(overview: overview)
+        return Home.ViewModels.TodayCellViewModel(overview: overview)
         
     }
     //MARK: Link Section
-    private func buildLinkSectionViewModel() -> LinkSectionViewModel {
+    private func buildLinkSectionViewModel() -> Home.ViewModels.LinkSectionViewModel {
         let item = buildLinkCellViewModel()
-        return LinkSectionViewModel(itemViewModels: [item])
+        return Home.ViewModels.LinkSectionViewModel(itemViewModels: [item])
     }
-    private func buildLinkCellViewModel() -> LinkCellViewModel {
+    private func buildLinkCellViewModel() -> Home.ViewModels.LinkCellViewModel {
         var link: NSMutableAttributedString {
             guard let timezone = model.timezone else {
                 return NSMutableAttributedString()
@@ -315,7 +315,7 @@ public final class ViewModelBuilder: ViewModelBuilding {
             let attrSting = NSMutableAttributedString(string: "Weather for \(location). Thanks to Open Weather Map!")
             return attrSting
         }
-        return LinkCellViewModel(link: link)
+        return Home.ViewModels.LinkCellViewModel(link: link)
     }
     
 }

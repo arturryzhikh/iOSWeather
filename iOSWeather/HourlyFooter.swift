@@ -10,7 +10,7 @@ final class HourlyFooter: TransparentCell, UICollectionViewDelegate {
     
     //MAKR: Static properties
     
-    var viewModel: HourlyFooterViewModel? {
+    var viewModel: Home.ViewModels.HourlyFooterViewModel? {
         didSet {
             collectionView.reloadData()
         }

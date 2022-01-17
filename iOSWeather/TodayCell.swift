@@ -8,12 +8,12 @@ import UIKit
 
 final class TodayCell: TransparentCell, ViewRepresentable {
     
-    func populateSubviews(with viewModel: TodayCellViewModel) {
+    func populateSubviews(with viewModel: Home.ViewModels.TodayCellViewModel) {
         todayTxtView.text = viewModel.overview
     }
     
     
-    var viewModel: TodayCellViewModel? {
+    var viewModel: Home.ViewModels.TodayCellViewModel? {
         didSet {
             if let vm = viewModel {
                 populateSubviews(with: vm)

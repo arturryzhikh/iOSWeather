@@ -8,7 +8,7 @@ import UIKit
 
 final class LinkCell: TransparentCell, ViewRepresentable {
     
-    var viewModel: LinkCellViewModel? {
+    var viewModel: Home.ViewModels.LinkCellViewModel? {
         
         willSet {
             if let vm = newValue {
@@ -18,7 +18,7 @@ final class LinkCell: TransparentCell, ViewRepresentable {
         
     }
     
-    func populateSubviews(with viewModel: LinkCellViewModel) {
+    func populateSubviews(with viewModel: Home.ViewModels.LinkCellViewModel) {
         linkLabel.attributedText = viewModel.link
     }
     //MARK: Subviews

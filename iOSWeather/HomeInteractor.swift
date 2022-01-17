@@ -13,7 +13,7 @@
 import UIKit
 
 protocol HomeBusinessLogic {
-    func getForecast(_ request: Home.Weather.Request)
+    func getForecast(_ request: Home.Requests.Request)
 }
 
 protocol HomeDataStore {
@@ -26,7 +26,7 @@ class HomeInteractor: NSObject, HomeBusinessLogic, HomeDataStore {
     var worker: HomeWorker?
     
     // MARK: Get Forecast
-    func getForecast(_ request: Home.Weather.Request) {
+    func getForecast(_ request: Home.Requests.Request) {
         worker = HomeWorker()
         worker?.getForecast(request: request) { [weak self] result in
             guard let self = self else {

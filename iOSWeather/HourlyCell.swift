@@ -8,7 +8,7 @@ import UIKit
 
 final class HourlyCell: TransparentCell ,ViewRepresentable {
     
-    var viewModel: HourlyItemViewModel? {
+    var viewModel: Home.ViewModels.HourlyItemViewModel? {
         didSet {
             
             if let vm = viewModel {
@@ -17,7 +17,7 @@ final class HourlyCell: TransparentCell ,ViewRepresentable {
         }
     }
     
-    func populateSubviews(with viewModel: HourlyItemViewModel) {
+    func populateSubviews(with viewModel: Home.ViewModels.HourlyItemViewModel) {
         hourLabel.text = viewModel.hour
         weatherEmojiLabel.text = viewModel.weatherEmoji
         temperatureLabel.text = viewModel.temperature
