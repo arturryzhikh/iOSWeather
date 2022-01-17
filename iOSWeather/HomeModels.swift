@@ -168,9 +168,6 @@ enum Home {
                 Section.detail.rawValue,
                 Section.link.rawValue
             ]
-          
-            var isFetching = false
-            
             var numberOfSections: Int {
                 return sections.count
             }

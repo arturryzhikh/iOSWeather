@@ -12,6 +12,7 @@
 
 import UIKit
 import CoreLocation
+import SnapKit
 
 protocol HomeDisplayLogic: AnyObject {
     func displayWeather(viewModel: Home.ViewModels.ViewModel)
@@ -65,24 +66,7 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()
     }
-    
-    
-    // MARK: Routing
-    //
-    //    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
-    //    {
-    //        if let scene = segue.identifier {
-    //            let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
-    //            if let router = router, router.responds(to: selector) {
-    //                router.perform(selector, with: segue)
-    //            }
-    //        }
-    //    }
-    //
-    //
-    // MARK: Do something
-    
-    //@IBOutlet weak var nameTextField: UITextField!
+
     //MARK: HomeDisplayLogic
     
     func displayWeather(viewModel: Home.ViewModels.ViewModel) {
@@ -96,23 +80,51 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
                 return
             }
             self.collectionView.reloadData()
+            self.activityIndicator.stopAnimating()
             
         }
     }
+    
     func displayError(message: String) {
         print("\(self.description)",message)
+        let alert = UIAlertController(
+            title: "Oops! Something went wrong.",
+            message: message,
+            preferredStyle: .alert)
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else {
+                return
+            }
+            //FIXME: router
+            self.present(alert, animated: true)
+            self.activityIndicator.stopAnimating()
+            
+        }
     }
     //MARK: Subviews
-    var collectionView: UICollectionView!  {
-        return (self.view as! WeatherView).collectionView
-    }
     
     //MARK: View Life Cycle
     override func loadView() {
         view = WeatherView()
         
     }
+    var collectionView: UICollectionView!  {
+        return (self.view as! WeatherView).collectionView
+    }
     
+    private var weatherView: UIView! {
+        return self.view as! WeatherView
+    }
+    private lazy var activityIndicator: UIActivityIndicatorView = {
+        $0.hidesWhenStopped = true
+        $0.stopAnimating()
+        view.addSubview($0)
+        $0.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview().offset(-90)
+        }
+        return $0
+    }(UIActivityIndicatorView())
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.delegate = self
@@ -252,6 +264,7 @@ extension HomeViewController: CLLocationManagerDelegate {
                                                         lon: location.coordinate.longitude))
         
         interactor?.getForecast(request)
+        activityIndicator.startAnimating()
         
     }
     
