@@ -29,7 +29,7 @@ final class DailyCell: TransparentCell {
     
     //MARK: Subviews
     let dayLabel: UILabel = {
-        $0.font = .day
+        $0.font = .weatherEmoji
         $0.textColor = .weatherWhite
         return $0
     }(UILabel())
