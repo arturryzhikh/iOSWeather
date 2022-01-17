@@ -74,7 +74,7 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
         self.viewModel.dailySectionVM = viewModel.dailySectionVM
         self.viewModel.todaySectionVM = viewModel.todaySectionVM
         self.viewModel.detailSectionVM = viewModel.detailSectionVM
-        self.viewModel.linkSectionVM = viewModel.linkSectionVM
+        
         DispatchQueue.main.async { [weak self] in
             guard let self = self else {
                 return
@@ -159,13 +159,7 @@ extension HomeViewController: UICollectionViewDataSource {
             let vm = viewModel.detailSectionVM.itemViewModels[indexPath.item]
             cell.viewModel = vm
             return cell
-            
-        case .link:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LinkCell.description(), for: indexPath) as! LinkCell
-            let vm = viewModel.linkSectionVM
-            cell.viewModel = vm.itemViewModels[indexPath.item]
-            return cell
-            
+
         default:
             assert(false)
             

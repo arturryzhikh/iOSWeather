@@ -23,13 +23,12 @@ public final class ViewModelBuilder: ViewModelBuilding {
         let daily = buildDailySectionViewModel()
         let today = buildTodaySectionViewModel()
         let detail = buildDetailSectionViewModel()
-        let link = buildLinkSectionViewModel()
         return Home.ViewModels.ViewModel(
             currentHourlySectionVM: current,
             dailySectionVM: daily,
             todaySectionVM: today,
-            detailSectionVM: detail,
-            linkSectionVM: link
+            detailSectionVM: detail
+            
         )
     }
     //MARK: Current Hoyrly Section
@@ -274,23 +273,19 @@ public final class ViewModelBuilder: ViewModelBuilding {
         return Home.ViewModels.TodayCellViewModel(overview: overview)
         
     }
-    //MARK: Link Section
-    private func buildLinkSectionViewModel() -> Home.ViewModels.LinkSectionViewModel {
-        let item = buildLinkCellViewModel()
-        return Home.ViewModels.LinkSectionViewModel(itemViewModels: [item])
-    }
-    private func buildLinkCellViewModel() -> Home.ViewModels.LinkCellViewModel {
-        var link: NSMutableAttributedString {
-            guard let timezone = model.timezone else {
-                return NSMutableAttributedString()
-            }
-            let location = timezone.components(separatedBy: "/")[1]
-                .replacingOccurrences(of: "_", with: " ")
-            let attrSting = NSMutableAttributedString(string: "Weather for \(location). Thanks to Open Weather Map!")
-            return attrSting
-        }
-        return Home.ViewModels.LinkCellViewModel(link: link)
-    }
+  
+//    private func buildLinkCellViewModel() -> Home.ViewModels.LinkCellViewModel {
+//        var link: NSMutableAttributedString {
+//            guard let timezone = model.timezone else {
+//                return NSMutableAttributedString()
+//            }
+//            let location = timezone.components(separatedBy: "/")[1]
+//                .replacingOccurrences(of: "_", with: " ")
+//            let attrSting = NSMutableAttributedString(string: "Weather for \(location). Thanks to Open Weather Map!")
+//            return attrSting
+//        }
+//        return Home.ViewModels.LinkCellViewModel(link: link)
+//    }
     
 }
 

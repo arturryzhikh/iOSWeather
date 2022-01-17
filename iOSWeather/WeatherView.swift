@@ -46,7 +46,7 @@ public final class WeatherView: UIView {
         $0.showsHorizontalScrollIndicator = false
         $0.registerHeaders(CurrentHeader.self)
         $0.registerFooters(HourlyFooter.self)
-        $0.registerCells(DailyCell.self, TodayCell.self, DetailCell.self, LinkCell.self)
+        $0.registerCells(DailyCell.self, TodayCell.self, DetailCell.self)
         return $0
     }(UICollectionView(frame: .zero, collectionViewLayout: WeatherFlowLayout()))
     

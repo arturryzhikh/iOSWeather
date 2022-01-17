@@ -136,20 +136,19 @@ enum Home {
                 case currentHourly,
                      daily,
                      today,
-                     detail,
-                     link
+                     detail
             }
             
             init(currentHourlySectionVM: CurrentHourlySectionViewModel = CurrentHourlySectionViewModel.init(),
                  dailySectionVM: DailySectionViewModel = DailySectionViewModel.init(),
                  todaySectionVM: TodaySectionViewModel = .init(),
-                 detailSectionVM: DetailSectionViewModel = .init(),
-                 linkSectionVM: LinkSectionViewModel = .init()) {
+                 detailSectionVM: DetailSectionViewModel = .init()
+                 ) {
                 self.currentHourlySectionVM = currentHourlySectionVM
                 self.dailySectionVM = dailySectionVM
                 self.todaySectionVM = todaySectionVM
                 self.detailSectionVM = detailSectionVM
-                self.linkSectionVM = linkSectionVM
+                
             }
             
             //MARK: Section View Models
@@ -157,7 +156,7 @@ enum Home {
             var dailySectionVM: DailySectionViewModel
             var todaySectionVM: TodaySectionViewModel
             var detailSectionVM: DetailSectionViewModel
-            var linkSectionVM: LinkSectionViewModel
+           
             
             //MARK: Properties
             
@@ -166,7 +165,7 @@ enum Home {
                 Section.daily.rawValue,
                 Section.today.rawValue,
                 Section.detail.rawValue,
-                Section.link.rawValue
+                
             ]
             var numberOfSections: Int {
                 return sections.count
@@ -186,9 +185,7 @@ enum Home {
                     
                 case .detail:
                     return detailSectionVM.count
-                case .link:
-                    return linkSectionVM.count
-                    
+              
                 default:
                     return 0
                 }
@@ -322,24 +319,6 @@ enum Home {
             let overview: String
             
         }
-        //MARK: LinkSectionViewModel
-        struct LinkSectionViewModel: SectionWithItemsViewModel  {
-            init(itemViewModels: [LinkCellViewModel] = []) {
-                self.itemViewModels = itemViewModels
-            }
-            let itemViewModels: [LinkCellViewModel]
-         
-        }
-        //MARK: LinkCellViewModel
-        struct LinkCellViewModel {
-            init(link: NSMutableAttributedString = .init()) {
-                self.link = link
-            }
-            
-            let link: NSMutableAttributedString
-           
-        }
-
         
     }
     
