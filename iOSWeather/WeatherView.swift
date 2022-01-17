@@ -32,13 +32,21 @@ public final class WeatherView: UIView {
     
     //MARK: Instance methods
     private func activateConstraints() {
-        addSubview(collectionView)
+        addMultipleSubviews(collectionView,tabbar)
+        
         collectionView.snp.makeConstraints { make in
             make.top.leading.bottom.trailing.equalToSuperview()
         }
+        tabbar.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(self.snp.bottomMargin)
+        }
         
     }
-    
+    private lazy var tabbar: UITabBar = {
+        $0.addSeparator(to: .top, aboveSubview: $0)
+        return $0
+    }(UITabBar())
     //create collection view
     lazy var collectionView: UICollectionView = {
         $0.backgroundColor = .clear
