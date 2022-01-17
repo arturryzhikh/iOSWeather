@@ -39,7 +39,7 @@ final class DailyCell: TransparentCell {
     
     private let temperatureLowLabel: UILabel = {
         return $0
-    }(UILabel(transparentText: true, alignment: .center, font: .lightTemperature))
+    }(UILabel(transparent: true, alignment: .center, font: .lightTemperature))
     
     private let weatherEmojiLabel: UILabel = {
         return $0

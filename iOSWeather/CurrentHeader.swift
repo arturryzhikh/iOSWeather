@@ -8,7 +8,7 @@ import UIKit
 import SnapKit
 
 
-public final class CurrentHeader: TransparentCell {
+public final class CurrentHeader: TransparentCell  {
     
     //MARK:Properties
     
@@ -68,7 +68,7 @@ public final class CurrentHeader: TransparentCell {
     //MARK: Subviews
     let locationLabel: UILabel = {
         return $0
-    }(UILabel(transparentText: false,font: .locationLabel))
+    }(UILabel(transparent: false,font: .locationLabel))
     
     private let outlineLabel: UILabel = {
         return $0

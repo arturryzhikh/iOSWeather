@@ -40,6 +40,7 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setup()
+        
     }
     
     // MARK: Setup
@@ -105,6 +106,7 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
         super.viewDidLoad()
         collectionView.delegate = self
         collectionView.dataSource = self
+        
     }
 }
 

@@ -10,4 +10,5 @@ extension String {
     static var emptyString: String {
         return ""
     }
+ 
 }

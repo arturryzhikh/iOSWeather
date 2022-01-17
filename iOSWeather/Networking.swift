@@ -7,13 +7,12 @@
 
 import Foundation
 
-public enum ResponseError: Error {
+public enum ResponseError: Error, CustomStringConvertible {
     case network
     case decoding
     case invalidEndPoint
     case invalidResponse
-    
-    var reason: String {
+    public var description: String {
         switch self {
         case .network:
             return "failed network fetching"
@@ -25,6 +24,7 @@ public enum ResponseError: Error {
             return "Could not decode into valid response"
         }
     }
+
 }
 
 public protocol Networking {

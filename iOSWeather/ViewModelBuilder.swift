@@ -58,7 +58,7 @@ public final class ViewModelBuilder: ViewModelBuilding {
         
         var temperature: String {
             if let temp = model.current?.temp {
-                return temp.stringTemp
+                return temperatureString(temperature: temp)
             }
             return .emptyString
         }
@@ -66,7 +66,7 @@ public final class ViewModelBuilder: ViewModelBuilding {
         var temperatureRange: String {
             if let highTemp = model.daily?.first?.temp?.max,
                let lowTemp = model.daily?.first?.temp?.min {
-                return "High: \(highTemp.stringTemp)   Low: \(lowTemp.stringTemp)"
+                return "High: \(temperatureString(temperature: highTemp))   Low: \(temperatureString(temperature: lowTemp))"
             }
             return .emptyString
             
@@ -124,9 +124,9 @@ public final class ViewModelBuilder: ViewModelBuilding {
         }
         var temperature: String {
             if let temp = model.temp {
-                return temp.stringTemp
+                return temperatureString(temperature: temp)
             }
-            return "__"
+            return .emptyString
         }
         return Home.ViewModels.HourlyItemViewModel(
             hour: hour,
@@ -154,15 +154,15 @@ public final class ViewModelBuilder: ViewModelBuilding {
         }
         var maxTemperature: String {
             guard let high = model.temp?.max else {
-                return "__"
+                return .emptyString
             }
-            return high.stringTemp
+            return temperatureString(temperature: high)
         }
         var minTemperature: String {
             guard let low = model.temp?.min else {
-                return "__"
+                return .emptyString
             }
-            return low.stringTemp
+            return temperatureString(temperature: low)
         }
         var weatherEmoji: String {
             return "Description"
@@ -218,7 +218,7 @@ public final class ViewModelBuilder: ViewModelBuilding {
             switch item {
             case 0:
                 guard let sunrise = model.current?.sunrise else {
-                    return ("SUNRISE","--")
+                    return (.emptyString,.emptyString)
                 }
                 let sunriseDate = Date(timeIntervalSince1970: Double(sunrise))
                 let formatter = DateFormatter()
@@ -227,7 +227,7 @@ public final class ViewModelBuilder: ViewModelBuilding {
                 
             case 1:
                 guard let sunset = model.current?.sunset else {
-                    return ("SUNSET","--")
+                    return (.emptyString,.emptyString)
                 }
                 let sunsetDate = Date(timeIntervalSince1970: Double(sunset))
                 let formatter = DateFormatter()
@@ -236,44 +236,44 @@ public final class ViewModelBuilder: ViewModelBuilding {
                 
             case 2:
                 guard let humidity = model.current?.humidity else {
-                    return ("HUMIDITY", "")
+                    return ("HUMIDITY", .emptyString)
                 }
                 return ("HUMIDITY", "\(humidity)%")
             case 3:
                 guard let windDeg = model.current?.windDeg,
                       let windSpeed = model.current?.windSpeed else {
-                          return ("WIND", "")
+                          return ("WIND", .emptyString)
                       }
-                return ("WIND", "\(windDeg.windDirectionFromDegrees()) \(Int(windSpeed)) m/s")
+                return ("WIND", "\(windDirection(degree: windDeg)) \(Int(windSpeed)) m/s")
             case 4:
                 guard let feelsLike = model.current?.feelsLike else {
-                    return ("FEELS LIKE", "")
+                    return ("FEELS LIKE", .emptyString)
                 }
-                return ("FEELS LIKE", "\(feelsLike.stringTemp)")
+                return ("FEELS LIKE", temperatureString(temperature: feelsLike))
             case 5:
                 guard let prec = model.minutely?.first?.precipitation else {
-                    return ("PRECIPITATION", "")
+                    return (.emptyString,.emptyString)
                 }
                 return ("PRECIPITATION", "\(Int(prec)) cm")
             case 6:
                 guard let pressure = model.current?.pressure else {
-                    return ("PRESSURE", "")
+                    return (.emptyString,.emptyString)
                 }
                 let mmHgPressure = (Double(Double(pressure) / 1.333).rounded() * 100 / 100)
                 
                 return ("PRESSURE", "\(mmHgPressure) mm Hg")
             case 7:
                 guard let visibility = model.current?.visibility else {
-                    return ("VISIBILITY", "")
+                    return (.emptyString,.emptyString)
                 }
                 return ("VISIBILITY", "\(visibility / 1000) km")
             case 8:
                 guard let uv = model.current?.uvi else {
-                    return ("UV INDEX", "")
+                    return (.emptyString,.emptyString)
                 }
                 return ("UV INDEX", String(format: "%.0f", uv))
             default:
-                return ("","")
+                return (.emptyString,.emptyString)
             }
         }
         return Home.ViewModels.DetailCellViewModel(
@@ -286,13 +286,14 @@ public final class ViewModelBuilder: ViewModelBuilding {
         let item = buildTodayCellViewModel()
         return Home.ViewModels.TodaySectionViewModel(itemViewModels: [item])
     }
+    
     private func buildTodayCellViewModel() -> Home.ViewModels.TodayCellViewModel {
         var overview: String {
             if let highTemp = model.daily?.first?.temp?.max,
                let lowTemp = model.daily?.first?.temp?.min,
                let description = model.current?.weather?.first?.description {
                 return """
-                Today: \(description) currently. The high will be \(highTemp.stringTemp). The low tonight will be \(lowTemp.stringTemp)
+                Today: \(description) currently. The high will be \(temperatureString(temperature: highTemp)). The low tonight will be \(temperatureString(temperature: lowTemp))
                 """
             }
             return .emptyString
@@ -318,4 +319,29 @@ public final class ViewModelBuilder: ViewModelBuilding {
         return Home.ViewModels.LinkCellViewModel(link: link)
     }
     
+}
+
+extension ViewModelBuilder {
+    ///Converts wind degrees into wind direction code
+    private func windDirection(degree: Int) -> String {
+        
+        let directions = ["N", "NNE", "NE", "ENE",
+                          "E", "ESE", "SE", "SSE",
+                          "S", "SSW", "SW", "WSW",
+                          "W", "WNW", "NW", "NNW"]
+        
+        let i = Int((Double(degree) + 11.25)/22.5)
+        
+        return directions[i % 16]
+    }
+    ///Constructs temperature string from double
+    private func temperatureString(temperature: Double) -> String {
+        let degree = "°"
+        if temperature > -1 && temperature < 0  {
+            return "0" + degree
+        } else {
+            return String(format: "%.0f", temperature) + degree
+        }
+        
+    }
 }

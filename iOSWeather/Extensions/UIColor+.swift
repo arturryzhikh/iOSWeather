@@ -7,13 +7,13 @@
 import UIKit
 
 extension UIColor {
-    class var weatherWhite: UIColor {
+    static var weatherWhite: UIColor {
         return .white
     }
-    class var weatherTransparent: UIColor {
+    static var weatherTransparent: UIColor {
         return white.withAlphaComponent(0.75)
     }
-    class var percentage: UIColor {
+    static var percentage: UIColor {
         return  #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
     }
     static func random() -> UIColor {

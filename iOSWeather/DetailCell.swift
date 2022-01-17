@@ -25,11 +25,11 @@ final class DetailCell: TransparentCell , ViewRepresentable {
     //MARK: Subviews
     let detailLabel: UILabel = {
         return $0
-    }(UILabel(transparentText: true, alignment: .left, font: .extendedInfoTitle))
+    }(UILabel(transparent: true, alignment: .left, font: .extendedInfoTitle))
     
     private let valueLabel: UILabel = {
         return $0
-    }(UILabel(transparentText: false, alignment: .left, font: .extendedInfoValue))
+    }(UILabel(transparent: false, alignment: .left, font: .extendedInfoValue))
     
     //MARK: life Cycle
     override func setup() {

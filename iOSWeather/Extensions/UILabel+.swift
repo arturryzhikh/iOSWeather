@@ -7,14 +7,13 @@
 import UIKit
 
 extension UILabel {
-    
-    convenience init(transparentText: Bool = false ,
+    convenience init(transparent: Bool = false ,
                      alignment: NSTextAlignment = .center,
                      font: UIFont) {
         self.init()
-        textColor = transparentText ? .weatherTransparent : .weatherWhite
-        textAlignment = alignment
-        numberOfLines = 1
+        self.textColor = transparent ? .weatherTransparent : .weatherWhite
+        self.textAlignment = alignment
+        self.numberOfLines = 1
         self.font = font
     }
 }

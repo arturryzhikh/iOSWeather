@@ -15,6 +15,7 @@ import UIKit
 protocol HomePresentationLogic {
     func presentWeather(response: Home.Responses.Response)
     func presentError(message: String)
+    
 }
 
 class HomePresenter: NSObject, HomePresentationLogic {
@@ -38,5 +39,4 @@ class HomePresenter: NSObject, HomePresentationLogic {
 }
    
     
-
 

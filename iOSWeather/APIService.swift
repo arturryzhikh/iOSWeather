@@ -7,13 +7,22 @@
 
 import Foundation
 
+extension HTTPURLResponse {
+    
+    var statusOK: Bool {
+        return (200...299).contains(statusCode)
+    }
+    
+}
+
+
 public final class ApiService: Networking {
     
     public func request<Request: NetworkRequest>(_ request: Request, completion: @escaping (Result<Request.NetworkResponse, Error>) -> Void) {
         
         guard var urlComponent = URLComponents(string: request.url) else {
             let error = NSError(
-                domain: ResponseError.invalidEndPoint.reason,
+                domain: ResponseError.invalidEndPoint.description,
                 code: 404,
                 userInfo: nil
             )
@@ -34,7 +43,7 @@ public final class ApiService: Networking {
         
         guard let url = urlComponent.url else {
             let error = NSError(
-                domain: ResponseError.invalidEndPoint.reason,
+                domain: ResponseError.invalidEndPoint.description,
                 code: 404,
                 userInfo: nil
             )
@@ -53,7 +62,7 @@ public final class ApiService: Networking {
             
             guard
                 let response = response as? HTTPURLResponse,
-                200..<300 ~= response.statusCode else {
+                response.statusOK else {
                     return completion(.failure(NSError()))
                 }
             
