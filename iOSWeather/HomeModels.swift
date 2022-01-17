@@ -11,6 +11,30 @@
 //
 
 import UIKit
+public protocol SectionWithItemsViewModel {
+    associatedtype CellViewModel
+    var itemViewModels: [CellViewModel] { get }
+    var count: Int { get }
+}
+extension SectionWithItemsViewModel {
+    var count: Int {
+        return itemViewModels.count
+    }
+}
+
+
+public protocol SectionWithHeaderViewModel {
+    associatedtype headerViewModel
+    var headerViewModel: headerViewModel  { get }
+    var count: Int {  get }
+}
+
+
+public protocol SectionWithFooterViewModel {
+    associatedtype FooterViewModel
+    var footerViewModel: FooterViewModel { get  }
+    var count: Int { get }
+}
 
 enum Home {
     //MARK: Requests
