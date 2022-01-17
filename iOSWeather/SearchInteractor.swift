@@ -29,13 +29,19 @@ class SearchInteractor: SearchBusinessLogic, SearchDataStore {
     
     func searchCities(request: Search.Requests.CitiesRequest) {
         worker = SearchWorker()
+        guard let cityName = request.queries["city"],
+              cityName.isValid else {
+                  self.presenter?.presentCities(response: [])
+                  return
+              }
         worker?.getCities(request: request) { [weak self] result in
             guard let self = self else {
                 return
             }
             switch result {
             case.failure(let error):
-                self.presenter?.presentError(message: "Error getting city \(error)")
+                print(error)
+                self.presenter?.presentError(message: "Error getting cities")
             case.success(let response):
                 self.presenter?.presentCities(response: response)
             }

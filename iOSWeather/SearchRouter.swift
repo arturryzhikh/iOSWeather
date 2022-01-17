@@ -13,19 +13,30 @@
 import UIKit
 
 @objc protocol SearchRoutingLogic {
-  //func routeToSomewhere(segue: UIStoryboardSegue?)
+    func showAlert(message: String)
 }
 
-protocol SearchDataPassing
-{
+protocol SearchDataPassing {
   var dataStore: SearchDataStore? { get }
 }
 
-class SearchRouter: NSObject, SearchRoutingLogic, SearchDataPassing
-{
+class SearchRouter: NSObject, SearchRoutingLogic, SearchDataPassing {
+    
   weak var viewController: SearchViewController?
   var dataStore: SearchDataStore?
-  
+    func showAlert(message: String) {
+        let alert = UIAlertController(
+            title: "Oops! Something went wrong.",
+            message: message,
+            preferredStyle: .actionSheet)
+        alert.addAction(.init(title: "ok", style: .default))
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else {
+                return
+            }
+            self.viewController?.present(alert, animated: true)
+        }
+    }
   // MARK: Routing
   
   //func routeToSomewhere(segue: UIStoryboardSegue?)

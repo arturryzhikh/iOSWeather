@@ -10,5 +10,7 @@ extension String {
     static var emptyString: String {
         return ""
     }
- 
+    var isValid: Bool {
+        return self.first != " " && self.last != " "
+    }
 }

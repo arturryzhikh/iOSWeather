@@ -25,7 +25,7 @@ class SearchPresenter: SearchPresentationLogic {
     
     // MARK: Do something
     func presentError(message: String) {
-        
+        viewController?.displayError(message: message)
     }
     func presentCities(response: [Search.Responses.Place]) {
         builder = SearchViewModelBuilder(model: response)
@@ -33,7 +33,6 @@ class SearchPresenter: SearchPresentationLogic {
             return
         }
         let viewModel = builder.buildViewModel()
-        print(viewModel.itemViewModels.count)
         viewController?.displayCities(viewModel: viewModel)
     }
 }

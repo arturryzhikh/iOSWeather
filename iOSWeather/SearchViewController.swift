@@ -24,6 +24,7 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
     var router: (NSObjectProtocol & SearchRoutingLogic & SearchDataPassing)?
     
     private var viewModel = Search.ViewModels.ViewModel()
+    private var searchController: UISearchController!
     
     // MARK: Object lifecycle
     
@@ -74,12 +75,15 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
         activateConstraints()
         
     }
-    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+    }
     // MARK: Do something
     
     //@IBOutlet weak var nameTextField: UITextField!
     private func searchCities(named: String) {
-//        let request = Search.Requests.Forecast(cityName: named)
+        //        let request = Search.Requests.Forecast(cityName: named)
         let req = Search.Requests.CitiesRequest(cityName: named)
         interactor?.searchCities(request: req)
     }
@@ -96,15 +100,11 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
         }
     }
     func displayError(message: String) {
-        
+        router?.showAlert(message: message)
     }
     
     
     //MARK: Subviews
-    private let searchController: UISearchController = {
-        let sc = UISearchController(searchResultsController: nil)
-        return sc
-    }()
     private let activityIndicator: UIActivityIndicatorView = {
         let ai = UIActivityIndicatorView()
         ai.hidesWhenStopped = true
@@ -127,6 +127,7 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
         
     }
     private func setupSearchController(placeholder: String) {
+        self.searchController = UISearchController(searchResultsController: nil)
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.dimsBackgroundDuringPresentation = false
         searchController.searchBar.sizeToFit()
@@ -134,6 +135,7 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchResultsUpdater = self
         searchController.searchBar.placeholder = placeholder
+        searchController.becomeFirstResponder()
     }
     private func setupNavigationController(title: String) {
         navigationItem.searchController = searchController
@@ -155,7 +157,7 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             make.leading.bottom.trailing.equalToSuperview()
         }
-
+        
         
     }
     
@@ -166,6 +168,9 @@ extension SearchViewController: UISearchResultsUpdating  {
     
     func updateSearchResults(for searchController: UISearchController) {
         guard let text = searchController.searchBar.text else { return }
+        guard !text.isEmpty else {
+            return
+        }
         activityIndicator.startAnimating()
         searchCities(named: text)
         
@@ -193,16 +198,16 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     //MARK: UITableViewDelegate
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-            return UITableView.automaticDimension
-        }
-
-        func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-            return UITableView.automaticDimension
-        }
-
-        func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-            cell.layoutIfNeeded()
-        }
+        return UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.layoutIfNeeded()
+    }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
     }

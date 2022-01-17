@@ -13,7 +13,6 @@
 import UIKit
 
 @objc protocol HomeRoutingLogic {
-    //func routeToSomewhere(segue: UIStoryboardSegue?)
     func showAlert(message: String)
     
 }
@@ -24,11 +23,11 @@ protocol HomeDataPassing {
 
 class HomeRouter: NSObject, HomeRoutingLogic, HomeDataPassing {
     func showAlert(message: String) {
-        print("\(self.description)",message)
         let alert = UIAlertController(
             title: "Oops! Something went wrong.",
             message: message,
-            preferredStyle: .alert)
+            preferredStyle: .actionSheet)
+        alert.addAction(.init(title: "ok", style: .default))
         DispatchQueue.main.async { [weak self] in
             guard let self = self else {
                 return
@@ -40,11 +39,9 @@ class HomeRouter: NSObject, HomeRoutingLogic, HomeDataPassing {
     weak var viewController: HomeViewController?
     var dataStore: HomeDataStore?
        //MARK: Navigation
-    func navigateToSearch(source: UIViewController, destination: UIViewController)
-      {
+    func navigateToSearch(source: UIViewController, destination: UIViewController) {
           source.show(destination, sender: nil)
-       
-      }
+    }
     
        //MARK: Passing data
     
@@ -56,7 +53,6 @@ class HomeRouter: NSObject, HomeRoutingLogic, HomeDataPassing {
 //MARK: UITabBarDelegate
 extension HomeRouter: UITabBarDelegate {
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        print(item)
         guard let source = viewController else {
             return
         }

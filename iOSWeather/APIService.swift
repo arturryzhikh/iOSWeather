@@ -50,7 +50,6 @@ public final class ApiService: Networking {
             
             return completion(.failure(error))
         }
-        print(url)
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = request.httpMethod.rawValue
         urlRequest.allHTTPHeaderFields = request.headers
