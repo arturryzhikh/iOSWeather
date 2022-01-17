@@ -86,20 +86,14 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
     }
     
     func displayError(message: String) {
-        print("\(self.description)",message)
-        let alert = UIAlertController(
-            title: "Oops! Something went wrong.",
-            message: message,
-            preferredStyle: .alert)
+        router?.showAlert(message: message)
         DispatchQueue.main.async { [weak self] in
             guard let self = self else {
                 return
             }
-            //FIXME: router
-            self.present(alert, animated: true)
             self.activityIndicator.stopAnimating()
-            
         }
+        
     }
     //MARK: Subviews
     
