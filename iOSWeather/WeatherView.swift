@@ -35,7 +35,8 @@ public final class WeatherView: UIView {
         addMultipleSubviews(collectionView,tabbar)
         
         collectionView.snp.makeConstraints { make in
-            make.top.leading.bottom.trailing.equalToSuperview()
+            make.top.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(tabbar.snp.top)
         }
         tabbar.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
@@ -43,9 +44,11 @@ public final class WeatherView: UIView {
         }
  
     }
-
     lazy var tabbar: UITabBar = {
+       
         $0.addSeparator(to: .top, aboveSubview: $0)
+        $0.barTintColor = .clear
+        $0.tintColor = .white
         let search = UITabBarItem(tabBarSystemItem: .search, tag: 0)
         $0.items = [search]
         return $0
