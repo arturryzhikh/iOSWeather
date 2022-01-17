@@ -113,7 +113,7 @@ enum Home {
             }
             //MARK: Section View Models
             var currentHourlySectionVM: CurrentHourlySectionViewModel?
-            var dailySectionVM: DailySectionVM?
+            var dailySectionVM: DailySectionViewModel?
             var todaySectionVM: TodaySectionVM?
             var detailSectionVM: DetailSectionVM?
             var linkSectionVM: LinkSectionVM?
@@ -141,7 +141,7 @@ enum Home {
                     return currentHourlySectionVM?.count ?? 0
                     
                 case .daily:
-                    return dailySectionVM?.numberOfItems ?? 0
+                    return dailySectionVM?.count ?? 0
                     
                 case .today:
                     return todaySectionVM?.numberOfItems ?? 0
@@ -155,19 +155,7 @@ enum Home {
                     return 0
                 }
             }
-            
-            mutating func generateSectionViewModels(model: Home.Weather.Response) {
-                currentHourlySectionVM = CurrentHourlySectionViewModel(
-                    headerViewModel: CurrentHeaderViewModel(),
-                    footerViewModel: HourlyFooterViewModel())
-                dailySectionVM = DailySectionVM(model: model)
-                todaySectionVM = TodaySectionVM(model: model)
-                detailSectionVM = DetailSectionVM(model: model)
-                linkSectionVM = LinkSectionVM(model: model)
-                
-            }
-            
-            
+  
         }
     }
 }

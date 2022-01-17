@@ -122,4 +122,69 @@ public final class ViewModelBuilder: ViewModelBuilding {
             weatherEmoji: weatherEmoji,
             temperature: temperature)
     }
+    private func buildDailySectionViewModel() -> DailySectionViewModel {
+        let items = model.daily?.compactMap { daily in
+            return buildDailyCellViewModel(model: daily)
+            
+        } ?? []
+        return DailySectionViewModel(itemViewModels: items)
+    }
+    
+    private func buildDailyCellViewModel(model: Home.Weather.Daily) -> DailyCellViewModel {
+        
+        var day: String {
+            guard  let dt = model.dt else {
+                return "--"
+            }
+            let date = Date(timeIntervalSince1970: Double(dt))
+            return date.stringFromDate(dateFormat: "EEEE")
+            
+        }
+        var temperatureHigh: String {
+            guard let high = model.temp?.max else {
+                return "__"
+            }
+            return high.stringTemp
+        }
+        var temperatureLow: String {
+            guard let low = model.temp?.min else {
+                return "__"
+            }
+            return low.stringTemp
+        }
+        var weatherEmoji: String {
+            return "Description"
+            //        guard let description = model.weather?.first?.main else {
+            //            return "..."
+            //        }
+            //        switch description {
+            //
+            //        case .clear:
+            //            return "☀️"
+            //        case .clouds:
+            //            return "☁️"
+            //        case .rain:
+            //            return "🌧"
+            //        case .snow:
+            //            return "❄️"
+            //        case .mist:
+            //            return "🌫"
+            //
+            //        }
+        }
+        var percentage: String {
+            guard let prob = model.pop else {
+                return "--"
+            }
+            let probability = Int(prob * 100)
+            return String(probability) + "%"
+        }
+        return DailyCellViewModel(
+            day: day,
+            temperatureHigh: temperatureHigh,
+            temperatureLow: temperatureLow,
+            weatherEmoji: weatherEmoji,
+            percentage: percentage)
+        
+    }
 }

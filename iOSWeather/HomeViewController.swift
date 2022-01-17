@@ -122,7 +122,7 @@ extension HomeViewController: UICollectionViewDataSource {
         
         case .daily:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DailyCell.description(), for: indexPath) as! DailyCell
-            cell.viewModel = viewModel?.dailySectionVM?.items[indexPath.item]
+            cell.viewModel = viewModel?.dailySectionVM?.itemViewModels[indexPath.item]
             return cell
             
         case .today:

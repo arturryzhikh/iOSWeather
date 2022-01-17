@@ -9,7 +9,7 @@ import UIKit
 
 final class DailyCell: TransparentCell {
     
-    var viewModel: DailyCellVM? {
+    var viewModel: DailyCellViewModel? {
         didSet {
             if let vm = viewModel {
                 populateSubviews(with: vm)
@@ -17,7 +17,7 @@ final class DailyCell: TransparentCell {
         }
     }
     
-    func populateSubviews(with viewModel: DailyCellVM) {
+    func populateSubviews(with viewModel: DailyCellViewModel) {
         dayLabel.text = viewModel.day
         temperatureHighLabel.text = viewModel.temperatureHigh
         temperatureLowLabel.text = viewModel.temperatureLow
