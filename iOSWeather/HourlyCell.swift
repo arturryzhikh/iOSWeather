@@ -37,9 +37,9 @@ final class HourlyCell: TransparentCell ,ViewRepresentable {
             make.bottom.equalTo(weatherImageView.snp.top)
         }
         weatherImageView.snp.makeConstraints { make in
-            make.center.equalToSuperview()
-            make.height.equalTo((Screen.height * 0.16)/3)
+            make.height.equalTo((Screen.height * 0.16) / 3)
             make.centerX.equalToSuperview()
+            
             
         }
         temperatureLabel.snp.makeConstraints { make in
@@ -75,7 +75,6 @@ final class HourlyCell: TransparentCell ,ViewRepresentable {
     
     
     private let weatherImageView: UIImageView = {
-        
         $0.contentMode = .scaleAspectFit
         $0.clipsToBounds = true
         return $0

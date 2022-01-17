@@ -150,25 +150,12 @@ public final class ViewModelBuilder: ViewModelBuilding {
             }
             return temperatureString(temperature: low)
         }
-        var weatherEmoji: String {
-            return "Description"
-            //        guard let description = model.weather?.first?.main else {
-            //            return "..."
-            //        }
-            //        switch description {
-            //
-            //        case .clear:
-            //            return "☀️"
-            //        case .clouds:
-            //            return "☁️"
-            //        case .rain:
-            //            return "🌧"
-            //        case .snow:
-            //            return "❄️"
-            //        case .mist:
-            //            return "🌫"
-            //
-            //        }
+        var weatherIcon: String {
+            if let icon = model.weather?.first?.icon {
+                return icon + ".png"
+            }
+            return "01d.png"
+            
         }
         var probability: String {
             guard let prob = model.pop else {
@@ -181,7 +168,7 @@ public final class ViewModelBuilder: ViewModelBuilding {
             day: day,
             maxTemperature: maxTemperature,
             minTemperature: minTemperature,
-            weatherEmoji: weatherEmoji,
+            weatherIcon: weatherIcon,
             probability: probability)
         
     }
