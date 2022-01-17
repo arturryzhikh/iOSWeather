@@ -50,7 +50,7 @@ public final class ApiService: Networking {
             
             return completion(.failure(error))
         }
-        
+        print(url)
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = request.httpMethod.rawValue
         urlRequest.allHTTPHeaderFields = request.headers
@@ -60,14 +60,26 @@ public final class ApiService: Networking {
                 return completion(.failure(error))
             }
             
-            guard
-                let response = response as? HTTPURLResponse,
-                response.statusOK else {
-                    return completion(.failure(NSError()))
-                }
-            
+            guard let response = response as? HTTPURLResponse else  {
+                
+                let error = NSError(domain: ResponseError.badResponse.description,
+                                    code: 400, userInfo: nil)
+                completion(.failure(error))
+                return
+            }
+            guard response.statusOK else {
+                let error = NSError(domain: ResponseError.badResponse.description,
+                               code: response.statusCode,
+                               userInfo: nil)
+                completion(.failure(error))
+                return
+            }
             guard let data = data else {
-                return completion(.failure(NSError()))
+                let error = NSError(domain: ResponseError.nothingToDecode.description,
+                                    code: response.statusCode,
+                                    userInfo: nil)
+                return completion(.failure(error))
+                
             }
             
             do {

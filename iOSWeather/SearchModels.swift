@@ -12,20 +12,73 @@
 
 import UIKit
 
-enum Search
-{
-  // MARK: Use cases
-  
-  enum Something
-  {
-    struct Request
-    {
+enum Search {
+  // MARK: Requests
+    enum Requests {
+        struct CitiesRequest: NetworkRequest {
+            var httpMethod: HTTPMethod = .get
+            typealias NetworkResponse = [Search.Responses.Place]
+            var url: String = Api.Nominatim.search
+            var queries: [String : String] = [
+                "format": "json"
+            ]
+            init(cityName: String) {
+                queries.updateValue(cityName, forKey: "city")
+            }
+        }
+        struct Forecast: NetworkRequest {
+            var url: String = Api.OpenWeatherMap.weatherForCity
+            var httpMethod: HTTPMethod = .get
+            typealias NetworkResponse = Search.Responses.ForecastResponse
+            var queries: [String : String] = [:]
+            var isEmpty: Bool {
+                if let city = queries["q"] {
+                    return city.isEmpty
+                }
+                return false
+            }
+            init(cityName: String = .emptyString,
+                language: String = "en",
+                units: String = "metric",
+                 apiKey: String = Api.OpenWeatherMap.key) {
+                queries.updateValue(cityName, forKey: "q")
+                queries.updateValue(apiKey, forKey: "appid")
+                queries.updateValue(units, forKey: "units")
+                queries.updateValue(language, forKey: "lang")
+            }
+        }
     }
-    struct Response
-    {
+    
+    enum Responses {
+        struct ForecastResponse: Decodable {
+            var coord: Coord
+            var name: String
+            var main: Main
+        }
+        struct Coord: Decodable {
+            let lat: Double
+            let lon: Double
+            
+        }
+        struct Main: Decodable {
+            let temp: Double
+        }
+        
+        
+        //City Name
+        struct Place: Decodable {
+            let lat, lon: String
+            let displayName: String
+            
+        }
+       
     }
-    struct ViewModel
-    {
+    enum ViewModels {
+        struct ViewModel {
+            let coord: Search.Responses.Coord
+            let name: String
+            let temperature: String
+        }
     }
-  }
+    
 }

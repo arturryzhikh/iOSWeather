@@ -8,21 +8,26 @@
 import Foundation
 
 public enum ResponseError: Error, CustomStringConvertible {
-    case network
+    case nothingToDecode
     case decoding
     case invalidEndPoint
     case invalidResponse
+    case badResponse
+    
     public var description: String {
         switch self {
-        case .network:
-            return "failed network fetching"
         case .decoding:
-            return "failed decoding data"
+            return "Failed decoding data"
         case .invalidEndPoint:
-            return "bad url"
+            return "Bad url"
         case .invalidResponse:
             return "Could not decode into valid response"
+        case.nothingToDecode:
+            return "Nothing to decode"
+        case .badResponse :
+            return "Bad Response"
         }
+    
     }
 
 }

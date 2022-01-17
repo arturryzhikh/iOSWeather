@@ -12,8 +12,7 @@
 
 import UIKit
 
-@objc protocol SearchRoutingLogic
-{
+@objc protocol SearchRoutingLogic {
   //func routeToSomewhere(segue: UIStoryboardSegue?)
 }
 

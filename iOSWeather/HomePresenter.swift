@@ -20,17 +20,17 @@ protocol HomePresentationLogic {
 
 class HomePresenter: NSObject, HomePresentationLogic {
     
-    var builder: ViewModelBuilder?
+    var builder: HomeViewModelBuilder?
     weak var viewController: HomeDisplayLogic?
     //MARK: Present
     func presentWeather(response: Home.Responses.Response) {
-        builder = ViewModelBuilder(model: response)
+        builder = HomeViewModelBuilder(model: response)
         guard let viewModel = builder?.buildViewModel() else {
             viewController?.displayError(message: "Error constructing View Model from weather data")
             return
         }
         viewController?.displayWeather(viewModel: viewModel)
-       
+        
     }
     func presentError(message: String) {
         viewController?.displayError(message: message)

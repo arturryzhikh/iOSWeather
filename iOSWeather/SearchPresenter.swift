@@ -12,20 +12,28 @@
 
 import UIKit
 
-protocol SearchPresentationLogic
-{
-  func presentSomething(response: Search.Something.Response)
+protocol SearchPresentationLogic {
+    func presentError(message: String)
+    func presentCities(response: Search.Responses.ForecastResponse)
+    
 }
 
-class SearchPresenter: SearchPresentationLogic
-{
-  weak var viewController: SearchDisplayLogic?
+class SearchPresenter: SearchPresentationLogic {
   
-  // MARK: Do something
-  
-  func presentSomething(response: Search.Something.Response)
-  {
-    let viewModel = Search.Something.ViewModel()
-    viewController?.displaySomething(viewModel: viewModel)
-  }
+    weak var viewController: SearchDisplayLogic?
+    var builder: SearchViewModelBuilder? = nil
+    
+    // MARK: Do something
+    func presentError(message: String) {
+        
+    }
+    func presentCities(response: Search.Responses.ForecastResponse) {
+        builder = SearchViewModelBuilder(model: response)
+        guard let builder = builder else {
+            return
+        }
+        let viewModel = builder.buildViewModel()
+        print(viewModel)
+        viewController?.displaySomething(viewModel: viewModel)
+    }
 }

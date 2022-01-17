@@ -8,11 +8,24 @@
 import Foundation
 
 protocol ViewModelBuilding {
-    associatedtype ViewModel
-    func buildViewModel() -> ViewModel
+    associatedtype V
+    func buildViewModel() -> V
+    func temperatureString(temperature: Double) -> String
+}
+extension ViewModelBuilding {
+    ///Constructs temperature string from double
+    func temperatureString(temperature: Double) -> String {
+        let degree = "°"
+        if temperature > -1 && temperature < 0  {
+            return "0" + degree
+        } else {
+            return String(format: "%.0f", temperature) + degree
+        }
+        
+    }
 }
 
-public final class ViewModelBuilder: ViewModelBuilding {
+public final class HomeViewModelBuilder: ViewModelBuilding {
     let model: Home.Responses.Response
     
     init(model: Home.Responses.Response) {
@@ -289,7 +302,7 @@ public final class ViewModelBuilder: ViewModelBuilding {
     
 }
 
-extension ViewModelBuilder {
+extension HomeViewModelBuilder {
     ///Converts wind degrees into wind direction code
     private func windDirection(degree: Int) -> String {
         
@@ -302,14 +315,5 @@ extension ViewModelBuilder {
         
         return directions[i % 16]
     }
-    ///Constructs temperature string from double
-    private func temperatureString(temperature: Double) -> String {
-        let degree = "°"
-        if temperature > -1 && temperature < 0  {
-            return "0" + degree
-        } else {
-            return String(format: "%.0f", temperature) + degree
-        }
-        
-    }
+    
 }

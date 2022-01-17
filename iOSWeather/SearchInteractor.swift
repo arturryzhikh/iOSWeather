@@ -12,30 +12,35 @@
 
 import UIKit
 
-protocol SearchBusinessLogic
-{
-  func doSomething(request: Search.Something.Request)
+protocol SearchBusinessLogic {
+    func searchCities(request: Search.Requests.CitiesRequest)
 }
 
-protocol SearchDataStore
-{
-  //var name: String { get set }
+protocol SearchDataStore {
+    //var name: String { get set }
 }
 
-class SearchInteractor: SearchBusinessLogic, SearchDataStore
-{
-  var presenter: SearchPresentationLogic?
-  var worker: SearchWorker?
-  //var name: String = ""
-  
-  // MARK: Do something
-  
-  func doSomething(request: Search.Something.Request)
-  {
-    worker = SearchWorker()
-    worker?.doSomeWork()
+class SearchInteractor: SearchBusinessLogic, SearchDataStore {
+    var presenter: SearchPresentationLogic?
+    var worker: SearchWorker?
+    //var name: String = ""
     
-    let response = Search.Something.Response()
-    presenter?.presentSomething(response: response)
-  }
+    // MARK: Search Cities
+    
+    func searchCities(request: Search.Requests.CitiesRequest) {
+        worker = SearchWorker()
+        worker?.getCities(request: request) { [weak self] result in
+            guard let self = self else {
+                return
+            }
+            switch result {
+            case.failure(let error):
+               print(error)
+            case.success(let response):
+                print(response)
+//                self.presenter?.presentCities(response: response)
+            }
+        }
+
+    }
 }

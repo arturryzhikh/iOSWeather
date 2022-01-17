@@ -41,7 +41,7 @@ enum Home {
     enum Requests {
         struct Request: NetworkRequest {
             var url: String {
-                return API.oneCallendpoint
+                return Api.OpenWeatherMap.oneCallendpoint
             }
             var httpMethod: HTTPMethod = .get
             typealias NetworkResponse = Home.Responses.Response
@@ -52,7 +52,7 @@ enum Home {
             init (coordinate: (lat: Double, lon: Double),
                   language: String = "en",
                   units: String = "metric",
-                  apiKey: String = API.key) {
+                  apiKey: String = Api.OpenWeatherMap.key) {
                 queries.updateValue(String(coordinate.lat), forKey: "lat")
                 queries.updateValue(String(coordinate.lon), forKey: "lon")
                 queries.updateValue(language, forKey: "lang")
