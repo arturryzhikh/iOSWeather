@@ -132,7 +132,7 @@ extension HomeViewController: UICollectionViewDataSource {
             
         case .detail:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailCell.description(), for: indexPath) as! DetailCell
-            let vm = viewModel?.detailSectionVM?.items[indexPath.item]
+            let vm = viewModel?.detailSectionVM?.itemViewModels[indexPath.item]
             cell.viewModel = vm
             return cell
             

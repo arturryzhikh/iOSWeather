@@ -22,6 +22,7 @@ public final class ViewModelBuilder: ViewModelBuilding {
     func buildViewModel() -> Home.Weather.ViewModel {
         return Home.Weather.ViewModel()
     }
+    //MARK: Current Hoyrly Section
     private func buildCurrentHourlySectionViewModel() -> CurrentHourlySectionViewModel {
         let header = buildCurrentHeaderViewModel()
         let footer = buildHourlyFooterViewModel()
@@ -67,7 +68,7 @@ public final class ViewModelBuilder: ViewModelBuilding {
             temperatureRange: temperatureRange)
     }
     
-    //Hourly Footer View Model
+    
     private func buildHourlyFooterViewModel() -> HourlyFooterViewModel {
         let items = model.hourly?.map { current in
             buildHourlyItemViewModel(model: current)
@@ -122,6 +123,7 @@ public final class ViewModelBuilder: ViewModelBuilding {
             weatherEmoji: weatherEmoji,
             temperature: temperature)
     }
+    //MARK: Daily Section
     private func buildDailySectionViewModel() -> DailySectionViewModel {
         let items = model.daily?.compactMap { daily in
             return buildDailyCellViewModel(model: daily)
@@ -140,13 +142,13 @@ public final class ViewModelBuilder: ViewModelBuilding {
             return date.stringFromDate(dateFormat: "EEEE")
             
         }
-        var temperatureHigh: String {
+        var maxTemperature: String {
             guard let high = model.temp?.max else {
                 return "__"
             }
             return high.stringTemp
         }
-        var temperatureLow: String {
+        var minTemperature: String {
             guard let low = model.temp?.min else {
                 return "__"
             }
@@ -172,19 +174,102 @@ public final class ViewModelBuilder: ViewModelBuilding {
             //
             //        }
         }
-        var percentage: String {
+        var probability: String {
             guard let prob = model.pop else {
                 return "--"
             }
-            let probability = Int(prob * 100)
-            return String(probability) + "%"
+            let percentage = Int(prob * 100)
+            return String(percentage) + "%"
         }
         return DailyCellViewModel(
             day: day,
-            temperatureHigh: temperatureHigh,
-            temperatureLow: temperatureLow,
+            maxTemperature: maxTemperature,
+            minTemperature: minTemperature,
             weatherEmoji: weatherEmoji,
-            percentage: percentage)
+            probability: probability)
         
     }
+    //MARK: Detail Section
+    private func buildDetailSectionViewModel() -> DetailSectionViewModel {
+        var itemViewModels: [DetailCellViewModel] {
+            var items: [DetailCellViewModel] = []
+            for number in 0...8 {
+                let vm = buildDetailCellViewModel(item: number)
+                items.append(vm)
+            }
+            return items
+        }
+        return DetailSectionViewModel(itemViewModels: itemViewModels)
+        
+    }
+    
+    private func buildDetailCellViewModel(item: Int) -> DetailCellViewModel {
+        var detail: (title: String, value: String) {
+            switch item {
+            case 0:
+                guard let sunrise = model.current?.sunrise else {
+                    return ("SUNRISE","--")
+                }
+                let sunriseDate = Date(timeIntervalSince1970: Double(sunrise))
+                let formatter = DateFormatter()
+                formatter.dateFormat = "HH:MM"
+                return  ("SUNRISE", formatter.string(from: sunriseDate))
+                
+            case 1:
+                guard let sunset = model.current?.sunset else {
+                    return ("SUNSET","--")
+                }
+                let sunsetDate = Date(timeIntervalSince1970: Double(sunset))
+                let formatter = DateFormatter()
+                formatter.dateFormat = "HH:MM"
+                return  ("SUNSET", formatter.string(from: sunsetDate))
+                
+            case 2:
+                guard let humidity = model.current?.humidity else {
+                    return ("HUMIDITY", "")
+                }
+                return ("HUMIDITY", "\(humidity)%")
+            case 3:
+                guard let windDeg = model.current?.windDeg,
+                      let windSpeed = model.current?.windSpeed else {
+                          return ("WIND", "")
+                      }
+                return ("WIND", "\(windDeg.windDirectionFromDegrees()) \(Int(windSpeed)) m/s")
+            case 4:
+                guard let feelsLike = model.current?.feelsLike else {
+                    return ("FEELS LIKE", "")
+                }
+                return ("FEELS LIKE", "\(feelsLike.stringTemp)")
+            case 5:
+                guard let prec = model.minutely?.first?.precipitation else {
+                    return ("PRECIPITATION", "")
+                }
+                return ("PRECIPITATION", "\(Int(prec)) cm")
+            case 6:
+                guard let pressure = model.current?.pressure else {
+                    return ("PRESSURE", "")
+                }
+                let mmHgPressure = (Double(Double(pressure) / 1.333).rounded() * 100 / 100)
+                
+                return ("PRESSURE", "\(mmHgPressure) mm Hg")
+            case 7:
+                guard let visibility = model.current?.visibility else {
+                    return ("VISIBILITY", "")
+                }
+                return ("VISIBILITY", "\(visibility / 1000) km")
+            case 8:
+                guard let uv = model.current?.uvi else {
+                    return ("UV INDEX", "")
+                }
+                return ("UV INDEX", String(format: "%.0f", uv))
+            default:
+                return ("","")
+            }
+        }
+        return DetailCellViewModel(
+            title: detail.title,
+            value: detail.value
+        )
+    }
+
 }

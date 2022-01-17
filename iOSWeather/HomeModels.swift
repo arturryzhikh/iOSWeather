@@ -115,7 +115,7 @@ enum Home {
             var currentHourlySectionVM: CurrentHourlySectionViewModel?
             var dailySectionVM: DailySectionViewModel?
             var todaySectionVM: TodaySectionVM?
-            var detailSectionVM: DetailSectionVM?
+            var detailSectionVM: DetailSectionViewModel?
             var linkSectionVM: LinkSectionVM?
             
             //MARK: Properties
@@ -147,7 +147,7 @@ enum Home {
                     return todaySectionVM?.numberOfItems ?? 0
                     
                 case .detail:
-                    return detailSectionVM?.numberOfItems ?? 0
+                    return detailSectionVM?.count ?? 0
                 case .link:
                     return linkSectionVM?.numberOfItems ?? 0
                     

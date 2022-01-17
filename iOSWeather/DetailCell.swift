@@ -8,7 +8,7 @@ import UIKit
 
 final class DetailCell: TransparentCell , ViewRepresentable {
     
-    var viewModel: DetailCellVM? {
+    var viewModel: DetailCellViewModel? {
         
         didSet {
             if let vm = viewModel {
@@ -16,8 +16,8 @@ final class DetailCell: TransparentCell , ViewRepresentable {
             }
         }
     }
-    func populateSubviews(with viewModel: DetailCellVM) {
-        detailLabel.text = viewModel.detail
+    func populateSubviews(with viewModel: DetailCellViewModel) {
+        detailLabel.text = viewModel.title
         valueLabel.text = viewModel.value
     }
     //MARK: Other properties

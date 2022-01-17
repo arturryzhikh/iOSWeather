@@ -10,21 +10,21 @@ import Foundation
 
 struct DailyCellViewModel {
     init(day: String = .emptyString,
-         temperatureHigh: String = .emptyString,
-         temperatureLow: String,
+         maxTemperature: String = .emptyString,
+         minTemperature: String,
          weatherEmoji: String = .emptyString,
-         percentage: String = .emptyString) {
+         probability: String = .emptyString) {
         self.day = day
-        self.temperatureHigh = temperatureHigh
-        self.temperatureLow = temperatureLow
+        self.maxTemperature = maxTemperature
+        self.minTemperature = minTemperature
         self.weatherEmoji = weatherEmoji
-        self.percentage = percentage
+        self.probability = probability
     }
     
     let day: String
-    let temperatureHigh: String
-    let temperatureLow: String
+    let maxTemperature: String
+    let minTemperature: String
     let weatherEmoji: String
-    let percentage: String
+    let probability: String
 
 }

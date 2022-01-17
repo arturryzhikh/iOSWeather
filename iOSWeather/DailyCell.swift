@@ -19,10 +19,10 @@ final class DailyCell: TransparentCell {
     
     func populateSubviews(with viewModel: DailyCellViewModel) {
         dayLabel.text = viewModel.day
-        temperatureHighLabel.text = viewModel.temperatureHigh
-        temperatureLowLabel.text = viewModel.temperatureLow
+        temperatureHighLabel.text = viewModel.maxTemperature
+        temperatureLowLabel.text = viewModel.minTemperature
         weatherEmojiLabel.text = viewModel.weatherEmoji
-        percentageLabel.text = viewModel.percentage
+        percentageLabel.text = viewModel.probability
     }
     
     
