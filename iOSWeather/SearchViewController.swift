@@ -13,16 +13,17 @@
 import UIKit
 import SnapKit
 import CoreLocation
-protocol SearchDisplayLogic: AnyObject
-{
-    func displaySomething(viewModel: Search.ViewModels.ViewModel)
+protocol SearchDisplayLogic: AnyObject {
+    func displayCities(viewModel: Search.ViewModels.ViewModel)
+    func displayError(message: String)
 }
 
 class SearchViewController: UIViewController, SearchDisplayLogic {
     
     var interactor: SearchBusinessLogic?
     var router: (NSObjectProtocol & SearchRoutingLogic & SearchDataPassing)?
-    private var searchButtonClicked = false
+    
+    private var viewModel = Search.ViewModels.ViewModel()
     
     // MARK: Object lifecycle
     
@@ -83,9 +84,22 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
         interactor?.searchCities(request: req)
     }
     
-    func displaySomething(viewModel: Search.ViewModels.ViewModel) {
-        //nameTextField.text = viewModel.name
+    func displayCities(viewModel: Search.ViewModels.ViewModel) {
+        self.viewModel = viewModel
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else {
+                return
+            }
+            self.tableView.reloadData()
+            self.activityIndicator.stopAnimating()
+            
+        }
     }
+    func displayError(message: String) {
+        
+    }
+    
+    
     //MARK: Subviews
     private let searchController: UISearchController = {
         let sc = UISearchController(searchResultsController: nil)
@@ -107,6 +121,7 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
     private func setupTableView() {
         tableView.register(CityCell.self,
                            forCellReuseIdentifier: CityCell.description())
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -133,18 +148,14 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
     //MARK: Constraints
     private func activateConstraints() {
         view.addMultipleSubviews(
-            tableView,
-            activityIndicator
+            tableView
         )
         //table view
         tableView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             make.leading.bottom.trailing.equalToSuperview()
         }
-//        //
-//        activityIndicator.snp.makeConstraints { make in
-//            make.center.equalToSuperview()
-//        }
+
         
     }
     
@@ -169,20 +180,29 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        10
+        return viewModel.itemViewModels.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CityCell.description(), for: indexPath) as! CityCell
-        cell.textLabel?.text = "City"
-        cell.detailTextLabel?.text =  "Detail"
+        cell.viewModel = viewModel.itemViewModels[indexPath.row]
         return cell
     }
     
     
     //MARK: UITableViewDelegate
     
-    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+            return UITableView.automaticDimension
+        }
+
+        func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+            return UITableView.automaticDimension
+        }
+
+        func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+            cell.layoutIfNeeded()
+        }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
     }

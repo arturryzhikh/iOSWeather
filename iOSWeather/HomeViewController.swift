@@ -258,7 +258,7 @@ extension HomeViewController: CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print(error)
+        router?.showAlert(message: "Error updating location \(error)")
     }
 }
 

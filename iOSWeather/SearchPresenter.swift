@@ -34,6 +34,6 @@ class SearchPresenter: SearchPresentationLogic {
         }
         let viewModel = builder.buildViewModel()
         print(viewModel.itemViewModels.count)
-        viewController?.displaySomething(viewModel: viewModel)
+        viewController?.displayCities(viewModel: viewModel)
     }
 }

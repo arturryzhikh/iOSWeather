@@ -40,7 +40,7 @@ enum Search {
         
     }
     enum ViewModels {
-        struct ViewModel: SectionWithItemsViewModel {
+        class ViewModel: SectionWithItemsViewModel {
             init(itemViewModels: [CityViewModel] = []) {
                 self.itemViewModels = itemViewModels
             }

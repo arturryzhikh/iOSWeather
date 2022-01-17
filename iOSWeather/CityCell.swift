@@ -7,18 +7,40 @@
 
 import UIKit
 
-class CityCell: UITableViewCell {
-
+class CityCell: UITableViewCell, ViewRepresentable {
+        
     
+    var viewModel: Search.ViewModels.CityViewModel? {
+        didSet {
+            if let viewModel = viewModel {
+                populateSubviews(with: viewModel)
+            }
+        }
+    }
+
+    func populateSubviews(with viewModel: Search.ViewModels.CityViewModel) {
+        nameLabel.text = viewModel.name
+    }
+    let nameLabel: UILabel = {
+        $0.numberOfLines = 0
+        $0.textColor = .white
+        return $0
+    }(UILabel(alignment: .left, font:.overView ))
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .value1, reuseIdentifier: reuseIdentifier)
         clipsToBounds = true
         backgroundColor = .clear
-        contentView.backgroundColor =  .clear
-        textLabel?.textColor = .white
-        detailTextLabel?.textColor = .white
+//        addSeparator(to: .top, aboveSubview: self)
+        activateConstratints()
+       
     }
-    
+    private func activateConstratints() {
+        contentView.addSubview(nameLabel)
+        nameLabel.snp.makeConstraints { make in
+            make.top.leading.equalToSuperview().offset(16)
+            make.bottom.trailing.equalToSuperview().offset(-16)
+        }
+    }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

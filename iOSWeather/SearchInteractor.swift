@@ -35,10 +35,9 @@ class SearchInteractor: SearchBusinessLogic, SearchDataStore {
             }
             switch result {
             case.failure(let error):
-               print(error)
+                self.presenter?.presentError(message: "Error getting city \(error)")
             case.success(let response):
-                print(response)
-//                self.presenter?.presentCities(response: response)
+                self.presenter?.presentCities(response: response)
             }
         }
 
