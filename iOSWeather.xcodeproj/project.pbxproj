@@ -11,6 +11,8 @@
 		3412E1BE2792CE48000FE043 /* ViewModelBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3412E1BD2792CE48000FE043 /* ViewModelBuilder.swift */; };
 		34170FDE279450BB00AFD7A8 /* CurrentHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34170FDD279450BB00AFD7A8 /* CurrentHeaderViewModel.swift */; };
 		34170FE0279450F800AFD7A8 /* String+emptyString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34170FDF279450F800AFD7A8 /* String+emptyString.swift */; };
+		34170FE2279453B400AFD7A8 /* HourlyFooterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34170FE1279453B400AFD7A8 /* HourlyFooterViewModel.swift */; };
+		34170FE42795319700AFD7A8 /* HourlyItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34170FE32795319700AFD7A8 /* HourlyItemViewModel.swift */; };
 		3428E95E2792D993001DA34F /* CollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3428E95D2792D993001DA34F /* CollectionViewModel.swift */; };
 		348DC83727907CD6000EDCFE /* TransparentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348DC83627907CD6000EDCFE /* TransparentCell.swift */; };
 		348DC83927907D0F000EDCFE /* CurrentHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348DC83827907D0F000EDCFE /* CurrentHeader.swift */; };
@@ -79,6 +81,8 @@
 		3412E1BD2792CE48000FE043 /* ViewModelBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelBuilder.swift; sourceTree = "<group>"; };
 		34170FDD279450BB00AFD7A8 /* CurrentHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentHeaderViewModel.swift; sourceTree = "<group>"; };
 		34170FDF279450F800AFD7A8 /* String+emptyString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+emptyString.swift"; sourceTree = "<group>"; };
+		34170FE1279453B400AFD7A8 /* HourlyFooterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyFooterViewModel.swift; sourceTree = "<group>"; };
+		34170FE32795319700AFD7A8 /* HourlyItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyItemViewModel.swift; sourceTree = "<group>"; };
 		3428E95D2792D993001DA34F /* CollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewModel.swift; sourceTree = "<group>"; };
 		348DC83627907CD6000EDCFE /* TransparentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransparentCell.swift; sourceTree = "<group>"; };
 		348DC83827907D0F000EDCFE /* CurrentHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentHeader.swift; sourceTree = "<group>"; };
@@ -224,6 +228,8 @@
 				3412E1BD2792CE48000FE043 /* ViewModelBuilder.swift */,
 				348DC85627907DA5000EDCFE /* CurrentHourlySectionViewModel.swift */,
 				34170FDD279450BB00AFD7A8 /* CurrentHeaderViewModel.swift */,
+				34170FE1279453B400AFD7A8 /* HourlyFooterViewModel.swift */,
+				34170FE32795319700AFD7A8 /* HourlyItemViewModel.swift */,
 				348DC85527907DA5000EDCFE /* DailySectionVM.swift */,
 				348DC85C27907DA5000EDCFE /* DetailSectionVM.swift */,
 				348DC86527907DA5000EDCFE /* TodaySectionVM.swift */,
@@ -463,6 +469,7 @@
 				3412E1BE2792CE48000FE043 /* ViewModelBuilder.swift in Sources */,
 				348DC83927907D0F000EDCFE /* CurrentHeader.swift in Sources */,
 				349B17962791DBCD00FF46BB /* Networking.swift in Sources */,
+				34170FE42795319700AFD7A8 /* HourlyItemViewModel.swift in Sources */,
 				34BEF456279189B9001C765D /* HomeWorker.swift in Sources */,
 				348DC87827907DA5000EDCFE /* LinkSectionVM.swift in Sources */,
 				348DC88727907DEE000EDCFE /* TodayCell.swift in Sources */,
@@ -478,6 +485,7 @@
 				349B17982791DC0000FF46BB /* ApiService.swift in Sources */,
 				348DC87127907DA5000EDCFE /* DetailSectionVM.swift in Sources */,
 				34BEF45A279189B9001C765D /* HomeInteractor.swift in Sources */,
+				34170FE2279453B400AFD7A8 /* HourlyFooterViewModel.swift in Sources */,
 				34170FDE279450BB00AFD7A8 /* CurrentHeaderViewModel.swift in Sources */,
 				348DC84327907D24000EDCFE /* HourlyFooter.swift in Sources */,
 				348DC88D27907DEE000EDCFE /* UIView+Extension.swift in Sources */,

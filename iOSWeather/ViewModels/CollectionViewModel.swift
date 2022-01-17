@@ -27,11 +27,11 @@ extension CollectionViewModel {
     }
    
     func numberOfRowsIn(section: Int) -> Int {
-        return sections[section].cellViewModels.count
+        return sections[section].itemViewModels.count
     }
     
     func cellViewModel(at indexPath: IndexPath) -> Section.CellViewModel?  {
-        return sections[indexPath.section].cellViewModels[indexPath.row]
+        return sections[indexPath.section].itemViewModels[indexPath.row]
     }
     
  }

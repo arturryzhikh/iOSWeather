@@ -157,7 +157,9 @@ enum Home {
             }
             
             mutating func generateSectionViewModels(model: Home.Weather.Response) {
-                currentHourlySectionVM = CurrentHourlySectionViewModel(headerViewModel: <#T##CurrentHeaderViewModel#>, footerViewModel: <#T##HourlyFooterVM#>)
+                currentHourlySectionVM = CurrentHourlySectionViewModel(
+                    headerViewModel: CurrentHeaderViewModel(),
+                    footerViewModel: HourlyFooterViewModel())
                 dailySectionVM = DailySectionVM(model: model)
                 todaySectionVM = TodaySectionVM(model: model)
                 detailSectionVM = DetailSectionVM(model: model)

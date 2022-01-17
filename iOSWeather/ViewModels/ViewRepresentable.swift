@@ -9,9 +9,7 @@
 protocol ViewRepresentable {
     
     associatedtype T
-    
     var viewModel: T? { get }
-    
     func populateSubviews(with viewModel: T)
     
 }

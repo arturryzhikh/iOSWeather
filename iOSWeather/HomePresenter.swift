@@ -13,18 +13,18 @@
 import UIKit
 
 protocol HomePresentationLogic {
-    func presentWeather(response: Home.Weather.Response)
+  func presentWeather(response: Home.Weather.Response)
 }
 
 class HomePresenter: NSObject, HomePresentationLogic {
-    
+    var builder: ViewModelBuilder?
     weak var viewController: HomeDisplayLogic?
     // MARK: Present weather
 //    private func makeViewModel() -> Home.Weather.ViewModel {
 //        
 //    }
     func presentWeather(response: Home.Weather.Response) {
-        
+        builder = ViewModelBuilder(model: response)
         //        viewController?.displaySomething(viewModel: viewModel)
     }
         

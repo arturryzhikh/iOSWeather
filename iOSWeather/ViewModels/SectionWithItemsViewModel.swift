@@ -8,19 +8,19 @@ import Foundation
 
 public protocol SectionWithItemsViewModel {
     associatedtype CellViewModel
-    var cellViewModels: [CellViewModel] { get }
+    var itemViewModels: [CellViewModel] { get }
     var count: Int { get }
 }
 extension SectionWithItemsViewModel {
     var count: Int {
-        return cellViewModels.count
+        return itemViewModels.count
     }
 }
 
 
 public protocol SectionWithHeaderViewModel {
-    associatedtype HeaderViewModel
-    var headerViewModel: HeaderViewModel  { get }
+    associatedtype headerViewModel
+    var headerViewModel: headerViewModel  { get }
     var count: Int {  get }
 }
 
