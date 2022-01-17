@@ -24,6 +24,7 @@ final class LinkCell: TransparentCell, ViewRepresentable {
     //MARK: Subviews
     private let linkLabel: UILabel = {
         $0.font = .regularTemperature
+        $0.textColor = .weatherWhite
         $0.numberOfLines = 0
         $0.textAlignment = .center
         return $0

@@ -243,14 +243,14 @@ enum Home {
         //MARK: HourlyItemViewModel
         struct HourlyItemViewModel {
             init(hour: String = .emptyString,
-                 weatherEmoji: String = .emptyString,
+                 iconName: String = .emptyString,
                  temperature: String = .emptyString) {
                 self.hour = hour
-                self.weatherEmoji = weatherEmoji
+                self.iconName = iconName
                 self.temperature = temperature
             }
             let hour: String
-            let weatherEmoji: String
+            let iconName: String
             let temperature: String
 
         }

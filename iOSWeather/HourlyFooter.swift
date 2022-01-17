@@ -17,7 +17,7 @@ final class HourlyFooter: TransparentCell, UICollectionViewDelegate {
     }
     
     static var defaultHeight: CGFloat {
-        Screen.height * 0.15
+        Screen.height * 0.16
     }
     //MARK: Subviews
     private lazy var collectionView: UICollectionView = {

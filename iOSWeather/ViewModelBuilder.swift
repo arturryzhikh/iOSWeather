@@ -101,25 +101,11 @@ public final class ViewModelBuilder: ViewModelBuilding {
             return formatter.string(from: hourlyDate)
         }
         
-        var weatherEmoji: String {
-            return model.weather?.first?.icon ?? "))))))))"
-            //        guard let description = model.weather?.first?.main else {
-            //            return "..."
-            //        }
-            //        switch description {
-            //
-            //        case .clear:
-            //            return "☀️"
-            //        case .clouds:
-            //            return "☁️"
-            //        case .rain:
-            //            return "🌧"
-            //        case .snow:
-            //            return "❄️"
-            //        case .mist:
-            //            return "🌫"
-            //
-            //        }
+        var IconName: String {
+            if let icon = model.weather?.first?.icon {
+                return icon + ".png"
+            }
+            return "01d.png"
             
         }
         var temperature: String {
@@ -130,7 +116,7 @@ public final class ViewModelBuilder: ViewModelBuilding {
         }
         return Home.ViewModels.HourlyItemViewModel(
             hour: hour,
-            weatherEmoji: weatherEmoji,
+            iconName: IconName,
             temperature: temperature)
     }
     //MARK: Daily Section
