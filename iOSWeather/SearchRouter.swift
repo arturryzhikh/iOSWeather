@@ -22,8 +22,7 @@ import UIKit
 
 protocol SearchDataPassing {
     var dataStore: SearchDataStore? { get set }
-    func passCoordinatesToHome(source: SearchDataStore? ,
-                               destination: inout HomeDataStore?)
+    func pass(coordinates: Coord, to destination: inout HomeDataStore?)
 }
 
 class SearchRouter: NSObject, SearchRoutingLogic, SearchDataPassing {
@@ -37,20 +36,27 @@ class SearchRouter: NSObject, SearchRoutingLogic, SearchDataPassing {
     }
     //MARK: Route
     func routeToHome(with coordinates: Coord) {
-        self.dataStore?.coordinates = coordinates
-        let destinationVC = HomeViewController()
+        guard let destinationVC = viewController?
+                .presentingViewController as? HomeViewController
+        else {
+            let message = "No appropriate View Controller to route on"
+            viewController?.router?.showAlert(message: message)
+            return
+        }
         var destionationDS = destinationVC.router?.dataStore
-        passCoordinatesToHome(source: dataStore , destination: &destionationDS)
+        pass(coordinates: coordinates, to: &destionationDS)
         navigateToHome(source: viewController, destination: destinationVC)
+        destinationVC.interactor?.getCityForecast()
     }
-    
+    //MARK: Passing data
+    func pass(coordinates: Coord, to destination: inout HomeDataStore?) {
+        destination?.coord = coordinates
+    }
     
     //MARK: Navigation
     func navigateToHome(source: SearchViewController?, destination: HomeViewController?) {
         source?.navigationController?.dismiss(animated: true)
+        
     }
-    //MARK: Passing data
-    func passCoordinatesToHome(source: SearchDataStore? , destination: inout HomeDataStore?) {
-        destination?.coord = source?.coordinates
-    }
+    
 }

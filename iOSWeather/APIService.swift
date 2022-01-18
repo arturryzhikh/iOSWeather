@@ -53,12 +53,10 @@ public final class ApiService: Networking {
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = request.httpMethod.rawValue
         urlRequest.allHTTPHeaderFields = request.headers
-        
         URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
             if let error = error {
                 return completion(.failure(error))
             }
-            
             guard let response = response as? HTTPURLResponse else  {
                 
                 let error = NSError(domain: ResponseError.badResponse.description,

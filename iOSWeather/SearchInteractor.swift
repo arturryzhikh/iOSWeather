@@ -17,12 +17,11 @@ protocol SearchBusinessLogic {
 }
 
 protocol SearchDataStore {
-    var coordinates: Coord? { get set  }
+    
 }
 
 class SearchInteractor: SearchBusinessLogic, SearchDataStore {
     
-    var coordinates: Coord?
     var presenter: SearchPresentationLogic?
     var worker: SearchWorker?
     
@@ -41,10 +40,14 @@ class SearchInteractor: SearchBusinessLogic, SearchDataStore {
             }
             switch result {
             case.failure(let error):
-                print(error)
-                self.presenter?.presentError(message: "Error getting cities")
+                DispatchQueue.main.async {
+                    self.presenter?.present(error: error)
+                }
             case.success(let response):
-                self.presenter?.presentCities(response: response)
+                DispatchQueue.main.async {
+                    self.presenter?.presentCities(response: response)
+                }
+               
             }
         }
         

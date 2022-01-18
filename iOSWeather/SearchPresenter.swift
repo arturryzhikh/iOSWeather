@@ -11,9 +11,17 @@
 //
 
 import UIKit
-
+enum SearchPresentationError: Error , CustomStringConvertible{
+    case build
+    var description: String {
+        switch self {
+        case .build:
+            return "Cannont build view model"
+        }
+    }
+}
 protocol SearchPresentationLogic {
-    func presentError(message: String)
+    func present(error: Error)
     func presentCities(response: [Search.Responses.Place])
     
 }
@@ -24,13 +32,14 @@ class SearchPresenter: SearchPresentationLogic {
     var builder: SearchViewModelBuilder? = nil
     
     // MARK: Do something
-    func presentError(message: String) {
+    func present(error: Error) {
+        let message = error.localizedDescription
         viewController?.displayError(message: message)
     }
     func presentCities(response: [Search.Responses.Place]) {
         builder = SearchViewModelBuilder(model: response)
         guard let builder = builder else {
-            presentError(message: "Cannot represent data in appropriate format")
+            present(error: SearchPresentationError.build)
             return
         }
         let viewModel = builder.buildViewModel()

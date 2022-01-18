@@ -30,7 +30,12 @@ public final class WeatherView: UIView {
         generateGradient()
         tabbar.addSeparator(to: .top, aboveSubview: tabbar)
     }
-    
+    convenience init(collectionDelegate: UICollectionViewDelegate, collectionDataSource: UICollectionViewDataSource, tabBarDelegate: UITabBarDelegate) {
+        self.init()
+        self.collectionView.delegate = collectionDelegate
+        self.collectionView.dataSource = collectionDataSource
+        self.tabbar.delegate = tabBarDelegate
+    }
     //MARK: Instance methods
     private func activateConstraints() {
         addMultipleSubviews(collectionView,tabbar)

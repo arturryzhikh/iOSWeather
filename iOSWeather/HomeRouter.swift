@@ -36,7 +36,7 @@ class HomeRouter: NSObject, HomeRoutingLogic, HomeDataPassing {
     
     func routeToSearch(source: UIViewController, destination: UIViewController) {
         let dest = UINavigationController(rootViewController: destination)
-        source.presentInFullScreen(dest, animated: true)
+        source.present(dest, animated: true)
     }
     
 }

@@ -14,7 +14,7 @@ import UIKit
 import CoreLocation
 
 protocol HomeBusinessLogic {
-    func getForecast(for coord: Coord)
+    func getWeather(for coord: Coord)
     func getCityForecast()
 }
 
@@ -28,27 +28,35 @@ class HomeInteractor: NSObject, HomeBusinessLogic, HomeDataStore {
     var worker: HomeWorker?
     var coord: Coord?
     func getCityForecast() {
-        guard let coord = coord, coord.valid else {
-            return
-        }
-        
+//        guard let coord = coord, coord.valid else {
+//            return
+//        }
+        getWeather(for: coord!)
     }
     
     // MARK: Get Forecast with location coordinates
-    func getForecast(for coord: Coord) {
+    func getWeather(for coord: Coord) {
         let request = Home.Requests.Request(lat: coord.lat, lon: coord.lon)
         worker = HomeWorker()
-        worker?.getForecast(request: request) { [weak self] result in
+        guard let worker = worker else {
+            return
+            
+        }
+        worker.getForecast(request: request) { [weak self] result in
             guard let self = self else {
                 return
             }
             switch result {
-            case.failure(let error):
-                print(error)
-                let message = "Error occured while fetching weather"
-                self.presenter?.presentError(message: message)
+                case.failure(let error):
+                DispatchQueue.main.async {
+                    self.presenter?.present(error: error)
+                }
+               
             case.success(let response):
-                self.presenter?.presentWeather(response: response)
+                DispatchQueue.main.async {
+                    self.presenter?.presentWeather(response: response)
+                }
+                
             }
         }
     }

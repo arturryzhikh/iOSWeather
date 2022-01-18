@@ -14,8 +14,7 @@ import UIKit
 
 protocol HomePresentationLogic {
     func presentWeather(response: Home.Responses.Response)
-    func presentError(message: String)
-    
+    func present(error: Error)
 }
 
 class HomePresenter: NSObject, HomePresentationLogic {
@@ -26,13 +25,18 @@ class HomePresenter: NSObject, HomePresentationLogic {
     func presentWeather(response: Home.Responses.Response) {
         builder = HomeViewModelBuilder(model: response)
         guard let viewModel = builder?.buildViewModel() else {
-            viewController?.displayError(message: "Error constructing View Model from weather data")
+            let message = "Error constructing View Model from weather data"
+            viewController?.displayError(message: message)
             return
         }
-        viewController?.displayWeather(viewModel: viewModel)
+        print("View controller is nil \(viewController == nil)")
+        viewController?.displayWeather(viewModel)
         
     }
-    func presentError(message: String) {
+    
+    func present(error: Error) {
+        let message = "Error occured while fetching weather"
+        + error.localizedDescription
         viewController?.displayError(message: message)
     }
     

@@ -58,7 +58,7 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
         router.dataStore = interactor
     }
     // MARK: View lifecycle
-    
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addBlur()
@@ -83,14 +83,8 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
     //MARK: SearchDisplayLogic
     func displayCities(viewModel: Search.ViewModels.ViewModel) {
         self.viewModel = viewModel
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else {
-                return
-            }
-            self.tableView.reloadData()
-            self.activityIndicator.stopAnimating()
-            
-        }
+        tableView.reloadData()
+        activityIndicator.stopAnimating()
     }
     func displayError(message: String) {
         router?.showAlert(message: message)
@@ -196,8 +190,8 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
         let viewModel = viewModel.itemViewModels[indexPath.row]
         let coordinates = Coord(lat: viewModel.latitude,
                                      lon: viewModel.longitude)
-        
         router?.routeToHome(with: coordinates)
+        
     }
     
     

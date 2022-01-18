@@ -15,7 +15,7 @@ import CoreLocation
 import SnapKit
 
 protocol HomeDisplayLogic: AnyObject {
-    func displayWeather(viewModel: Home.ViewModels.ViewModel)
+    func displayWeather(_ viewModel: Home.ViewModels.ViewModel)
     func displayError(message: String)
 }
 
@@ -24,7 +24,7 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
     
     //MARK: Other Properties
     private let locationManager: CLLocationManager = CLLocationManager()
-    private var viewModel = Home.ViewModels.ViewModel()
+    private var homeViewModel = Home.ViewModels.ViewModel()
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -57,7 +57,9 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
         presenter.viewController = viewController
         router.viewController = viewController
         router.dataStore = interactor
-        weatherView.tabbar.delegate = router
+        self.view = WeatherView(collectionDelegate: self,
+                                collectionDataSource: self,
+                                tabBarDelegate: router)
         setupLocationManager()
     }
     
@@ -69,13 +71,9 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
     }
     
     //MARK: HomeDisplayLogic
-    
-    func displayWeather(viewModel: Home.ViewModels.ViewModel) {
-        self.viewModel = viewModel
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else {
-                return
-            }
+    func displayWeather(_ viewModel: Home.ViewModels.ViewModel) {
+        self.homeViewModel = viewModel
+        DispatchQueue.main.async {
             self.collectionView.reloadData()
             self.activityIndicator.stopAnimating()
         }
@@ -101,14 +99,9 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        collectionView.delegate = self
-        collectionView.dataSource = self
         locationManager.startUpdatingLocation()
     }
-    override func loadView() {
-        view = WeatherView()
-        
-    }
+   
     //MARK: Subviews
     var collectionView: UICollectionView!  {
         return (self.view as! WeatherView).collectionView
@@ -134,11 +127,11 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
 extension HomeViewController: UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return viewModel.numberOfSections
+        return homeViewModel.numberOfSections
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        viewModel.numberOfItemsIn(section)
+        homeViewModel.numberOfItemsIn(section)
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
@@ -149,17 +142,17 @@ extension HomeViewController: UICollectionViewDataSource {
             
         case .daily:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DailyCell.description(), for: indexPath) as! DailyCell
-            cell.viewModel = viewModel.dailySectionVM.itemViewModels[indexPath.item]
+            cell.viewModel = homeViewModel.dailySectionVM.itemViewModels[indexPath.item]
             return cell
             
         case .today:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TodayCell.description(), for: indexPath) as! TodayCell
-            cell.viewModel = viewModel.todaySectionVM.itemViewModels[indexPath.item]
+            cell.viewModel = homeViewModel.todaySectionVM.itemViewModels[indexPath.item]
             return cell
             
         case .detail:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailCell.description(), for: indexPath) as! DetailCell
-            let vm = viewModel.detailSectionVM.itemViewModels[indexPath.item]
+            let vm = homeViewModel.detailSectionVM.itemViewModels[indexPath.item]
             cell.viewModel = vm
             return cell
             
@@ -178,7 +171,7 @@ extension HomeViewController: UICollectionViewDataSource {
             guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CurrentHeader.description(), for: indexPath) as? CurrentHeader else {
                 fatalError("No appropriate view for supplementary view of \(kind) ad \(indexPath)")
             }
-            let vm = viewModel.currentHourlySectionVM.headerViewModel
+            let vm = homeViewModel.currentHourlySectionVM.headerViewModel
             header.viewModel = vm
             return header
             
@@ -186,7 +179,7 @@ extension HomeViewController: UICollectionViewDataSource {
             guard let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HourlyFooter.description(), for: indexPath) as? HourlyFooter else {
                 fatalError("No appropriate view for supplementary view of \(kind) at \(indexPath)")
             }
-            let vm = viewModel.currentHourlySectionVM.footerViewModel
+            let vm = homeViewModel.currentHourlySectionVM.footerViewModel
             footer.viewModel = vm
             return footer
             
@@ -252,11 +245,10 @@ extension HomeViewController: CLLocationManagerDelegate {
         guard let location = locations.first else { return }
         locationManager.stopUpdatingLocation()
         let coord = Coord(lat: "\(location.coordinate.latitude)", lon: "\(location.coordinate.longitude)")
-        interactor?.getForecast(for: coord)
+        interactor?.getWeather(for: coord)
         activityIndicator.startAnimating()
         
     }
-    
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         router?.showAlert(message: "Error updating location \(error)")
     }

@@ -19,13 +19,14 @@ class HomeWorker {
         self.apiService = apiService
     }
     
-    func getForecast(request: Home.Requests.Request, completion: @escaping (Result<Home.Responses.Response,Error>) -> Void) {
+    func getForecast(request: Home.Requests.Request, completion: @escaping (Result<Home.Responses.Response,Error>) -> Void) { 
         apiService.request(request) { result in
             switch result {
             case.failure(let error):
                 completion(.failure(error))
             case.success(let response):
                 completion(.success(response))
+                
             }
         }
     }
