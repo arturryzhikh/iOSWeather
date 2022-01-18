@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		340228FE2797444C002FA4C9 /* CGColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340228FD2797444C002FA4C9 /* CGColor+.swift */; };
 		340A400327908FC700A616FC /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 340A400227908FC700A616FC /* SnapKit */; };
 		3412E1BE2792CE48000FE043 /* HomeViewModelBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3412E1BD2792CE48000FE043 /* HomeViewModelBuilder.swift */; };
 		34170FE0279450F800AFD7A8 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34170FDF279450F800AFD7A8 /* String+.swift */; };
@@ -74,6 +75,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		340228FD2797444C002FA4C9 /* CGColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGColor+.swift"; sourceTree = "<group>"; };
 		3412E1BD2792CE48000FE043 /* HomeViewModelBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelBuilder.swift; sourceTree = "<group>"; };
 		34170FDF279450F800AFD7A8 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		342334C52796212B00C6BC32 /* Coord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coord.swift; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 				348DC87F27907DEE000EDCFE /* UILabel+.swift */,
 				348DC88327907DEE000EDCFE /* UIView+.swift */,
 				34FCC98C2796DD3000FB331A /* UIViewController+.swift */,
+				340228FD2797444C002FA4C9 /* CGColor+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -485,6 +488,7 @@
 				3412E1BE2792CE48000FE043 /* HomeViewModelBuilder.swift in Sources */,
 				348DC83927907D0F000EDCFE /* CurrentHeader.swift in Sources */,
 				349B17962791DBCD00FF46BB /* Networking.swift in Sources */,
+				340228FE2797444C002FA4C9 /* CGColor+.swift in Sources */,
 				34BEF456279189B9001C765D /* HomeWorker.swift in Sources */,
 				348DC88727907DEE000EDCFE /* TodayCell.swift in Sources */,
 				348DC88927907DEE000EDCFE /* UILabel+.swift in Sources */,

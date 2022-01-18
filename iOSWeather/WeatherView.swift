@@ -12,12 +12,13 @@ public final class WeatherView: UIView {
     
     public override static var layerClass: AnyClass { return CAGradientLayer.self }
     //MARK: properties
-    private var gradientLayer: CAGradientLayer { return layer as! CAGradientLayer }
+    private var gradientLayer: CAGradientLayer { return layer as! CAGradientLayer
+        
+    }
     
-    private func generateGradient() {
-        let color1 = #colorLiteral(red: 0.9411764741, green: 0.4980392158, blue: 0.3529411852, alpha: 1).cgColor
-        let color2 = #colorLiteral(red: 0.1352660358, green: 0.6287184954, blue: 0.700309813, alpha: 1).cgColor
-        gradientLayer.colors = [color1, color2]
+    func generateGradient() {
+        let colors = CGColor.randomGradientPair
+        gradientLayer.colors = colors
     }
     //MARK: Life Cycle
     
