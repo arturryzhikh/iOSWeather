@@ -29,11 +29,9 @@ class HomePresenter: NSObject, HomePresentationLogic {
             viewController?.displayError(message: message)
             return
         }
-        print("View controller is nil \(viewController == nil)")
         viewController?.displayWeather(viewModel)
         
     }
-    
     func present(error: Error) {
         let message = "Error occured while fetching weather"
         + error.localizedDescription

@@ -286,19 +286,6 @@ public final class HomeViewModelBuilder: ViewModelBuilding {
         return Home.ViewModels.TodayCellViewModel(overview: overview)
         
     }
-  
-//    private func buildLinkCellViewModel() -> Home.ViewModels.LinkCellViewModel {
-//        var link: NSMutableAttributedString {
-//            guard let timezone = model.timezone else {
-//                return NSMutableAttributedString()
-//            }
-//            let location = timezone.components(separatedBy: "/")[1]
-//                .replacingOccurrences(of: "_", with: " ")
-//            let attrSting = NSMutableAttributedString(string: "Weather for \(location). Thanks to Open Weather Map!")
-//            return attrSting
-//        }
-//        return Home.ViewModels.LinkCellViewModel(link: link)
-//    }
     
 }
 
