@@ -30,7 +30,6 @@ final class HourlyCell: TransparentCell ,ViewRepresentable {
         
     }
     
-    
     override func activateConstraints() {
         addMultipleSubviews(hourLabel,weatherImageView,temperatureLabel)
         hourLabel.snp.makeConstraints { make in
