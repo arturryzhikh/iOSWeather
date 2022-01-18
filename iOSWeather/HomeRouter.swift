@@ -14,7 +14,7 @@ import UIKit
 
 @objc protocol HomeRoutingLogic {
     func showAlert(message: String)
-    
+    func navigateToSearch(source: UIViewController, destination: UIViewController)
 }
 
 protocol HomeDataPassing {
@@ -22,6 +22,10 @@ protocol HomeDataPassing {
 }
 
 class HomeRouter: NSObject, HomeRoutingLogic, HomeDataPassing {
+    
+    weak var viewController: HomeViewController?
+    var dataStore: HomeDataStore?
+    //MARK: Alert
     func showAlert(message: String) {
         let alert = UIAlertController(
             title: "Oops! Something went wrong.",
@@ -35,9 +39,6 @@ class HomeRouter: NSObject, HomeRoutingLogic, HomeDataPassing {
             self.viewController?.present(alert, animated: true)
         }
     }
-    
-    weak var viewController: HomeViewController?
-    var dataStore: HomeDataStore?
     //MARK: Navigation
     func navigateToSearch(source: UIViewController, destination: UIViewController) {
         source.show(destination, sender: nil)

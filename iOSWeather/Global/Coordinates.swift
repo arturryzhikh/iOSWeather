@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Coordinates {
+class Coordinates: NSObject {
     let latitude: String
     let longitude: String
     init(latitude: String, longitude: String) {

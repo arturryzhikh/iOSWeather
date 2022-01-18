@@ -14,17 +14,33 @@ import UIKit
 
 @objc protocol SearchRoutingLogic {
     func showAlert(message: String)
+    func routeToHome(with coordinates: Coordinates)
+    func navigateToParent(source: SearchViewController, destination: HomeViewController)
+   
 }
 
 protocol SearchDataPassing {
-    var dataStore: SearchDataStore? { get }
+    var dataStore: SearchDataStore? { get set }
+    func passCoordinatesToHome(source: SearchDataStore , destination: inout HomeDataStore)
 }
 
 class SearchRouter: NSObject, SearchRoutingLogic, SearchDataPassing {
     
+    func routeToHome(with coordinates: Coordinates) {
+        self.dataStore?.coordinates = coordinates
+        let destinationVC = HomeViewController()
+        let destionationDS = destinationVC.router?.dataStore
+        guard let ds = self.dataStore, var dDs = destionationDS else {
+            return
+        }
+        passCoordinatesToHome(source: ds , destination: &dDs)
+    }
+    
+    
     weak var viewController: SearchViewController?
     
     var dataStore: SearchDataStore?
+    //MARK: Alert
     func showAlert(message: String) {
         let alert = UIAlertController(
             title: "Oops! Something went wrong.",
@@ -38,34 +54,44 @@ class SearchRouter: NSObject, SearchRoutingLogic, SearchDataPassing {
             self.viewController?.present(alert, animated: true)
         }
     }
-    // MARK: Routing
     
-    //func routeToSomewhere(segue: UIStoryboardSegue?)
-    //{
-    //  if let segue = segue {
-    //    let destinationVC = segue.destination as! SomewhereViewController
-    //    var destinationDS = destinationVC.router!.dataStore!
-    //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-    //  } else {
-    //    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-    //    let destinationVC = storyboard.instantiateViewController(withIdentifier: "SomewhereViewController") as! SomewhereViewController
-    //    var destinationDS = destinationVC.router!.dataStore!
-    //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-    //    navigateToSomewhere(source: viewController!, destination: destinationVC)
-    //  }
-    //}
+    //MARK: Navigation
+    //    func routeToParent(segue: UIStoryboardSegue?)
+    //      {
+    //        // Get the destination view controller and data store
+    //        let destinationVC = viewController?.presentingViewController as! ParentViewController
+    //        var destinationDS = destinationVC.router!.dataStore!
+    //
+    //        // Pass data to the destination data store
+    //        passDataToParent(source: dataStore!, destination: &destinationDS)
+    //
+    //        // Navigate to the destination view controller
+    //        navigateToParent(source: viewController!, destination: destinationVC)
+    //      }
+    //
+    //      func passDataToParent(source: ChildDataStore, destination: inout ParentDataStore)
+    //      {
+    //        // Pass data backward
+    //        destination.name = source.name
+    //      }
+    //
     
-    // MARK: Navigation
+    //
+    //    func navigateToSomewhere(source: SearchViewController, destination: SomewhereViewController) {
+    //        source.show(destination, sender: nil)
+    //    }
     
-    //func navigateToSomewhere(source: SearchViewController, destination: SomewhereViewController)
-    //{
-    //  source.show(destination, sender: nil)
-    //}
-    
-    // MARK: Passing data
-    
-    //func passDataToSomewhere(source: SearchDataStore, destination: inout SomewhereDataStore)
-    //{
-    //  destination.name = source.name
-    //}
+    //MARK: Passing data
+    func navigateToParent(source: SearchViewController, destination: HomeViewController) {
+        if let navigation = source.navigationController {
+            navigation.dismiss(animated: true, completion: nil)
+        } else {
+            source.dismiss(animated: true, completion: nil)
+        }
+        
+        
+    }
+    func passCoordinatesToHome(source: SearchDataStore , destination: inout HomeDataStore) {
+        destination.coordinates = source.coordinates
+    }
 }

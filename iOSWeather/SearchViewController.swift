@@ -13,6 +13,7 @@
 import UIKit
 import SnapKit
 import CoreLocation
+
 protocol SearchDisplayLogic: AnyObject {
     func displayCities(viewModel: Search.ViewModels.ViewModel)
     func displayError(message: String)
@@ -193,8 +194,9 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let viewModel = viewModel.itemViewModels[indexPath.row]
-        let coordinate = Coordinates(latitude: viewModel.latitude, longitude: viewModel.longitude)
-        print(coordinate)
+        let coordinates = Coordinates(latitude: viewModel.latitude,
+                                     longitude: viewModel.longitude)
+        router?.routeToHome(with: coordinates)
     }
     
     

@@ -17,7 +17,7 @@ protocol SearchBusinessLogic {
 }
 
 protocol SearchDataStore {
-    var coordinates: Coordinates? { get  }
+    var coordinates: Coordinates? { get set  }
 }
 
 class SearchInteractor: SearchBusinessLogic, SearchDataStore {
@@ -25,7 +25,6 @@ class SearchInteractor: SearchBusinessLogic, SearchDataStore {
     var coordinates: Coordinates?
     var presenter: SearchPresentationLogic?
     var worker: SearchWorker?
-    //var name: String = ""
     
     // MARK: Search Cities
     

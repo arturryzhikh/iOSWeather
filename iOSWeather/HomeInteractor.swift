@@ -17,11 +17,12 @@ protocol HomeBusinessLogic {
 }
 
 protocol HomeDataStore {
-    var errorMessage: String { get set }
+    var coordinates: Coordinates? { get set }
 }
 
 class HomeInteractor: NSObject, HomeBusinessLogic, HomeDataStore {
     
+    var coordinates: Coordinates?
     var errorMessage: String = .emptyString
     var presenter: HomePresentationLogic?
     var worker: HomeWorker?

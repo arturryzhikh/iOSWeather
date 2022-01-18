@@ -96,13 +96,26 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
         }
         
     }
-    //MARK: Subviews
+    
     
     //MARK: View Life Cycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        
+        
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+    }
     override func loadView() {
         view = WeatherView()
         
     }
+    //MARK: Subviews
     var collectionView: UICollectionView!  {
         return (self.view as! WeatherView).collectionView
     }
@@ -120,12 +133,7 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
         }
         return $0
     }(UIActivityIndicatorView())
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        
-    }
+    
 }
 
 //MARK: UICollectionViewDataSource

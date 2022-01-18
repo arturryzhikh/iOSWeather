@@ -30,6 +30,7 @@ class SearchPresenter: SearchPresentationLogic {
     func presentCities(response: [Search.Responses.Place]) {
         builder = SearchViewModelBuilder(model: response)
         guard let builder = builder else {
+            presentError(message: "Cannot represent data in appropriate format")
             return
         }
         let viewModel = builder.buildViewModel()
