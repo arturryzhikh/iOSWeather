@@ -21,7 +21,10 @@ protocol HomeDisplayLogic: AnyObject {
 
 final class HomeViewController: UIViewController, HomeDisplayLogic {
     
-    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.view.layoutIfNeeded()
+    }
     //MARK: Other Properties
     private let locationManager: CLLocationManager = CLLocationManager()
     private var homeViewModel = Home.ViewModels.ViewModel()
