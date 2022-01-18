@@ -41,14 +41,14 @@ final class HourlyCell: TransparentCell ,ViewRepresentable {
             make.height.equalTo(frame.height)
             make.width.equalTo(weatherImageView.snp.height)
             make.centerX.equalToSuperview()
-           }
+        }
         temperatureLabel.snp.makeConstraints { make in
             make.top.equalTo(weatherImageView.snp.bottom)
             make.leading.bottom.trailing.equalToSuperview()
         }
-    
+        
     }
-    let hourLabel: UILabel = { 
+    let hourLabel: UILabel = {
         return $0
     }(UILabel(font: .temperatureLight))
     

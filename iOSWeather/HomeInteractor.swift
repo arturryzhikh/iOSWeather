@@ -21,7 +21,7 @@ protocol HomeDataStore {
 }
 
 class HomeInteractor: NSObject, HomeBusinessLogic, HomeDataStore {
-   
+    
     var errorMessage: String = .emptyString
     var presenter: HomePresentationLogic?
     var worker: HomeWorker?
@@ -35,6 +35,7 @@ class HomeInteractor: NSObject, HomeBusinessLogic, HomeDataStore {
             }
             switch result {
             case.failure(let error):
+                print(error)
                 self.errorMessage = "Error occured while fetching weather"
                 self.presenter?.presentError(message: self.errorMessage)
             case.success(let response):
@@ -42,6 +43,6 @@ class HomeInteractor: NSObject, HomeBusinessLogic, HomeDataStore {
             }
         }
     }
- 
+    
 }
 

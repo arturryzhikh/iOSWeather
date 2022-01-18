@@ -19,7 +19,7 @@ protocol SearchPresentationLogic {
 }
 
 class SearchPresenter: SearchPresentationLogic {
-  
+    
     weak var viewController: SearchDisplayLogic?
     var builder: SearchViewModelBuilder? = nil
     

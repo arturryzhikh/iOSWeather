@@ -25,9 +25,13 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
     
     private var viewModel = Search.ViewModels.ViewModel()
     private var searchController: UISearchController!
-    
+    private var tableView: UITableView!
+    private let activityIndicator: UIActivityIndicatorView = {
+        let ai = UIActivityIndicatorView()
+        ai.hidesWhenStopped = true
+        return ai
+    }()
     // MARK: Object lifecycle
-    
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         setup()
@@ -52,18 +56,6 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
         router.viewController = viewController
         router.dataStore = interactor
     }
-    
-    // MARK: Routing
-    //
-    //  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    //    if let scene = segue.identifier {
-    //      let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
-    //      if let router = router, router.responds(to: selector) {
-    //        router.perform(selector, with: segue)
-    //      }
-    //    }
-    //  }
-    
     // MARK: View lifecycle
     
     override func viewDidLoad() {
@@ -79,7 +71,7 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
         super.viewDidAppear(animated)
         
     }
-    // MARK: Do something
+    // MARK: Search Cities
     
     //@IBOutlet weak var nameTextField: UITextField!
     private func searchCities(named: String) {
@@ -87,7 +79,7 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
         let req = Search.Requests.CitiesRequest(cityName: named)
         interactor?.searchCities(request: req)
     }
-    
+    //MARK: SearchDisplayLogic
     func displayCities(viewModel: Search.ViewModels.ViewModel) {
         self.viewModel = viewModel
         DispatchQueue.main.async { [weak self] in
@@ -104,23 +96,14 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
     }
     
     
-    //MARK: Subviews
-    private let activityIndicator: UIActivityIndicatorView = {
-        let ai = UIActivityIndicatorView()
-        ai.hidesWhenStopped = true
-        return ai
-    }()
-    private let tableView: UITableView = {
-        let tv = UITableView(frame: .zero, style: .grouped)
-        tv.backgroundColor = .clear
-        tv.showsVerticalScrollIndicator = false
-        return tv
-    }()
-    
     //MARK: Initial setup
     private func setupTableView() {
-        tableView.register(CityCell.self,
-                           forCellReuseIdentifier: CityCell.description())
+        tableView = UITableView(frame: .zero, style: .grouped)
+        tableView.backgroundColor = .clear
+        tableView.showsVerticalScrollIndicator = false
+        tableView.register(PlaceCell.self,
+                           forCellReuseIdentifier: PlaceCell.description())
+        tableView.separatorStyle = .none
         tableView.rowHeight = UITableView.automaticDimension
         tableView.delegate = self
         tableView.dataSource = self
@@ -189,7 +172,7 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: CityCell.description(), for: indexPath) as! CityCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: PlaceCell.description(), for: indexPath) as! PlaceCell
         cell.viewModel = viewModel.itemViewModels[indexPath.row]
         return cell
     }
@@ -209,7 +192,9 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
         cell.layoutIfNeeded()
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        let viewModel = viewModel.itemViewModels[indexPath.row]
+        let coordinate = Coordinates(latitude: viewModel.latitude, longitude: viewModel.longitude)
+        print(coordinate)
     }
     
     

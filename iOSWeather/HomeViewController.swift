@@ -45,7 +45,7 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
     }
     
     // MARK: Setup
-   
+    
     private func setup() {
         let viewController = self
         let interactor = HomeInteractor()
@@ -67,7 +67,7 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()
     }
-
+    
     //MARK: HomeDisplayLogic
     
     func displayWeather(viewModel: Home.ViewModels.ViewModel) {
@@ -144,7 +144,7 @@ extension HomeViewController: UICollectionViewDataSource {
         let section = Home.ViewModels.ViewModel.Section(rawValue: indexPath.section)
         
         switch section {
-        
+            
         case .daily:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DailyCell.description(), for: indexPath) as! DailyCell
             cell.viewModel = viewModel.dailySectionVM.itemViewModels[indexPath.item]
@@ -160,7 +160,7 @@ extension HomeViewController: UICollectionViewDataSource {
             let vm = viewModel.detailSectionVM.itemViewModels[indexPath.item]
             cell.viewModel = vm
             return cell
-
+            
         default:
             assert(false)
             
@@ -250,7 +250,7 @@ extension HomeViewController: CLLocationManagerDelegate {
         guard let location = locations.first else { return }
         locationManager.stopUpdatingLocation()
         let request = Home.Requests.Request(coordinate: (lat: location.coordinate.latitude,
-                                                        lon: location.coordinate.longitude))
+                                                         lon: location.coordinate.longitude))
         
         interactor?.getForecast(request)
         activityIndicator.startAnimating()

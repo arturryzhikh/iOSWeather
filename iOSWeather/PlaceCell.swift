@@ -7,10 +7,10 @@
 
 import UIKit
 
-class CityCell: UITableViewCell, ViewRepresentable {
+class PlaceCell: UITableViewCell, ViewRepresentable {
         
     
-    var viewModel: Search.ViewModels.CityViewModel? {
+    var viewModel: Search.ViewModels.PlaceViewModel? {
         didSet {
             if let viewModel = viewModel {
                 populateSubviews(with: viewModel)
@@ -18,7 +18,7 @@ class CityCell: UITableViewCell, ViewRepresentable {
         }
     }
 
-    func populateSubviews(with viewModel: Search.ViewModels.CityViewModel) {
+    func populateSubviews(with viewModel: Search.ViewModels.PlaceViewModel) {
         nameLabel.text = viewModel.name
     }
     let nameLabel: UILabel = {
@@ -30,7 +30,7 @@ class CityCell: UITableViewCell, ViewRepresentable {
         super.init(style: .value1, reuseIdentifier: reuseIdentifier)
         clipsToBounds = true
         backgroundColor = .clear
-//        addSeparator(to: .top, aboveSubview: self)
+        addSeparator(to: .bottom, aboveSubview: self)
         activateConstratints()
        
     }

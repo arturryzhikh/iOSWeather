@@ -16,7 +16,7 @@ class SearchViewModelBuilder: ViewModelBuilding {
     
     func buildViewModel() -> Search.ViewModels.ViewModel {
         let items = model.map {
-            Search.ViewModels.CityViewModel(
+            Search.ViewModels.PlaceViewModel(
                 lat: $0.lat,
                 lon: $0.lon,
                 name: $0.displayName

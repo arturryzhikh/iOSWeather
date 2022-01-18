@@ -17,10 +17,12 @@ protocol SearchBusinessLogic {
 }
 
 protocol SearchDataStore {
-    //var name: String { get set }
+    var coordinates: Coordinates? { get  }
 }
 
 class SearchInteractor: SearchBusinessLogic, SearchDataStore {
+    
+    var coordinates: Coordinates?
     var presenter: SearchPresentationLogic?
     var worker: SearchWorker?
     //var name: String = ""
@@ -46,6 +48,6 @@ class SearchInteractor: SearchBusinessLogic, SearchDataStore {
                 self.presenter?.presentCities(response: response)
             }
         }
-
+        
     }
 }

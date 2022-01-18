@@ -38,16 +38,16 @@ class HomeRouter: NSObject, HomeRoutingLogic, HomeDataPassing {
     
     weak var viewController: HomeViewController?
     var dataStore: HomeDataStore?
-       //MARK: Navigation
+    //MARK: Navigation
     func navigateToSearch(source: UIViewController, destination: UIViewController) {
-          source.show(destination, sender: nil)
+        source.show(destination, sender: nil)
     }
     
-       //MARK: Passing data
+    //MARK: Passing data
     
-//      func passDataToSomewhere(source: HomeDataStore, destination: inout SomewhereDataStore) {
-//        destination.name = source.name
-//      }
+    //      func passDataToSomewhere(source: HomeDataStore, destination: inout SomewhereDataStore) {
+    //        destination.name = source.name
+    //      }
 }
 
 //MARK: UITabBarDelegate

@@ -28,25 +28,23 @@ public final class WeatherView: UIView {
         super.init(frame: frame)
         activateConstraints()
         generateGradient()
+        tabbar.addSeparator(to: .top, aboveSubview: tabbar)
     }
     
     //MARK: Instance methods
     private func activateConstraints() {
         addMultipleSubviews(collectionView,tabbar)
-        
         collectionView.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
             make.bottom.equalTo(tabbar.snp.top)
         }
         tabbar.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
-            make.bottom.equalTo(self.snp.bottomMargin)
+            make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom)
         }
- 
+        
     }
     lazy var tabbar: UITabBar = {
-       
-        $0.addSeparator(to: .top, aboveSubview: $0)
         $0.barTintColor = .clear
         $0.tintColor = .white
         let search = UITabBarItem(tabBarSystemItem: .search, tag: 0)

@@ -31,7 +31,7 @@ enum Search {
     }
     
     enum Responses {
-       //City Name
+        //City Name
         struct Place: Decodable {
             let lat, lon: String
             let displayName: String
@@ -41,24 +41,24 @@ enum Search {
     }
     enum ViewModels {
         class ViewModel: SectionWithItemsViewModel {
-            init(itemViewModels: [CityViewModel] = []) {
+            init(itemViewModels: [PlaceViewModel] = []) {
                 self.itemViewModels = itemViewModels
             }
             
-           let itemViewModels: [CityViewModel]
+            let itemViewModels: [PlaceViewModel]
             
         }
-        struct CityViewModel {
+        struct PlaceViewModel {
             init(lat: String = .emptyString,
                  lon: String = .emptyString,
                  name: String = .emptyString) {
-                self.lat = lat
-                self.lon = lon
+                self.latitude = lat
+                self.longitude = lon
                 self.name = name
             }
             
-            let lat: String
-            let lon: String
+            let latitude: String
+            let longitude: String
             let name: String
         }
     }

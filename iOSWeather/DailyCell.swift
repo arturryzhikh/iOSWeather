@@ -44,7 +44,7 @@ final class DailyCell: TransparentCell {
     
     private let weatherImageView: UIImageView = {
         $0.contentMode = .scaleAspectFit
-       
+        
         return $0
     }(UIImageView())
     
@@ -68,7 +68,7 @@ final class DailyCell: TransparentCell {
     
     //MARK: life Cycle
     override func setup() {
-       activateConstraints()
+        activateConstraints()
     }
     private lazy var stack: UIStackView = {
         $0.addArrangedSubview(dayLabel)
@@ -87,9 +87,9 @@ final class DailyCell: TransparentCell {
         )
         stack.snp.makeConstraints { make in
             make.top.leading.bottom.trailing.equalToSuperview()
-
-        
+            
+            
         }
-    
+        
     }
 }
