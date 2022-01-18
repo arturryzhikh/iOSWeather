@@ -215,9 +215,9 @@ enum Home {
             let temperature: String
             let temperatureRange: String
             
-            init(location: String = .emptyString,
+            init(location: String = "__  __",
                  outline: String = .emptyString,
-                 temperature: String = "_ _",
+                 temperature: String = "☀︎" ,
                  temperatureRange: String = .emptyString) {
                 self.location = location
                 self.outline = outline
