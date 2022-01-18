@@ -217,7 +217,7 @@ enum Home {
             
             init(location: String = .emptyString,
                  outline: String = .emptyString,
-                 temperature: String = .emptyString,
+                 temperature: String = "_ _",
                  temperatureRange: String = .emptyString) {
                 self.location = location
                 self.outline = outline

@@ -27,6 +27,7 @@ public final class WeatherView: UIView {
     }
     override init(frame: CGRect) {
         super.init(frame: frame)
+        backgroundColor = .yellow
         activateConstraints()
         generateGradient()
         tabbar.addSeparator(to: .top, aboveSubview: tabbar)
@@ -51,8 +52,7 @@ public final class WeatherView: UIView {
         
     }
     lazy var tabbar: UITabBar = {
-        $0.barTintColor = .clear
-        $0.tintColor = .white
+       $0.tintColor = .white
         let search = UITabBarItem(tabBarSystemItem: .search, tag: 0)
         $0.items = [search]
         return $0

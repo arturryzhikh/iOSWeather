@@ -105,6 +105,7 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
     }
     private func setupSearchController(placeholder: String) {
         self.searchController = UISearchController(searchResultsController: nil)
+        searchController.searchBar.tintColor = #colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 1)
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.dimsBackgroundDuringPresentation = false
         searchController.searchBar.sizeToFit()
