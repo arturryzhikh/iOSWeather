@@ -11,24 +11,32 @@
 //
 
 import UIKit
+import CoreLocation
 
 protocol HomeBusinessLogic {
-    func getForecast(_ request: Home.Requests.Request)
+    func getForecast(for coord: Coord)
+    func getCityForecast()
 }
 
 protocol HomeDataStore {
-    var coordinates: Coordinates? { get set }
+    var coord: Coord? { get set }
 }
 
 class HomeInteractor: NSObject, HomeBusinessLogic, HomeDataStore {
     
-    var coordinates: Coordinates?
-    var errorMessage: String = .emptyString
     var presenter: HomePresentationLogic?
     var worker: HomeWorker?
+    var coord: Coord?
+    func getCityForecast() {
+        guard let coord = coord, coord.valid else {
+            return
+        }
+        
+    }
     
-    // MARK: Get Forecast
-    func getForecast(_ request: Home.Requests.Request) {
+    // MARK: Get Forecast with location coordinates
+    func getForecast(for coord: Coord) {
+        let request = Home.Requests.Request(lat: coord.lat, lon: coord.lon)
         worker = HomeWorker()
         worker?.getForecast(request: request) { [weak self] result in
             guard let self = self else {
@@ -37,13 +45,13 @@ class HomeInteractor: NSObject, HomeBusinessLogic, HomeDataStore {
             switch result {
             case.failure(let error):
                 print(error)
-                self.errorMessage = "Error occured while fetching weather"
-                self.presenter?.presentError(message: self.errorMessage)
+                let message = "Error occured while fetching weather"
+                self.presenter?.presentError(message: message)
             case.success(let response):
                 self.presenter?.presentWeather(response: response)
             }
         }
     }
-    
+
 }
 

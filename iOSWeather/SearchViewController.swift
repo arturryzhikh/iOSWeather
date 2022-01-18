@@ -96,7 +96,6 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
         router?.showAlert(message: message)
     }
     
-    
     //MARK: Initial setup
     private func setupTableView() {
         tableView = UITableView(frame: .zero, style: .grouped)
@@ -192,10 +191,12 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.layoutIfNeeded()
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let viewModel = viewModel.itemViewModels[indexPath.row]
-        let coordinates = Coordinates(latitude: viewModel.latitude,
-                                     longitude: viewModel.longitude)
+        let coordinates = Coord(lat: viewModel.latitude,
+                                     lon: viewModel.longitude)
+        
         router?.routeToHome(with: coordinates)
     }
     

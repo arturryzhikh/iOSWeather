@@ -49,12 +49,13 @@ enum Home {
                 "exclude" :  "alerts"
             ]
             
-            init (coordinate: (lat: Double, lon: Double),
+            init (lat: String,
+                  lon: String,
                   language: String = "en",
                   units: String = "metric",
                   apiKey: String = Api.OpenWeatherMap.key) {
-                queries.updateValue(String(coordinate.lat), forKey: "lat")
-                queries.updateValue(String(coordinate.lon), forKey: "lon")
+                queries.updateValue(lat, forKey: "lat")
+                queries.updateValue(lon, forKey: "lon")
                 queries.updateValue(language, forKey: "lang")
                 queries.updateValue(units, forKey: "units")
                 queries.updateValue(apiKey, forKey: "appid")
@@ -131,7 +132,7 @@ enum Home {
     }
     //MARK: ViewModels
     enum ViewModels {
-        class ViewModel {
+        struct ViewModel {
             enum Section: Int, CaseIterable {
                 case currentHourly,
                      daily,

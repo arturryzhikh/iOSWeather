@@ -24,7 +24,7 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
     
     //MARK: Other Properties
     private let locationManager: CLLocationManager = CLLocationManager()
-    private let viewModel = Home.ViewModels.ViewModel()
+    private var viewModel = Home.ViewModels.ViewModel()
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -65,24 +65,19 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.startUpdatingLocation()
+        
     }
     
     //MARK: HomeDisplayLogic
     
     func displayWeather(viewModel: Home.ViewModels.ViewModel) {
-        self.viewModel.currentHourlySectionVM = viewModel.currentHourlySectionVM
-        self.viewModel.dailySectionVM = viewModel.dailySectionVM
-        self.viewModel.todaySectionVM = viewModel.todaySectionVM
-        self.viewModel.detailSectionVM = viewModel.detailSectionVM
-        
+        self.viewModel = viewModel
         DispatchQueue.main.async { [weak self] in
             guard let self = self else {
                 return
             }
             self.collectionView.reloadData()
             self.activityIndicator.stopAnimating()
-            
         }
     }
     
@@ -102,14 +97,13 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        
         
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        locationManager.startUpdatingLocation()
     }
     override func loadView() {
         view = WeatherView()
@@ -257,10 +251,8 @@ extension HomeViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.first else { return }
         locationManager.stopUpdatingLocation()
-        let request = Home.Requests.Request(coordinate: (lat: location.coordinate.latitude,
-                                                         lon: location.coordinate.longitude))
-        
-        interactor?.getForecast(request)
+        let coord = Coord(lat: "\(location.coordinate.latitude)", lon: "\(location.coordinate.longitude)")
+        interactor?.getForecast(for: coord)
         activityIndicator.startAnimating()
         
     }

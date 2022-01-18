@@ -14,7 +14,7 @@ import UIKit
 
 @objc protocol HomeRoutingLogic {
     func showAlert(message: String)
-    func navigateToSearch(source: UIViewController, destination: UIViewController)
+    func routeToSearch(source: UIViewController, destination: UIViewController)
 }
 
 protocol HomeDataPassing {
@@ -22,34 +22,25 @@ protocol HomeDataPassing {
 }
 
 class HomeRouter: NSObject, HomeRoutingLogic, HomeDataPassing {
-    
+   
     weak var viewController: HomeViewController?
     var dataStore: HomeDataStore?
     //MARK: Alert
     func showAlert(message: String) {
-        let alert = UIAlertController(
-            title: "Oops! Something went wrong.",
-            message: message,
-            preferredStyle: .actionSheet)
-        alert.addAction(.init(title: "ok", style: .default))
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else {
-                return
-            }
-            self.viewController?.present(alert, animated: true)
-        }
-    }
-    //MARK: Navigation
-    func navigateToSearch(source: UIViewController, destination: UIViewController) {
-        source.show(destination, sender: nil)
+        viewController?.presentAlert(message: message)
     }
     
-    //MARK: Passing data
     
-    //      func passDataToSomewhere(source: HomeDataStore, destination: inout SomewhereDataStore) {
-    //        destination.name = source.name
-    //      }
+    
+    //MARK: Routing
+    
+    func routeToSearch(source: UIViewController, destination: UIViewController) {
+        let dest = UINavigationController(rootViewController: destination)
+        source.presentInFullScreen(dest, animated: true)
+    }
+    
 }
+
 
 //MARK: UITabBarDelegate
 extension HomeRouter: UITabBarDelegate {
@@ -57,7 +48,6 @@ extension HomeRouter: UITabBarDelegate {
         guard let source = viewController else {
             return
         }
-        let dest = UINavigationController(rootViewController: SearchViewController())
-        navigateToSearch(source: source, destination: dest)
+        routeToSearch(source: source, destination: SearchViewController())
     }
 }

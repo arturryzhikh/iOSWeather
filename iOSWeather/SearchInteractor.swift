@@ -17,12 +17,12 @@ protocol SearchBusinessLogic {
 }
 
 protocol SearchDataStore {
-    var coordinates: Coordinates? { get set  }
+    var coordinates: Coord? { get set  }
 }
 
 class SearchInteractor: SearchBusinessLogic, SearchDataStore {
     
-    var coordinates: Coordinates?
+    var coordinates: Coord?
     var presenter: SearchPresentationLogic?
     var worker: SearchWorker?
     
