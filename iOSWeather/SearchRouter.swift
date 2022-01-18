@@ -46,7 +46,7 @@ class SearchRouter: NSObject, SearchRoutingLogic, SearchDataPassing {
         var destionationDS = destinationVC.router?.dataStore
         pass(coordinates: coordinates, to: &destionationDS)
         navigateToHome(source: viewController, destination: destinationVC)
-        destinationVC.interactor?.getCityForecast()
+        
     }
     //MARK: Passing data
     func pass(coordinates: Coord, to destination: inout HomeDataStore?) {
@@ -55,7 +55,9 @@ class SearchRouter: NSObject, SearchRoutingLogic, SearchDataPassing {
     
     //MARK: Navigation
     func navigateToHome(source: SearchViewController?, destination: HomeViewController?) {
-        source?.navigationController?.dismiss(animated: true)
+        source?.navigationController?.dismiss(animated: true) {
+            destination?.getCityForecast()
+        }
         
     }
     

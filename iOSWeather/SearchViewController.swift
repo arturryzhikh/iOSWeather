@@ -75,10 +75,9 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
     // MARK: Search Cities
     
     //@IBOutlet weak var nameTextField: UITextField!
-    private func searchCities(named: String) {
-        //        let request = Search.Requests.Forecast(cityName: named)
-        let req = Search.Requests.CitiesRequest(cityName: named)
-        interactor?.searchCities(request: req)
+    func searchCities(named: String) {
+        interactor?.searchCities(named: named)
+        activityIndicator.startAnimating()
     }
     //MARK: SearchDisplayLogic
     func displayCities(viewModel: Search.ViewModels.ViewModel) {
@@ -88,6 +87,7 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
     }
     func displayError(message: String) {
         router?.showAlert(message: message)
+        activityIndicator.stopAnimating()
     }
     
     //MARK: Initial setup
@@ -148,7 +148,6 @@ extension SearchViewController: UISearchResultsUpdating  {
         guard !text.isEmpty else {
             return
         }
-        activityIndicator.startAnimating()
         searchCities(named: text)
         
     }

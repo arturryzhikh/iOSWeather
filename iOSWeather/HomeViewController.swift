@@ -17,9 +17,11 @@ import SnapKit
 protocol HomeDisplayLogic: AnyObject {
     func displayWeather(_ viewModel: Home.ViewModels.ViewModel)
     func displayError(message: String)
+    
 }
 
 final class HomeViewController: UIViewController, HomeDisplayLogic {
+    
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -46,7 +48,16 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
         setup()
         
     }
-    
+    private func getWeather(for location: CLLocation) {
+        activityIndicator.startAnimating()
+        let coord = Coord(lat: "\(location.coordinate.latitude)",
+                          lon: "\(location.coordinate.longitude)")
+        interactor?.getWeather(for: coord)
+    }
+    func getCityForecast() {
+        activityIndicator.startAnimating()
+        interactor?.getCityForecast()
+    }
     // MARK: Setup
     
     private func setup() {
@@ -75,27 +86,18 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
     
     //MARK: HomeDisplayLogic
     func displayWeather(_ viewModel: Home.ViewModels.ViewModel) {
-        self.homeViewModel = viewModel
-        DispatchQueue.main.async {
-            self.collectionView.reloadData()
-            self.activityIndicator.stopAnimating()
-        }
+        homeViewModel = viewModel
+        collectionView.reloadData()
+        activityIndicator.stopAnimating()
+        
     }
     
     func displayError(message: String) {
         router?.showAlert(message: message)
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else {
-                return
-            }
-            self.activityIndicator.stopAnimating()
-        }
-        
+        activityIndicator.stopAnimating()
+        router?.showAlert(message: message)
     }
-    
-    
     //MARK: View Life Cycle
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -104,7 +106,7 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
         super.viewWillAppear(animated)
         locationManager.startUpdatingLocation()
     }
-   
+    
     //MARK: Subviews
     var collectionView: UICollectionView!  {
         return (self.view as! WeatherView).collectionView
@@ -113,7 +115,7 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
     private var weatherView: WeatherView! {
         return (self.view as! WeatherView)
     }
-    private lazy var activityIndicator: UIActivityIndicatorView = {
+    lazy var activityIndicator: UIActivityIndicatorView = {
         $0.hidesWhenStopped = true
         $0.stopAnimating()
         view.addSubview($0)
@@ -247,9 +249,8 @@ extension HomeViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.first else { return }
         locationManager.stopUpdatingLocation()
-        let coord = Coord(lat: "\(location.coordinate.latitude)", lon: "\(location.coordinate.longitude)")
-        interactor?.getWeather(for: coord)
-        activityIndicator.startAnimating()
+        getWeather(for: location)
+        
         
     }
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {

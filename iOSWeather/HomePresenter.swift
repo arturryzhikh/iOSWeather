@@ -23,21 +23,31 @@ class HomePresenter: NSObject, HomePresentationLogic {
     weak var viewController: HomeDisplayLogic?
     //MARK: Present
     func presentWeather(response: Home.Responses.Response) {
-        builder = HomeViewModelBuilder(model: response)
-        guard let viewModel = builder?.buildViewModel() else {
-            let message = "Error constructing View Model from weather data"
-            viewController?.displayError(message: message)
-            return
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else {
+                return
+            }
+            self.builder = HomeViewModelBuilder(model: response)
+            guard let viewModel = self.builder?.buildViewModel() else {
+                let message = "Error constructing View Model from weather data"
+                self.viewController?.displayError(message: message)
+                return
+            }
+            self.viewController?.displayWeather(viewModel)
         }
-        viewController?.displayWeather(viewModel)
-        
-    }
-    func present(error: Error) {
-        let message = "Error occured while fetching weather"
-        + error.localizedDescription
-        viewController?.displayError(message: message)
     }
     
+    func present(error: Error) {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else {
+                return
+            }
+            let message = "Error occured while fetching weather"
+            + error.localizedDescription
+            self.viewController?.displayError(message: message)        }
+        
+    }
+
 }
 
 

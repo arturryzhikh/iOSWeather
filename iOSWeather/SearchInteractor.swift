@@ -13,7 +13,7 @@
 import UIKit
 
 protocol SearchBusinessLogic {
-    func searchCities(request: Search.Requests.CitiesRequest)
+    func searchCities(named: String)
 }
 
 protocol SearchDataStore {
@@ -27,13 +27,13 @@ class SearchInteractor: SearchBusinessLogic, SearchDataStore {
     
     // MARK: Search Cities
     
-    func searchCities(request: Search.Requests.CitiesRequest) {
+    func searchCities(named: String) {
+        guard named.isValid else {
+            presenter?.presentCities(response: [])
+            return
+        }
+        let request = Search.Requests.CitiesRequest(cityName: named)
         worker = SearchWorker()
-        guard let cityName = request.queries["city"],
-              cityName.isValid else {
-                  self.presenter?.presentCities(response: [])
-                  return
-              }
         worker?.getCities(request: request) { [weak self] result in
             guard let self = self else {
                 return
