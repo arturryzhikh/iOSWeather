@@ -144,7 +144,7 @@ enum Home {
                  dailySectionVM: DailySectionViewModel = DailySectionViewModel.init(),
                  todaySectionVM: TodaySectionViewModel = .init(),
                  detailSectionVM: DetailSectionViewModel = .init()
-                 ) {
+            ) {
                 self.currentHourlySectionVM = currentHourlySectionVM
                 self.dailySectionVM = dailySectionVM
                 self.todaySectionVM = todaySectionVM
@@ -157,7 +157,6 @@ enum Home {
             var dailySectionVM: DailySectionViewModel
             var todaySectionVM: TodaySectionViewModel
             var detailSectionVM: DetailSectionViewModel
-           
             
             //MARK: Properties
             
@@ -186,7 +185,7 @@ enum Home {
                     
                 case .detail:
                     return detailSectionVM.count
-              
+                    
                 default:
                     return 0
                 }
@@ -227,7 +226,7 @@ enum Home {
             }
             
         }
-
+        
         //MARK: HourlyFooterViewModel
         struct HourlyFooterViewModel: SectionWithItemsViewModel {
             
@@ -236,7 +235,7 @@ enum Home {
             }
             
             let itemViewModels: [HourlyItemViewModel]
-
+            
         }
         //MARK: HourlyItemViewModel
         struct HourlyItemViewModel {
@@ -250,7 +249,7 @@ enum Home {
             let hour: String
             let iconName: String
             let temperature: String
-
+            
         }
         //MARK: DailySectionViewModel
         struct DailySectionViewModel: SectionWithItemsViewModel {
@@ -259,10 +258,10 @@ enum Home {
             }
             
             let itemViewModels: [DailyCellViewModel]
-
+            
         }
         //MARK: DailyCellViewModel
-
+        
         struct DailyCellViewModel {
             init(day: String = .emptyString,
                  maxTemperature: String = .emptyString,
@@ -281,16 +280,16 @@ enum Home {
             let minTemperature: String
             let weatherIcon: String
             let probability: String
-
+            
         }
-
+        
         //MARK: DetailSectionViewModel
         struct DetailSectionViewModel: SectionWithItemsViewModel {
             init(itemViewModels: [DetailCellViewModel] = []) {
                 self.itemViewModels = itemViewModels
             }
             let itemViewModels: [DetailCellViewModel]
-          
+            
         }
         //MARK: DetailCellViewModel
         struct DetailCellViewModel {

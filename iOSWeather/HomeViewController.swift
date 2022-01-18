@@ -89,7 +89,7 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
         homeViewModel = viewModel
         collectionView.reloadData()
         activityIndicator.stopAnimating()
-        weatherView.generateGradient()
+        self.weatherView.generateGradient()
         
     }
     

@@ -15,6 +15,7 @@ import UIKit
 protocol HomePresentationLogic {
     func presentWeather(response: Home.Responses.Response)
     func present(error: Error)
+    func clear()
 }
 
 class HomePresenter: NSObject, HomePresentationLogic {
@@ -46,6 +47,11 @@ class HomePresenter: NSObject, HomePresentationLogic {
             + error.localizedDescription
             self.viewController?.displayError(message: message)        }
         
+    }
+    func clear() {
+        //create dummy view model with empty fields to clear home screen
+        let viewModel = Home.ViewModels.ViewModel()
+        viewController?.displayWeather(viewModel)
     }
 
 }

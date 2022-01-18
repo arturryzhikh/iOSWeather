@@ -12,7 +12,15 @@
 
 import UIKit
 import CoreLocation
-
+enum HomeInteractorError: Error, CustomStringConvertible {
+    case badCoordinates
+    var description: String {
+        switch self {
+        case .badCoordinates:
+            return "No appropriate coordinate to obtain weather"
+        }
+    }
+}
 protocol HomeBusinessLogic {
     func getWeather(for coord: Coord)
     func getCityForecast()
@@ -28,10 +36,13 @@ class HomeInteractor: NSObject, HomeBusinessLogic, HomeDataStore {
     var worker: HomeWorker?
     var coord: Coord?
     func getCityForecast() {
-//        guard let coord = coord, coord.valid else {
-//            return
-//        }
-        getWeather(for: coord!)
+        presenter?.clear()
+        guard let coord = coord, coord.valid else {
+            presenter?.present(error: HomeInteractorError.badCoordinates)
+            return
+        }
+        
+        getWeather(for: coord)
     }
     
     // MARK: Get Forecast with location coordinates
