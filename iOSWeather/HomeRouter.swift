@@ -37,10 +37,6 @@ class HomeRouter: NSObject, HomeRoutingLogic, HomeDataPassing {
     func routeToSearch(source: UIViewController, destination: UIViewController) {
         let destination = UINavigationController(rootViewController: destination)
         source.present(destination, animated: true)
-        
-        
-        
-        
     }
     
 }

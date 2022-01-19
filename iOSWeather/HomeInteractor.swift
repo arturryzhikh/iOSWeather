@@ -36,7 +36,6 @@ class HomeInteractor: NSObject, HomeBusinessLogic, HomeDataStore {
     var worker: HomeWorker?
     var coord: Coord?
     func getCityForecast() {
-        presenter?.clear()
         guard let coord = coord, coord.isValid else {
             presenter?.present(error: HomeInteractorError.badCoordinates)
             return
@@ -58,15 +57,9 @@ class HomeInteractor: NSObject, HomeBusinessLogic, HomeDataStore {
             }
             switch result {
                 case.failure(let error):
-                DispatchQueue.main.async {
-                    self.presenter?.present(error: error)
-                }
-               
-            case.success(let response):
-                DispatchQueue.main.async {
-                    self.presenter?.presentWeather(response: response)
-                }
-                
+                self.presenter?.present(error: error)
+                case.success(let response):
+                self.presenter?.presentWeather(response: response)
             }
         }
     }

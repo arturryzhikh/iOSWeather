@@ -17,7 +17,6 @@ import SnapKit
 protocol HomeDisplayLogic: AnyObject {
     func displayWeather(_ viewModel: Home.ViewModels.ViewModel)
     func displayError(message: String)
-    
 }
 
 final class HomeViewController: UIViewController, HomeDisplayLogic {
@@ -29,7 +28,15 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
     private var weatherView: WeatherView! {
         return (self.view as! WeatherView)
     }
-    
+    private lazy var activity: UIActivityIndicatorView = {
+        view.insertSubview($0, aboveSubview: collectionView)
+        $0.color = .white
+        $0.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(32)
+            make.leading.equalToSuperview().offset(32)
+        }
+        return $0
+    }(UIActivityIndicatorView())
     
     //MARK: Other Properties
     private let locationManager: CLLocationManager = CLLocationManager()
@@ -54,12 +61,13 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
     }
     //MARK: Get Weather
     private func getWeather(for location: CLLocation) {
-        
+        activity.startAnimating()
         let coord = Coord(lat: "\(location.coordinate.latitude)",
                           lon: "\(location.coordinate.longitude)")
         interactor?.getWeather(for: coord)
     }
     func getCityForecast() {
+        activity.startAnimating()
         interactor?.getCityForecast()
     }
     // MARK: Setup
@@ -78,6 +86,7 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
                                 collectionDataSource: self,
                                 tabBarDelegate: router)
         setupLocationManager()
+        
     }
     
     private func setupLocationManager() {
@@ -88,13 +97,27 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
     
     //MARK: HomeDisplayLogic
     func displayWeather(_ viewModel: Home.ViewModels.ViewModel) {
-        homeViewModel = viewModel
-        collectionView.reloadData()
-        weatherView.generateGradient()
+       DispatchQueue.main.async { [weak self] in
+           guard let self = self else {
+               return
+           }
+           self.homeViewModel = viewModel
+           self.collectionView.reloadData()
+           self.weatherView.generateGradient()
+           self.activity.stopAnimating()
+        }
+        
     }
     
     func displayError(message: String) {
-        router?.showAlert(message: message)
+        
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else {
+                return
+            }
+            self.router?.showAlert(message: message)
+            self.activity.stopAnimating()
+        }
     }
     //MARK: View Life Cycle
     override func viewDidLoad() {

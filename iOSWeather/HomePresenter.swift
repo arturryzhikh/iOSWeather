@@ -15,7 +15,7 @@ import UIKit
 protocol HomePresentationLogic {
     func presentWeather(response: Home.Responses.Response)
     func present(error: Error)
-    func clear()
+    
 }
 
 class HomePresenter: NSObject, HomePresentationLogic {
@@ -24,36 +24,23 @@ class HomePresenter: NSObject, HomePresentationLogic {
     weak var viewController: HomeDisplayLogic?
     //MARK: Present
     func presentWeather(response: Home.Responses.Response) {
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else {
-                return
-            }
-            self.builder = HomeViewModelBuilder(model: response)
-            guard let viewModel = self.builder?.buildViewModel() else {
-                let message = "Error constructing View Model from weather data"
-                self.viewController?.displayError(message: message)
-                return
-            }
-            self.viewController?.displayWeather(viewModel)
+        self.builder = HomeViewModelBuilder(model: response)
+        guard let viewModel = self.builder?.buildViewModel() else {
+            let message = "Error constructing View Model from weather data"
+            self.viewController?.displayError(message: message)
+            return
         }
+        self.viewController?.displayWeather(viewModel)
+        
     }
     
     func present(error: Error) {
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else {
-                return
-            }
-            let message = "Error occured while fetching weather"
-            + error.localizedDescription
-            self.viewController?.displayError(message: message)        }
+        let message = "Error occured while fetching weather"
+        + error.localizedDescription
+        self.viewController?.displayError(message: message)
         
     }
-    func clear() {
-        //create dummy view model with empty fields to clear home screen
-        let viewModel = Home.ViewModels.ViewModel()
-        viewController?.displayWeather(viewModel)
-    }
-
+  
 }
 
 

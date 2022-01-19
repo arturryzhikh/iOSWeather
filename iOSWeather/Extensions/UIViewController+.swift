@@ -17,12 +17,11 @@ extension UIViewController {
     func presentAlert(message: String,
                       alertTitle: String = "Oops! Somethig went wrong",
                       alertStyle: UIAlertController.Style = .alert, actionTitle: String = "Ok", actionStyle: UIAlertAction.Style = .cancel) {
-        DispatchQueue.main.async {
-            let alertMessage = UIAlertController(title: alertTitle , message: message, preferredStyle: alertStyle)
-            let cancelAction = UIAlertAction(title: actionTitle, style: .cancel)
-            alertMessage.addAction(cancelAction)
-            
-            self.present(alertMessage, animated: true, completion: nil)
-        }
+        let alertMessage = UIAlertController(title: alertTitle , message: message, preferredStyle: alertStyle)
+        let cancelAction = UIAlertAction(title: actionTitle, style: .cancel)
+        alertMessage.addAction(cancelAction)
+        
+        self.present(alertMessage, animated: true, completion: nil)
+        
     }
 }
