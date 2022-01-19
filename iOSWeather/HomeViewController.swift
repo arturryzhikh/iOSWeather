@@ -29,10 +29,7 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
     private var weatherView: WeatherView! {
         return (self.view as! WeatherView)
     }
-    private var activityIndicator: UIActivityIndicatorView {
-        return (self.view as! WeatherView).activity
-    }
-   
+    
     
     //MARK: Other Properties
     private let locationManager: CLLocationManager = CLLocationManager()
@@ -57,19 +54,15 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
     }
     //MARK: Get Weather
     private func getWeather(for location: CLLocation) {
-        activityIndicator.startAnimating()
+        
         let coord = Coord(lat: "\(location.coordinate.latitude)",
                           lon: "\(location.coordinate.longitude)")
         interactor?.getWeather(for: coord)
     }
     func getCityForecast() {
-        activityIndicator.isHidden = false
-        print(activityIndicator.isHidden)
-        activityIndicator.startAnimating()
         interactor?.getCityForecast()
     }
     // MARK: Setup
-    
     private func setup() {
         let viewController = self
         let interactor = HomeInteractor()
@@ -97,12 +90,10 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
     func displayWeather(_ viewModel: Home.ViewModels.ViewModel) {
         homeViewModel = viewModel
         collectionView.reloadData()
-        activityIndicator.stopAnimating()
         weatherView.generateGradient()
     }
     
     func displayError(message: String) {
-        activityIndicator.stopAnimating()
         router?.showAlert(message: message)
     }
     //MARK: View Life Cycle

@@ -40,7 +40,7 @@ public final class WeatherView: UIView {
     }
     //MARK: Instance methods
     private func activateConstraints() {
-        addMultipleSubviews(collectionView,tabbar,activity)
+        addMultipleSubviews(collectionView,tabbar)
         collectionView.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
             make.bottom.equalTo(tabbar.snp.top)
@@ -49,16 +49,10 @@ public final class WeatherView: UIView {
             make.leading.trailing.equalToSuperview()
             make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom)
         }
-        activity.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(32)
-            make.top.equalTo(safeAreaLayoutGuide.snp.top).offset(32)
-        }
+        
         
     }
-    lazy var activity: UIActivityIndicatorView = {
-        $0.color = .white
-        return $0
-    }(UIActivityIndicatorView())
+   
     lazy var tabbar: UITabBar = {
         let search = UITabBarItem(tabBarSystemItem: .search, tag: 0)
         search.badgeValue = "➢"

@@ -29,8 +29,7 @@ extension CGColor {
             CGColor.colors4,
             CGColor.colors5,
             CGColor.colors6,
-            CGColor.colors7,
-            CGColor.colors8
+            CGColor.colors7
         ]
     }
     fileprivate static var colors1: [CGColor] {
@@ -78,12 +77,7 @@ extension CGColor {
             UIColor(red: 0.135266, green: 0.628718, blue: 0.70031, alpha: 1).cgColor
         ]
     }
-    fileprivate static var colors8: [CGColor] {
-        return [
-            UIColor.lightGray.cgColor,
-            UIColor.darkGray.cgColor
-        ]
-    }
+   
    
 }
 
