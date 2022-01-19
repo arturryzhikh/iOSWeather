@@ -21,6 +21,18 @@ protocol HomeDisplayLogic: AnyObject {
 }
 
 final class HomeViewController: UIViewController, HomeDisplayLogic {
+    //MARK: Subviews
+    var collectionView: UICollectionView!  {
+        return (self.view as! WeatherView).collectionView
+    }
+    
+    private var weatherView: WeatherView! {
+        return (self.view as! WeatherView)
+    }
+    private var activityIndicator: UIActivityIndicatorView {
+        return (self.view as! WeatherView).activity
+    }
+   
     
     //MARK: Other Properties
     private let locationManager: CLLocationManager = CLLocationManager()
@@ -43,6 +55,7 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
         setup()
         
     }
+    //MARK: Get Weather
     private func getWeather(for location: CLLocation) {
         activityIndicator.startAnimating()
         let coord = Coord(lat: "\(location.coordinate.latitude)",
@@ -50,6 +63,8 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
         interactor?.getWeather(for: coord)
     }
     func getCityForecast() {
+        activityIndicator.isHidden = false
+        print(activityIndicator.isHidden)
         activityIndicator.startAnimating()
         interactor?.getCityForecast()
     }
@@ -76,7 +91,6 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        
     }
     
     //MARK: HomeDisplayLogic
@@ -84,12 +98,10 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
         homeViewModel = viewModel
         collectionView.reloadData()
         activityIndicator.stopAnimating()
-        self.weatherView.generateGradient()
-        
+        weatherView.generateGradient()
     }
     
     func displayError(message: String) {
-        router?.showAlert(message: message)
         activityIndicator.stopAnimating()
         router?.showAlert(message: message)
     }
@@ -103,25 +115,7 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
         locationManager.startUpdatingLocation()
     }
     
-    //MARK: Subviews
-    var collectionView: UICollectionView!  {
-        return (self.view as! WeatherView).collectionView
-    }
-    
-    private var weatherView: WeatherView! {
-        return (self.view as! WeatherView)
-    }
-    lazy var activityIndicator: UIActivityIndicatorView = {
-        $0.hidesWhenStopped = true
-        $0.stopAnimating()
-        view.addSubview($0)
-        $0.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview().offset(-90)
-        }
-        return $0
-    }(UIActivityIndicatorView())
-    
+
 }
 
 //MARK: UICollectionViewDataSource

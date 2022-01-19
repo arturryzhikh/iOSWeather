@@ -15,7 +15,7 @@ extension UIView {
     /// Adds multiple UI Views as subviews
     ///
     /// - Parameters:
-    ///     - subview: UI Views to add
+    ///     - subview:  UI Views to add
     func addMultipleSubviews(_ subviews: UIView...) {
         subviews.forEach {
             self.addSubview($0)
@@ -61,6 +61,7 @@ extension UIView {
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(blurEffectView)
     }
+    
     
 }
 

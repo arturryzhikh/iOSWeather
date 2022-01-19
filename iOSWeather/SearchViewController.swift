@@ -28,6 +28,7 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
     private var searchController: UISearchController!
     private var tableView: UITableView!
     private let activityIndicator: UIActivityIndicatorView = {
+        $0.color = .white
         $0.hidesWhenStopped = true
         return $0
     }(UIActivityIndicatorView())

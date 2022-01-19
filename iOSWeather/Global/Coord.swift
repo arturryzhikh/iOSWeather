@@ -10,7 +10,7 @@ import Foundation
 class Coord: NSObject  {
     let lat: String
     let lon: String
-    var valid: Bool {
+    var isValid: Bool {
         return !lat.isEmpty && !lon.isEmpty
     }
     init(lat: String, lon: String) {

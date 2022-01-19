@@ -37,11 +37,10 @@ class HomeInteractor: NSObject, HomeBusinessLogic, HomeDataStore {
     var coord: Coord?
     func getCityForecast() {
         presenter?.clear()
-        guard let coord = coord, coord.valid else {
+        guard let coord = coord, coord.isValid else {
             presenter?.present(error: HomeInteractorError.badCoordinates)
             return
         }
-        
         getWeather(for: coord)
     }
     

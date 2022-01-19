@@ -22,4 +22,7 @@ extension String {
     static var underScore: String {
         return "_"
     }
+    static var sun: String {
+        return "☼"
+    }
 }
