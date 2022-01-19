@@ -31,10 +31,10 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
     private lazy var activity: UIActivityIndicatorView = {
         view.insertSubview($0, aboveSubview: collectionView)
         $0.color = .white
-        let scale = 1.4
+        let scale = 1.2
         $0.transform = CGAffineTransform.init(scaleX: scale, y: scale)
         $0.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(48)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(32)
             make.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-32)
         }
         return $0
