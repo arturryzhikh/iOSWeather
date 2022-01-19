@@ -28,10 +28,9 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
     private var searchController: UISearchController!
     private var tableView: UITableView!
     private let activityIndicator: UIActivityIndicatorView = {
-        let ai = UIActivityIndicatorView()
-        ai.hidesWhenStopped = true
-        return ai
-    }()
+        $0.hidesWhenStopped = true
+        return $0
+    }(UIActivityIndicatorView())
     // MARK: Object lifecycle
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -105,7 +104,7 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
     }
     private func setupSearchController(placeholder: String) {
         self.searchController = UISearchController(searchResultsController: nil)
-        searchController.searchBar.tintColor = #colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 1)
+        searchController.searchBar.tintColor = .white
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.dimsBackgroundDuringPresentation = false
         searchController.searchBar.sizeToFit()

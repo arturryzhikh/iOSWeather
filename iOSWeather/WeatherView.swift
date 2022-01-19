@@ -52,8 +52,10 @@ public final class WeatherView: UIView {
         
     }
     lazy var tabbar: UITabBar = {
-       $0.tintColor = .white
         let search = UITabBarItem(tabBarSystemItem: .search, tag: 0)
+        search.badgeValue = "➢"
+        search.badgeColor = .clear
+        $0.barTintColor = .clear
         $0.items = [search]
         return $0
     }(UITabBar())
