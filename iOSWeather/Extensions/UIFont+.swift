@@ -19,6 +19,9 @@ extension UIFont {
     static var day: UIFont {
         UIFont.systemFont(ofSize: (Screen.height * 0.02), weight: .regular)
     }
+    static var place: UIFont {
+        UIFont.systemFont(ofSize: (Screen.height * 0.022), weight: .medium)
+    }
     static var temperatureRegular: UIFont {
         UIFont.systemFont(ofSize: (Screen.height * 0.025), weight: .regular)
     }

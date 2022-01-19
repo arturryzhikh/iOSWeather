@@ -215,9 +215,9 @@ enum Home {
             let temperature: String
             let temperatureRange: String
             
-            init(location: String = "__  __",
+            init(location: String = .emptyString,
                  outline: String = .emptyString,
-                 temperature: String = "☀︎" ,
+                 temperature: String = .emptyString ,
                  temperatureRange: String = .emptyString) {
                 self.location = location
                 self.outline = outline
@@ -242,9 +242,9 @@ enum Home {
             init(hour: String = .emptyString,
                  iconName: String = .emptyString,
                  temperature: String = .emptyString) {
-                self.hour = hour
+                self.hour = hour == .emptyString ? .underScore : hour
                 self.iconName = iconName
-                self.temperature = temperature
+                self.temperature = temperature == .emptyString ? .underScore + .degree : temperature
             }
             let hour: String
             let iconName: String

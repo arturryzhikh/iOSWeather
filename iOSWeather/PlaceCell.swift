@@ -25,7 +25,7 @@ class PlaceCell: UITableViewCell, ViewRepresentable {
         $0.numberOfLines = 0
         $0.textColor = .white
         return $0
-    }(UILabel(alignment: .left, font:.overView ))
+    }(UILabel(alignment: .left, font: .place ))
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .value1, reuseIdentifier: reuseIdentifier)
         clipsToBounds = true

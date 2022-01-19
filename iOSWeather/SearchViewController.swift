@@ -123,7 +123,7 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
         navigationItem.rightBarButtonItem = activity
         navigationItem.hidesSearchBarWhenScrolling = false
         navigationController?.navigationBar.barTintColor = .darkGray.withAlphaComponent(0.3)
-        
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
     }
     //MARK: Constraints
     private func activateConstraints() {

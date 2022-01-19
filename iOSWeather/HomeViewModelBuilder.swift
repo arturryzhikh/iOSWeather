@@ -15,11 +15,11 @@ protocol ViewModelBuilding {
 extension ViewModelBuilding {
     ///Constructs temperature string from double
     func temperatureString(temperature: Double) -> String {
-        let degree = "°"
+        
         if temperature > -1 && temperature < 0  {
-            return "0" + degree
+            return "0" + .degree
         } else {
-            return String(format: "%.0f", temperature) + degree
+            return String(format: "%.0f", temperature) + .degree
         }
         
     }
@@ -203,7 +203,7 @@ public final class HomeViewModelBuilder: ViewModelBuilding {
             switch item {
             case 0:
                 guard let sunrise = model.current?.sunrise else {
-                    return (.emptyString,.emptyString)
+                    return ("SUNRISE",.emptyString)
                 }
                 let sunriseDate = Date(timeIntervalSince1970: Double(sunrise))
                 let formatter = DateFormatter()
@@ -229,7 +229,9 @@ public final class HomeViewModelBuilder: ViewModelBuilding {
                       let windSpeed = model.current?.windSpeed else {
                           return ("WIND", .emptyString)
                       }
-                return ("WIND", "\(windDirection(degree: windDeg)) \(Int(windSpeed)) m/s")
+                let dir = "\(windDirection(degree: windDeg))"
+                let speed = "\(Int(windSpeed)) m/s"
+                return ("WIND", dir + .space + .space + speed)
             case 4:
                 guard let feelsLike = model.current?.feelsLike else {
                     return ("FEELS LIKE", .emptyString)
@@ -237,24 +239,24 @@ public final class HomeViewModelBuilder: ViewModelBuilding {
                 return ("FEELS LIKE", temperatureString(temperature: feelsLike))
             case 5:
                 guard let prec = model.minutely?.first?.precipitation else {
-                    return (.emptyString,.emptyString)
+                    return ("PRECIPITATION",.emptyString)
                 }
                 return ("PRECIPITATION", "\(Int(prec)) cm")
             case 6:
                 guard let pressure = model.current?.pressure else {
-                    return (.emptyString,.emptyString)
+                    return ("PRESSURE",.emptyString)
                 }
                 let mmHgPressure = (Double(Double(pressure) / 1.333).rounded() * 100 / 100)
                 
                 return ("PRESSURE", "\(mmHgPressure) mm Hg")
             case 7:
                 guard let visibility = model.current?.visibility else {
-                    return (.emptyString,.emptyString)
+                    return ("VISIBILITY",.emptyString)
                 }
                 return ("VISIBILITY", "\(visibility / 1000) km")
             case 8:
                 guard let uv = model.current?.uvi else {
-                    return (.emptyString,.emptyString)
+                    return ("UV INDEX",.emptyString)
                 }
                 return ("UV INDEX", String(format: "%.0f", uv))
             default:
