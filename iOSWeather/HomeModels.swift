@@ -46,19 +46,16 @@ enum Home {
             var httpMethod: HTTPMethod = .get
             typealias NetworkResponse = Home.Responses.Response
             var queries: [String : String] = [
-                "exclude" :  "alerts"
+                "exclude" :  "alerts",
+                "lang" : Locale.current.languageCode ?? "en",
+                "units" : "metric",
+                "appid" : Api.OpenWeatherMap.key
             ]
             
             init (lat: String,
-                  lon: String,
-                  language: String = "en",
-                  units: String = "metric",
-                  apiKey: String = Api.OpenWeatherMap.key) {
+                  lon: String) {
                 queries.updateValue(lat, forKey: "lat")
                 queries.updateValue(lon, forKey: "lon")
-                queries.updateValue(language, forKey: "lang")
-                queries.updateValue(units, forKey: "units")
-                queries.updateValue(apiKey, forKey: "appid")
             }
             
         }

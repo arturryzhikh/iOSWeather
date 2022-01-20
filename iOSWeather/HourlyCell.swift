@@ -37,7 +37,8 @@ final class HourlyCell: TransparentCell ,ViewRepresentable {
             make.bottom.equalTo(weatherImageView.snp.top)
         }
         weatherImageView.snp.makeConstraints { make in
-            make.height.equalTo(frame.height)
+            let height = Screen.isTiny ? (frame.height / 2) : (frame.height)
+            make.height.equalTo(height)
             make.width.equalTo(weatherImageView.snp.height)
             make.centerX.equalToSuperview()
         }

@@ -39,8 +39,6 @@ public final class ApiService: Networking {
         }
         
         urlComponent.queryItems = queryItems
-        
-        
         guard let url = urlComponent.url else {
             let error = NSError(
                 domain: ResponseError.invalidEndPoint.description,
