@@ -19,7 +19,7 @@ Search location to get forecast for
 iOS 11.4+
 
 
-## Dependenciesv
+## Dependencies
 [SnapKit](https://github.com/SnapKit/SnapKit)
 ## Contacts
 If you want to contact me you can reach me at <ryzhiha@gmail.com>.
