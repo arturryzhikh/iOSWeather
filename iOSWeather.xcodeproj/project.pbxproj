@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		340228FE2797444C002FA4C9 /* CGColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340228FD2797444C002FA4C9 /* CGColor+.swift */; };
+		3409F6BE2799943800E375DD /* Int+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3409F6BD2799943800E375DD /* Int+.swift */; };
 		340A400327908FC700A616FC /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 340A400227908FC700A616FC /* SnapKit */; };
 		3412E1BE2792CE48000FE043 /* HomeViewModelBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3412E1BD2792CE48000FE043 /* HomeViewModelBuilder.swift */; };
 		34170FE0279450F800AFD7A8 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34170FDF279450F800AFD7A8 /* String+.swift */; };
@@ -76,6 +77,7 @@
 
 /* Begin PBXFileReference section */
 		340228FD2797444C002FA4C9 /* CGColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGColor+.swift"; sourceTree = "<group>"; };
+		3409F6BD2799943800E375DD /* Int+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+.swift"; sourceTree = "<group>"; };
 		3412E1BD2792CE48000FE043 /* HomeViewModelBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelBuilder.swift; sourceTree = "<group>"; };
 		34170FDF279450F800AFD7A8 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		342334C52796212B00C6BC32 /* Coord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coord.swift; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 			children = (
 				348DC88627907DEE000EDCFE /* UIColor+.swift */,
 				34170FDF279450F800AFD7A8 /* String+.swift */,
+				3409F6BD2799943800E375DD /* Int+.swift */,
 				348DC87E27907DEE000EDCFE /* UICollectionView+.swift */,
 				348DC83D27907D24000EDCFE /* Date+.swift */,
 				348DC88027907DEE000EDCFE /* UIFont+.swift */,
@@ -475,6 +478,7 @@
 				348DC89A27907E19000EDCFE /* HomeViewController.swift in Sources */,
 				343686CF2795BBA9009928F9 /* SearchInteractor.swift in Sources */,
 				348DC84427907D24000EDCFE /* Date+.swift in Sources */,
+				3409F6BE2799943800E375DD /* Int+.swift in Sources */,
 				348DC83B27907D1A000EDCFE /* DailyCell.swift in Sources */,
 				34170FE0279450F800AFD7A8 /* String+.swift in Sources */,
 				343686CD2795BB9C009928F9 /* SearchRouter.swift in Sources */,

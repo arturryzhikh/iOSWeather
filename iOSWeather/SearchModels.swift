@@ -20,7 +20,8 @@ enum Search {
             typealias NetworkResponse = [Search.Responses.Place]
             var url: String = Api.Nominatim.search
             var queries: [String : String] = [
-                "format": "json"
+                "format": "json",
+                "accept-language": "en"
             ]
             init(cityName: String) {
                 queries.updateValue(cityName, forKey: "city")

@@ -47,7 +47,7 @@ enum Home {
             typealias NetworkResponse = Home.Responses.Response
             var queries: [String : String] = [
                 "exclude" :  "alerts",
-                "lang" : Locale.current.languageCode ?? "en",
+                "lang" : "en",
                 "units" : "metric",
                 "appid" : Api.OpenWeatherMap.key
             ]
@@ -241,7 +241,7 @@ enum Home {
                  temperature: String = .emptyString) {
                 self.hour = hour == .emptyString ? .underScore : hour
                 self.iconName = iconName
-                self.temperature = temperature == .emptyString ? .underScore + .degree : temperature
+                self.temperature = (temperature == .emptyString) ? (.underScore + .degree) : temperature
             }
             let hour: String
             let iconName: String

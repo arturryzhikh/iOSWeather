@@ -38,13 +38,10 @@ class SearchInteractor: SearchBusinessLogic, SearchDataStore {
             }
             switch result {
             case.failure(let error):
-                DispatchQueue.main.async {
-                    self.presenter?.present(error: error)
-                }
+                self.presenter?.present(error: error)
             case.success(let response):
-                DispatchQueue.main.async {
-                    self.presenter?.presentCities(response: response)
-                }
+                self.presenter?.presentCities(response: response)
+                
                
             }
         }

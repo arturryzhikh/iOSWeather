@@ -16,7 +16,7 @@ extension ViewModelBuilding {
     ///Constructs temperature string from double
     func temperatureString(temperature: Double) -> String {
         if temperature > -1 && temperature < 0  {
-            return "0" + .degree
+            return 0.string + .degree
         } else {
             return String(format: "%.0f", temperature) + .degree
         }
@@ -57,7 +57,6 @@ public final class HomeViewModelBuilder: ViewModelBuilding {
             if let placeName = placeName?.components(separatedBy: ",").first {
                 return placeName
             }
-            
             return model
                 .timezone?
                 .components(separatedBy: "/")[1]
@@ -148,7 +147,7 @@ public final class HomeViewModelBuilder: ViewModelBuilding {
         
         var day: String {
             guard  let dt = model.dt else {
-                return "--"
+                return .underScore
             }
             let date = Date(timeIntervalSince1970: Double(dt))
             return date.stringFromDate(dateFormat: "EEEE")
@@ -175,10 +174,10 @@ public final class HomeViewModelBuilder: ViewModelBuilding {
         }
         var probability: String {
             guard let prob = model.pop else {
-                return "--"
+                return .underScore
             }
             let percentage = Int(prob * 100)
-            return String(percentage) + "%"
+            return percentage.string + .percent
         }
         return Home.ViewModels.DailyCellViewModel(
             day: day,
@@ -199,7 +198,6 @@ public final class HomeViewModelBuilder: ViewModelBuilding {
             return items
         }
         return Home.ViewModels.DetailSectionViewModel(itemViewModels: itemViewModels)
-        
     }
     
     private func buildDetailCellViewModel(item: Int) -> Home.ViewModels.DetailCellViewModel {
@@ -227,7 +225,7 @@ public final class HomeViewModelBuilder: ViewModelBuilding {
                 guard let humidity = model.current?.humidity else {
                     return ("HUMIDITY", .emptyString)
                 }
-                return ("HUMIDITY", "\(humidity)%")
+                return ("HUMIDITY", humidity.string + .percent)
             case 3:
                 guard let windDeg = model.current?.windDeg,
                       let windSpeed = model.current?.windSpeed else {
@@ -284,7 +282,9 @@ public final class HomeViewModelBuilder: ViewModelBuilding {
                let lowTemp = model.daily?.first?.temp?.min,
                let description = model.current?.weather?.first?.description {
                 return """
-                Today: \(description) currently. The high will be \(temperatureString(temperature: highTemp)). The low tonight will be \(temperatureString(temperature: lowTemp))
+                Today: \(description) currently.
+                The high will be \(temperatureString(temperature: highTemp)).
+                The low tonight will be \(temperatureString(temperature: lowTemp))
                 """
             }
             return .emptyString

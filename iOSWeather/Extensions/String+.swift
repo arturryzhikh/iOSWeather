@@ -25,4 +25,17 @@ extension String {
     static var sun: String {
         return "☼"
     }
+    static var slash: String {
+        return "/"
+    }
+    static var questionMark: String {
+        return "?"
+    }
+    static var exclamationMark: String {
+        return "!"
+    }
+    static var percent: String {
+        return "%"
+    }
+    
 }

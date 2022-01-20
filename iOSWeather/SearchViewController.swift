@@ -82,12 +82,25 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
     //MARK: SearchDisplayLogic
     func displayCities(viewModel: Search.ViewModels.ViewModel) {
         self.viewModel = viewModel
-        tableView.reloadData()
-        activityIndicator.stopAnimating()
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else {
+                return
+            }
+            self.tableView.reloadData()
+            self.activityIndicator.stopAnimating()
+        }
+        
+        
     }
     func displayError(message: String) {
-        router?.showAlert(message: message)
-        activityIndicator.stopAnimating()
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else {
+                return
+            }
+            self.router?.showAlert(message: message)
+            self.activityIndicator.stopAnimating()
+        }
+      
     }
     
     //MARK: Initial setup
