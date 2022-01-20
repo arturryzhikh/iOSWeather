@@ -11,9 +11,9 @@ Geocoding: [Nominatim](https://nominatim.org/release-docs/latest/)
 
 ## Features
 Get current forecast and historical weather data\
-Hourly forecast for 48 hours
-Daily forecast for 7 days
-Location based forecast
+Hourly forecast for 48 hours\
+Daily forecast for 7 days\
+Location based forecast\
 Search location to get forecast for
 ## Prerequisites
 iOS 11.4+
