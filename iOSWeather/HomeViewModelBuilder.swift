@@ -10,11 +10,11 @@ import Foundation
 protocol ViewModelBuilding {
     associatedtype V
     func buildViewModel() -> V
-    func temperatureString(temperature: Double) -> String
+    func stringTemp(_ temperature: Double) -> String
 }
 extension ViewModelBuilding {
     ///Constructs temperature string from double
-    func temperatureString(temperature: Double) -> String {
+    func stringTemp(_ temperature: Double) -> String {
         if temperature > -1 && temperature < 0  {
             return 0.string + .degree
         } else {
@@ -54,13 +54,13 @@ public final class HomeViewModelBuilder: ViewModelBuilding {
     }
     private func buildCurrentHeaderViewModel() -> Home.ViewModels.CurrentHeaderViewModel {
         var location: String {
-            if let placeName = placeName?.components(separatedBy: ",").first {
+            if let placeName = placeName?.components(separatedBy: String.comma).first {
                 return placeName
             }
             return model
                 .timezone?
-                .components(separatedBy: "/")[1]
-                .replacingOccurrences(of: "_", with: " ") ?? .emptyString
+                .components(separatedBy: String.slash)[1]
+                .replacingOccurrences(of: String.underScore, with: String.space) ?? .emptyString
         }
         
         var outline: String {
@@ -73,7 +73,7 @@ public final class HomeViewModelBuilder: ViewModelBuilding {
         
         var temperature: String {
             if let temp = model.current?.temp {
-                return temperatureString(temperature: temp)
+                return stringTemp(temp)
             }
             return .emptyString
         }
@@ -81,7 +81,7 @@ public final class HomeViewModelBuilder: ViewModelBuilding {
         var temperatureRange: String {
             if let highTemp = model.daily?.first?.temp?.max,
                let lowTemp = model.daily?.first?.temp?.min {
-                return "High: \(temperatureString(temperature: highTemp))   Low: \(temperatureString(temperature: lowTemp))"
+                return "High: \(stringTemp(highTemp))   Low: \(stringTemp(lowTemp))"
             }
             return .emptyString
             
@@ -104,7 +104,7 @@ public final class HomeViewModelBuilder: ViewModelBuilding {
     private func buildHourlyItemViewModel(model: Home.Responses.Current) -> Home.ViewModels.HourlyItemViewModel {
         var hour: String  {
             guard let dt = model.dt else {
-                return "--"
+                return .underScore
             }
             let hourlyDate = Date(timeIntervalSince1970: Double(dt))
             if Calendar.current.isDate(hourlyDate, equalTo: Date(), toGranularity: .day) &&
@@ -118,14 +118,14 @@ public final class HomeViewModelBuilder: ViewModelBuilding {
         
         var IconName: String {
             if let icon = model.weather?.first?.icon {
-                return icon + ".png"
+                return icon + .png
             }
-            return "01d.png"
+            return "01d" + .png
             
         }
         var temperature: String {
             if let temp = model.temp {
-                return temperatureString(temperature: temp)
+                return stringTemp(temp)
             }
             return .emptyString
         }
@@ -157,19 +157,19 @@ public final class HomeViewModelBuilder: ViewModelBuilding {
             guard let high = model.temp?.max else {
                 return .emptyString
             }
-            return temperatureString(temperature: high)
+            return stringTemp(high)
         }
         var minTemperature: String {
             guard let low = model.temp?.min else {
                 return .emptyString
             }
-            return temperatureString(temperature: low)
+            return stringTemp(low)
         }
         var weatherIcon: String {
             if let icon = model.weather?.first?.icon {
-                return icon + ".png"
+                return icon + .png
             }
-            return "01d.png"
+            return "01d" + .png
             
         }
         var probability: String {
@@ -238,7 +238,7 @@ public final class HomeViewModelBuilder: ViewModelBuilding {
                 guard let feelsLike = model.current?.feelsLike else {
                     return ("FEELS LIKE", .emptyString)
                 }
-                return ("FEELS LIKE", temperatureString(temperature: feelsLike))
+                return ("FEELS LIKE", stringTemp(feelsLike))
             case 5:
                 guard let prec = model.minutely?.first?.precipitation else {
                     return ("PRECIPITATION",.emptyString)
@@ -282,9 +282,7 @@ public final class HomeViewModelBuilder: ViewModelBuilding {
                let lowTemp = model.daily?.first?.temp?.min,
                let description = model.current?.weather?.first?.description {
                 return """
-                Today: \(description) currently.
-                The high will be \(temperatureString(temperature: highTemp)).
-                The low tonight will be \(temperatureString(temperature: lowTemp))
+                Today: \(description) currently. The high will be \(stringTemp(highTemp)). The low will be \(stringTemp(lowTemp))
                 """
             }
             return .emptyString

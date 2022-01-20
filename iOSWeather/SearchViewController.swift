@@ -61,7 +61,7 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addBlur()
+        view.blur(style: .regular)
         setupSearchController(placeholder: "Search Cities")
         setupNavigationController(title: "Search Cities")
         setupTableView()

@@ -37,5 +37,14 @@ extension String {
     static var percent: String {
         return "%"
     }
+    static var png: String {
+        return ".png"
+    }
+    static var jpg: String {
+        return ".jpg"
+    }
+    static var comma: String {
+        return ","
+    }
     
 }

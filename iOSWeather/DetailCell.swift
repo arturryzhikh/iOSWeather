@@ -48,7 +48,6 @@ final class DetailCell: TransparentCell , ViewRepresentable {
         
     }(UIStackView(arrangedSubviews:[detailLabel, valueLabel]))
     
-    
     override func activateConstraints() {
         addSubview(vStack)
         vStack.snp.makeConstraints { make in

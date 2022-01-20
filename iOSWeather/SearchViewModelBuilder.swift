@@ -8,6 +8,7 @@
 import Foundation
 
 class SearchViewModelBuilder: ViewModelBuilding {
+    
     init(model: [Search.Responses.Place]) {
         self.model = model
     }
