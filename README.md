@@ -1,30 +1,26 @@
 # iOSWeather
 
-iOSWeather is an app that allows people to get weather forecast.
+iOSWeather is an app that allows people to get detailed weather forecast.
 
 
 
 App uses  [UIKit](https://developer.apple.com/documentation/uikit) for view layer\
-Weather api: [Open weather map](https://openweathermap.org/api)\
-Places api: [Nominatim](https://nominatim.org/release-docs/latest/)
+Forecast source: [Open weather map](https://openweathermap.org/api)\
+Geocoding: [Nominatim](https://nominatim.org/release-docs/latest/)
 
 
 ## Features
-Supports search in english and russian\
-Get all the meanings of the words\
-Group meanings by words\
-Get sound , memo image and details of meaning\
-Save words for offline learning\
-Supports light and dark themes\
+Get current forecast and historical weather data\
+Hourly forecast for 48 hours
+Daily forecast for 7 days
+Location based forecast
+Search location to get forecast for
 ## Prerequisites
+iOS 11.4+
 
-iOS 13+
-Swift 4+
-Xcode 12+
 
-## Dependencies
-Realm with swift package manager
-
+## Dependenciesv
+[SnapKit](https://github.com/SnapKit/SnapKit)
 ## Contacts
 If you want to contact me you can reach me at <ryzhiha@gmail.com>.
 
