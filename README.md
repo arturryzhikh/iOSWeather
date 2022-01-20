@@ -29,7 +29,6 @@ If you want to contact me you can reach me at <ryzhiha@gmail.com>.
 
 
 
-https://user-images.githubusercontent.com/39170861/150159744-08da39cc-6ec8-49bf-9044-88d5f62127e0.mp4
 
 
 
