@@ -27,6 +27,9 @@ enum Screen {
                 return .zero
             }
         }
+        static func minimumLineSpacingForSectionAt(_ section: Int) -> CGFloat {
+            return .zero
+        }
         static func referenceSizeForHeaderInSection(section: Int) -> CGSize {
             let headerSize = CGSize(width: Screen.width, height: CurrentHeader.defaultHeight)
             return section == 0 ? headerSize : .zero

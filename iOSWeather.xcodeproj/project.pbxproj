@@ -179,13 +179,13 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		340A40062790C32900A616FC /* Global */ = {
+		340A40062790C32900A616FC /* Shared */ = {
 			isa = PBXGroup;
 			children = (
 				342334C52796212B00C6BC32 /* Coord.swift */,
 				348DC86627907DA5000EDCFE /* Screen.swift */,
 			);
-			path = Global;
+			path = Shared;
 			sourceTree = "<group>";
 		};
 		342038052795591B00D3C384 /* ViewProtocols */ = {
@@ -307,7 +307,7 @@
 				343686C52795BB8F009928F9 /* SearchScene */,
 				342038052795591B00D3C384 /* ViewProtocols */,
 				34BEF45B27918C85001C765D /* HomeScene */,
-				340A40062790C32900A616FC /* Global */,
+				340A40062790C32900A616FC /* Shared */,
 				340A3FFC2790856F00A616FC /* Extensions */,
 				34BEF45C27919218001C765D /* Services */,
 			);

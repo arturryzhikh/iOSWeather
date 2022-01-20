@@ -11,12 +11,12 @@
 //
 
 import UIKit
-
 protocol SectionWithItemsViewModel {
     associatedtype CellViewModel
     var itemViewModels: [CellViewModel] { get }
     var count: Int { get }
     func item(at index: Int) -> CellViewModel?
+    
 }
 
 extension SectionWithItemsViewModel {
@@ -138,7 +138,7 @@ enum Home {
     //MARK: ViewModels
     enum ViewModels {
         struct ViewModel {
-            enum Section: Int, CaseIterable {
+            enum Section: Int {
                 case currentHourly,
                      daily,
                      today,
@@ -174,6 +174,7 @@ enum Home {
             var numberOfSections: Int {
                 return sections.count
             }
+            
             func numberOfItemsIn(_ section: Int) -> Int {
                 
                 switch Section(rawValue: section) {
@@ -319,7 +320,6 @@ enum Home {
             init(overview: String = .emptyString) {
                 self.overview = overview
             }
-            
             let overview: String
             
         }

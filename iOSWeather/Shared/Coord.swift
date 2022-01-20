@@ -16,6 +16,5 @@ class Coord: NSObject  {
     init(lat: String, lon: String) {
         self.lat = lat
         self.lon = lon
-        
     }
 }

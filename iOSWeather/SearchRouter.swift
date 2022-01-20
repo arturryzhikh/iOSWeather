@@ -36,8 +36,7 @@ class SearchRouter: NSObject, SearchRoutingLogic, SearchDataPassing {
     }
     //MARK: Route
     func routeToHome(with placeName: String,and coord: Coord) {
-        guard let destinationVC = viewController?
-                .presentingViewController as? HomeViewController
+        guard let destinationVC = viewController?.presentingViewController as? HomeViewController
         else {
             let message = "No appropriate View Controller to route on"
             viewController?.router?.showAlert(message: message)

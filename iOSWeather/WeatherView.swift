@@ -15,10 +15,10 @@ public final class WeatherView: UIView {
     private var gradientLayer: CAGradientLayer { return layer as! CAGradientLayer
         
     }
-    
     func generateGradient() {
         let colors = CGColor.randomGradientPair
         gradientLayer.colors = colors
+        
     }
     //MARK: Life Cycle
     
@@ -27,9 +27,8 @@ public final class WeatherView: UIView {
     }
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .yellow
-        activateConstraints()
         generateGradient()
+        activateConstraints()
         tabbar.addSeparator(to: .top, aboveSubview: tabbar)
     }
     convenience init(collectionDelegate: UICollectionViewDelegate, collectionDataSource: UICollectionViewDataSource, tabBarDelegate: UITabBarDelegate) {
@@ -63,7 +62,7 @@ public final class WeatherView: UIView {
     }(UITabBar())
     //create collection view
     lazy var collectionView: UICollectionView = {
-        $0.backgroundColor = .clear
+        $0.backgroundColor = .clear 
         $0.showsVerticalScrollIndicator = false
         $0.showsHorizontalScrollIndicator = false
         $0.registerHeaders(CurrentHeader.self)

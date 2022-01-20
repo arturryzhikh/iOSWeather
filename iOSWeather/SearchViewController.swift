@@ -71,6 +71,7 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        
     }
     // MARK: Search Cities
     
@@ -119,14 +120,8 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
     private func setupSearchController(placeholder: String) {
         self.searchController = UISearchController(searchResultsController: nil)
         searchController.searchBar.tintColor = .white
-        searchController.obscuresBackgroundDuringPresentation = false
-        searchController.dimsBackgroundDuringPresentation = false
-        searchController.searchBar.sizeToFit()
-        searchController.definesPresentationContext = true
-        searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchResultsUpdater = self
         searchController.searchBar.placeholder = placeholder
-        searchController.becomeFirstResponder()
     }
     private func setupNavigationController(title: String) {
         navigationItem.searchController = searchController
@@ -180,7 +175,7 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: PlaceCell.description(), for: indexPath) as! PlaceCell
-        cell.viewModel = viewModel.itemViewModels[indexPath.row]
+        cell.viewModel = viewModel.item(at: indexPath.row)
         return cell
     }
     
@@ -201,7 +196,8 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let viewModel = viewModel.itemViewModel(at: indexPath)
-        router?.routeToHome(with: viewModel.name, and: Coord(lat: viewModel.latitude, lon: viewModel.longitude))
+        let coord = Coord(lat: viewModel.latitude, lon: viewModel.longitude)
+        router?.routeToHome(with: viewModel.name,and: coord)
         
     }
     

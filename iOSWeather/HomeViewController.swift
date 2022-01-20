@@ -53,7 +53,7 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         setup()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setup()
@@ -98,14 +98,14 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
     
     //MARK: HomeDisplayLogic
     func displayWeather(_ viewModel: Home.ViewModels.ViewModel) {
-       DispatchQueue.main.async { [weak self] in
-           guard let self = self else {
-               return
-           }
-           self.homeViewModel = viewModel
-           self.collectionView.reloadData()
-           self.weatherView.generateGradient()
-           self.activity.stopAnimating()
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else {
+                return
+            }
+            self.homeViewModel = viewModel
+            self.collectionView.reloadData()
+            self.weatherView.generateGradient()
+            self.activity.stopAnimating()
         }
         
     }
@@ -129,7 +129,7 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
         setupLocationManager()
     }
     
-
+    
 }
 
 //MARK: UICollectionViewDataSource
@@ -142,9 +142,8 @@ extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         homeViewModel.numberOfItemsIn(section)
     }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        
         let section = Home.ViewModels.ViewModel.Section(rawValue: indexPath.section)
         
         switch section {
@@ -201,10 +200,6 @@ extension HomeViewController: UICollectionViewDataSource {
 
 //MARK: UICollectionViewDelegateFlowLayout
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
-    private var width: CGFloat {
-        return collectionView.frame.width
-    }
-    
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -225,7 +220,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
         Screen.Home.referenceSizeForFooterInSection(section: section)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return .zero
+        Screen.Home.minimumLineSpacingForSectionAt(section)
     }
     
 }
@@ -236,15 +231,13 @@ extension HomeViewController: CLLocationManagerDelegate {
         guard let location = locations.first else { return }
         locationManager.stopUpdatingLocation()
         getWeather(for: location)
-        
-        
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         router?.showAlert(message: "Error updating location \(error)")
     }
-   
-
-
+    
+    
+    
 }
 
