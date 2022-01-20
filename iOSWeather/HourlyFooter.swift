@@ -16,9 +16,6 @@ final class HourlyFooter: TransparentCell, UICollectionViewDelegate {
         }
     }
     
-    static var defaultHeight: CGFloat {
-        Screen.height * 0.16
-    }
     //MARK: Subviews
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
@@ -28,11 +25,12 @@ final class HourlyFooter: TransparentCell, UICollectionViewDelegate {
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.registerCells(HourlyCell.self)
-        let horizontalInset = Screen.width * 0.05
-        collectionView.contentInset = UIEdgeInsets(top: 0, left: horizontalInset, bottom: 0, right: horizontalInset)
+        let hInset = Screen.width * 0.05
+        let insets = UIEdgeInsets(top: 0, left: hInset, bottom: 0, right: hInset)
+        collectionView.contentInset = insets
         if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             layout.scrollDirection = .horizontal
-            layout.minimumLineSpacing = horizontalInset
+            layout.minimumLineSpacing = hInset
             layout.minimumInteritemSpacing = 0
             layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
             
@@ -43,7 +41,7 @@ final class HourlyFooter: TransparentCell, UICollectionViewDelegate {
     //MARK: Other Properties
     //MARK: Life cycle
     override func setup() {
-        isUserInteractionEnabled = true//switch back property to allow collection view to be scrolling
+        isUserInteractionEnabled = true//switch back property to allow collection view scrolling
         activateConstraints()
     }
     //MARK:Instance methods
@@ -62,16 +60,12 @@ final class HourlyFooter: TransparentCell, UICollectionViewDelegate {
 extension HourlyFooter: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
         return viewModel?.itemViewModels.count ?? 0
         
     }
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HourlyCell.description(), for: indexPath) as! HourlyCell
-        
         cell.viewModel = viewModel?.itemViewModels[indexPath.item]
-        
         return cell
     }
     

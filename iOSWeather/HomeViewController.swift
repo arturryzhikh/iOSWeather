@@ -151,17 +151,17 @@ extension HomeViewController: UICollectionViewDataSource {
             
         case .daily:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DailyCell.description(), for: indexPath) as! DailyCell
-            cell.viewModel = homeViewModel.dailySectionVM.itemViewModels[indexPath.item]
+            cell.viewModel = homeViewModel.dailySectionVM.item(at: indexPath.item)
             return cell
             
         case .today:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TodayCell.description(), for: indexPath) as! TodayCell
-            cell.viewModel = homeViewModel.todaySectionVM.itemViewModels[indexPath.item]
+            cell.viewModel = homeViewModel.todaySectionVM.item(at: indexPath.item)
             return cell
             
         case .detail:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailCell.description(), for: indexPath) as! DetailCell
-            let vm = homeViewModel.detailSectionVM.itemViewModels[indexPath.item]
+            let vm = homeViewModel.detailSectionVM.item(at: indexPath.item)
             cell.viewModel = vm
             return cell
             
@@ -178,7 +178,7 @@ extension HomeViewController: UICollectionViewDataSource {
             
         case UICollectionView.elementKindSectionHeader :
             guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CurrentHeader.description(), for: indexPath) as? CurrentHeader else {
-                fatalError("No appropriate view for supplementary view of \(kind) ad \(indexPath)")
+                fatalError("No appropriate view for supplementary view of \(kind) at \(indexPath)")
             }
             let vm = homeViewModel.currentHourlySectionVM.headerViewModel
             header.viewModel = vm
@@ -208,22 +208,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        let section = indexPath.section
-        let partialWidth = width * 0.9
-        let height = Screen.height
-        switch section {
-        case 1:
-            return CGSize(width: partialWidth , height: (height * 0.066))
-        case 2:
-            return CGSize(width: partialWidth, height: (height * 0.131))
-        case 3:
-            return CGSize(width: partialWidth, height: (height * 0.07))
-        case 4:
-            return CGSize(width: width, height: (height * 0.09))
-        default:
-            return .zero
-        }
+        Screen.Home.sizeForItemAtSection(indexPath.section)
         
     }
     
@@ -231,18 +216,15 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         referenceSizeForHeaderInSection section: Int) -> CGSize {
-        let headerSize = CGSize(width: width, height: CurrentHeader.defaultHeight)
-        return section == 0 ? headerSize : .zero
+        Screen.Home.referenceSizeForHeaderInSection(section: section)
     }
     //footer size
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         referenceSizeForFooterInSection section: Int) -> CGSize {
-        let footerSize =  CGSize(width: width, height: HourlyFooter.defaultHeight)
-        return section == 0 ? footerSize : .zero
+        Screen.Home.referenceSizeForFooterInSection(section: section)
     }
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
-                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return .zero
     }
     

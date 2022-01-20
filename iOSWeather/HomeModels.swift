@@ -11,10 +11,18 @@
 //
 
 import UIKit
-public protocol SectionWithItemsViewModel {
+
+protocol SectionWithItemsViewModel {
     associatedtype CellViewModel
     var itemViewModels: [CellViewModel] { get }
     var count: Int { get }
+    func item(at index: Int) -> CellViewModel?
+}
+
+extension SectionWithItemsViewModel {
+    func item(at index: Int) -> CellViewModel? {
+        return itemViewModels[index]
+    }
 }
 extension SectionWithItemsViewModel {
     var count: Int {
@@ -162,7 +170,6 @@ enum Home {
                 Section.daily.rawValue,
                 Section.today.rawValue,
                 Section.detail.rawValue,
-                
             ]
             var numberOfSections: Int {
                 return sections.count

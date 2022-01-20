@@ -11,19 +11,11 @@ import SnapKit
 public final class CurrentHeader: TransparentCell  {
     
     //MARK:Properties
-    
-    
-    static var defaultHeight: CGFloat {
-        Screen.height * 0.453
-    }
-    static var minimumHeight: CGFloat {
-        Screen.height * 0.143
-    }
-    
+    let defaultHeight = Screen.Home.CurrentHeader.defaultHeight
     ///Calculates alpha of temperature and high low labels depending on view height
     private var computedAlpha: CGFloat {
         let transparentY = temperatureLabel.frame.height + temperatureLabel.frame.origin.y
-        return max((frame.height - transparentY) / (CurrentHeader.defaultHeight - transparentY), 0)
+        return max((frame.height - transparentY) / (defaultHeight - transparentY), 0)
     }
     
     private var topConstraint: Constraint?
