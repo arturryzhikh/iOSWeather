@@ -46,7 +46,9 @@ enum Search {
             }
             
             let itemViewModels: [PlaceViewModel]
-            
+            func itemViewModel(at indexPath: IndexPath) -> PlaceViewModel {
+                return itemViewModels[indexPath.row]
+            }
         }
         struct PlaceViewModel {
             init(lat: String = .emptyString,

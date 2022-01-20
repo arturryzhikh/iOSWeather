@@ -14,7 +14,7 @@ import UIKit
 
 @objc protocol SearchRoutingLogic {
     func showAlert(message: String)
-    func routeToHome(with coordinates: Coord)
+    func routeToHome(with placeName: String,and coord: Coord)
     func navigateToHome(source: SearchViewController?,
                         destination: HomeViewController?)
     
@@ -22,7 +22,7 @@ import UIKit
 
 protocol SearchDataPassing {
     var dataStore: SearchDataStore? { get set }
-    func pass(coordinates: Coord, to destination: inout HomeDataStore?)
+    func pass(placeName: String?, with coord: Coord, to destination: inout HomeDataStore?)
 }
 
 class SearchRouter: NSObject, SearchRoutingLogic, SearchDataPassing {
@@ -35,7 +35,7 @@ class SearchRouter: NSObject, SearchRoutingLogic, SearchDataPassing {
         viewController?.presentAlert(message: message)
     }
     //MARK: Route
-    func routeToHome(with coordinates: Coord) {
+    func routeToHome(with placeName: String,and coord: Coord) {
         guard let destinationVC = viewController?
                 .presentingViewController as? HomeViewController
         else {
@@ -44,13 +44,14 @@ class SearchRouter: NSObject, SearchRoutingLogic, SearchDataPassing {
             return
         }
         var destionationDS = destinationVC.router?.dataStore
-        pass(coordinates: coordinates, to: &destionationDS)
+        pass(placeName: placeName, with: coord, to: &destionationDS)
         navigateToHome(source: viewController, destination: destinationVC)
         
     }
     //MARK: Passing data
-    func pass(coordinates: Coord, to destination: inout HomeDataStore?) {
-        destination?.coord = coordinates
+    func pass(placeName: String?, with coord: Coord, to destination: inout HomeDataStore?) {
+        destination?.placeName = placeName
+        destination?.coord = coord
     }
     
     //MARK: Navigation

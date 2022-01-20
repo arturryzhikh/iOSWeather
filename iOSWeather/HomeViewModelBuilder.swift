@@ -15,7 +15,6 @@ protocol ViewModelBuilding {
 extension ViewModelBuilding {
     ///Constructs temperature string from double
     func temperatureString(temperature: Double) -> String {
-        
         if temperature > -1 && temperature < 0  {
             return "0" + .degree
         } else {
@@ -27,9 +26,10 @@ extension ViewModelBuilding {
 
 public final class HomeViewModelBuilder: ViewModelBuilding {
     let model: Home.Responses.Response
-    
-    init(model: Home.Responses.Response) {
+    var placeName: String?
+    init(model: Home.Responses.Response, placeName: String?) {
         self.model = model
+        self.placeName = placeName
     }
     func buildViewModel() -> Home.ViewModels.ViewModel {
         let current = buildCurrentHourlySectionViewModel()
@@ -54,6 +54,10 @@ public final class HomeViewModelBuilder: ViewModelBuilding {
     }
     private func buildCurrentHeaderViewModel() -> Home.ViewModels.CurrentHeaderViewModel {
         var location: String {
+            if let placeName = placeName?.components(separatedBy: ",").first {
+                return placeName
+            }
+            
             return model
                 .timezone?
                 .components(separatedBy: "/")[1]
@@ -294,7 +298,6 @@ public final class HomeViewModelBuilder: ViewModelBuilding {
 extension HomeViewModelBuilder {
     ///Converts wind degrees into wind direction code
     private func windDirection(degree: Int) -> String {
-        
         let directions = ["N", "NNE", "NE", "ENE",
                           "E", "ESE", "SE", "SSE",
                           "S", "SSW", "SW", "WSW",

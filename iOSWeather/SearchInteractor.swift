@@ -21,12 +21,10 @@ protocol SearchDataStore {
 }
 
 class SearchInteractor: SearchBusinessLogic, SearchDataStore {
-    
+  
     var presenter: SearchPresentationLogic?
     var worker: SearchWorker?
-    
     // MARK: Search Cities
-    
     func searchCities(named: String) {
         guard named.isValid else {
             presenter?.presentCities(response: [])

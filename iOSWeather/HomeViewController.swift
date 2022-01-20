@@ -68,7 +68,7 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
     }
     func getCityForecast() {
         activity.startAnimating()
-        interactor?.getCityForecast()
+        interactor?.getPlaceForecast()
     }
     // MARK: Setup
     private func setup() {

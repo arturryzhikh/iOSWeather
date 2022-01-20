@@ -13,7 +13,7 @@
 import UIKit
 
 protocol HomePresentationLogic {
-    func presentWeather(response: Home.Responses.Response)
+    func presentWeather(for placeName: String?, with response: Home.Responses.Response)
     func present(error: Error)
     
 }
@@ -23,8 +23,8 @@ class HomePresenter: NSObject, HomePresentationLogic {
     var builder: HomeViewModelBuilder?
     weak var viewController: HomeDisplayLogic?
     //MARK: Present
-    func presentWeather(response: Home.Responses.Response) {
-        self.builder = HomeViewModelBuilder(model: response)
+    func presentWeather(for placeName: String?, with response: Home.Responses.Response) {
+        self.builder = HomeViewModelBuilder(model: response,placeName: placeName)
         guard let viewModel = self.builder?.buildViewModel() else {
             let message = "Error constructing View Model from weather data"
             self.viewController?.displayError(message: message)

@@ -23,19 +23,23 @@ enum HomeInteractorError: Error, CustomStringConvertible {
 }
 protocol HomeBusinessLogic {
     func getWeather(for coord: Coord)
-    func getCityForecast()
+    func getPlaceForecast()
 }
 
 protocol HomeDataStore {
+    
     var coord: Coord? { get set }
+    var placeName: String? { get set }
 }
 
 class HomeInteractor: NSObject, HomeBusinessLogic, HomeDataStore {
-    
     var presenter: HomePresentationLogic?
     var worker: HomeWorker?
+    
     var coord: Coord?
-    func getCityForecast() {
+    var placeName: String?
+    
+    func getPlaceForecast() {
         guard let coord = coord, coord.isValid else {
             presenter?.present(error: HomeInteractorError.badCoordinates)
             return
@@ -49,7 +53,6 @@ class HomeInteractor: NSObject, HomeBusinessLogic, HomeDataStore {
         worker = HomeWorker()
         guard let worker = worker else {
             return
-            
         }
         worker.getForecast(request: request) { [weak self] result in
             guard let self = self else {
@@ -59,8 +62,7 @@ class HomeInteractor: NSObject, HomeBusinessLogic, HomeDataStore {
                 case.failure(let error):
                 self.presenter?.present(error: error)
                 case.success(let response):
-                print(response.timezone)
-                self.presenter?.presentWeather(response: response)
+                self.presenter?.presentWeather(for: self.placeName, with: response)
             }
         }
     }

@@ -187,10 +187,8 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let viewModel = viewModel.itemViewModels[indexPath.row]
-        let coordinates = Coord(lat: viewModel.latitude,
-                                     lon: viewModel.longitude)
-        router?.routeToHome(with: coordinates)
+        let viewModel = viewModel.itemViewModel(at: indexPath)
+        router?.routeToHome(with: viewModel.name, and: Coord(lat: viewModel.latitude, lon: viewModel.longitude))
         
     }
     
