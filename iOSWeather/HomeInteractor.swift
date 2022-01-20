@@ -59,6 +59,7 @@ class HomeInteractor: NSObject, HomeBusinessLogic, HomeDataStore {
                 case.failure(let error):
                 self.presenter?.present(error: error)
                 case.success(let response):
+                print(response.timezone)
                 self.presenter?.presentWeather(response: response)
             }
         }

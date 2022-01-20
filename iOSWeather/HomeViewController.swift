@@ -85,7 +85,7 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
         self.view = WeatherView(collectionDelegate: self,
                                 collectionDataSource: self,
                                 tabBarDelegate: router)
-        setupLocationManager()
+        
         
     }
     
@@ -93,6 +93,7 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.startUpdatingLocation()
     }
     
     //MARK: HomeDisplayLogic
@@ -110,7 +111,6 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
     }
     
     func displayError(message: String) {
-        
         DispatchQueue.main.async { [weak self] in
             guard let self = self else {
                 return
@@ -126,7 +126,7 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        locationManager.startUpdatingLocation()
+        setupLocationManager()
     }
     
 
@@ -257,8 +257,12 @@ extension HomeViewController: CLLocationManagerDelegate {
         
         
     }
+    
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         router?.showAlert(message: "Error updating location \(error)")
     }
+   
+
+
 }
 
