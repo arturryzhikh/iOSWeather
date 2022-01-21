@@ -53,7 +53,7 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         setup()
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setup()
@@ -234,15 +234,29 @@ extension HomeViewController: CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        if (error as NSError).code  == 1 {
-            print((error as NSError).code)
-            router?.showAlert(message: "In order to get weather forecast for your location , use searching or allow the app to get your location data in settings")
-            locationManager.stopUpdatingLocation()
-        }
+        print(error)
         
     }
-    
-    
-    
+    func locationManager(_ manager: CLLocationManager,
+                         didChangeAuthorization status: CLAuthorizationStatus) {
+        switch status {
+    case .restricted, .denied:
+        router?.showAlert(message: "In order to get weather forecast for your location , use searching or allow the app to get your location data in settings")
+        locationManager.stopUpdatingLocation()
+        break
+        
+    case .authorizedWhenInUse:
+        locationManager.startUpdatingLocation()
+        break
+        
+    case .authorizedAlways:
+        locationManager.startUpdatingLocation()
+        break
+    case .notDetermined:
+        break
+    @unknown default:
+        break
+        
+        }
+    }
 }
-
