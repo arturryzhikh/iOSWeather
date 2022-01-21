@@ -237,6 +237,7 @@ extension HomeViewController: CLLocationManagerDelegate {
         if (error as NSError).code  == 1 {
             print((error as NSError).code)
             router?.showAlert(message: "In order to get weather forecast for your location , use searching or allow the app to get your location data in settings")
+            locationManager.stopUpdatingLocation()
         }
         
     }
