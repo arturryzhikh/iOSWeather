@@ -2,10 +2,10 @@
 
 iOSWeather is an app that allows people to get detailed weather forecast.
 
+I was trying to reproduce previous iOS version of weather with custom UICollectionViewFLowLayout\
 I used [Clean Swift](https://clean-swift.com) for main architecture
 with a few helpers like a builder.
 
-App uses  [UIKit](https://developer.apple.com/documentation/uikit) for view layer\
 Forecast source: [Open weather map](https://openweathermap.org/api)\
 Geocoding: [Nominatim](https://nominatim.org/release-docs/latest/)
 
