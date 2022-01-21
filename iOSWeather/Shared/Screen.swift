@@ -13,7 +13,6 @@ enum Screen {
     enum Home {
         static func sizeForItemAtSection(_ section: Int) -> CGSize {
             let partialWidth = Screen.width * 0.9
-            let height = Screen.height
             switch section {
             case 1:
                 return CGSize(width: partialWidth , height: (height * 0.08))
