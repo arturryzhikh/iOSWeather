@@ -20,7 +20,6 @@ class SearchWorker {
     private let apiService: Networking
     
     func getCities(request: Search.Requests.CitiesRequest, completion: @escaping (Result<[Search.Responses.Place],Error>) -> Void) {
-        
         apiService.request(request) { result in
             switch result {
             case.failure(let error):

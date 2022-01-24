@@ -20,7 +20,6 @@ extension CGColor {
         return Self.colorPairs.randomElement() ?? gray
     }
     
-    
     fileprivate static var colorPairs: [[CGColor]] {
         return [
             CGColor.colors1,

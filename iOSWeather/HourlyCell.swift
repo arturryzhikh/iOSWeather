@@ -46,6 +46,7 @@ final class HourlyCell: TransparentCell ,ViewRepresentable {
             make.top.equalTo(weatherImageView.snp.bottom)
             make.leading.bottom.trailing.equalToSuperview()
         }
+       
         
     }
     let hourLabel: UILabel = {

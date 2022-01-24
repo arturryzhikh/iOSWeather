@@ -82,11 +82,12 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
     }
     //MARK: SearchDisplayLogic
     func displayCities(viewModel: Search.ViewModels.ViewModel) {
-        self.viewModel = viewModel
+      
         DispatchQueue.main.async { [weak self] in
             guard let self = self else {
                 return
             }
+            self.viewModel = viewModel
             self.tableView.reloadData()
             self.activityIndicator.stopAnimating()
         }
