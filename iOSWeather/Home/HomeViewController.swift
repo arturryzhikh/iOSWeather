@@ -28,6 +28,7 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
     private var weatherView: WeatherView! {
         return (self.view as! WeatherView)
     }
+    
     private lazy var activity: UIActivityIndicatorView = {
         view.insertSubview($0, aboveSubview: collectionView)
         $0.color = .white
@@ -44,6 +45,7 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
+    
     var interactor: HomeBusinessLogic?
     var router: (NSObjectProtocol & HomeRoutingLogic & HomeDataPassing)?
     
@@ -66,6 +68,7 @@ final class HomeViewController: UIViewController, HomeDisplayLogic {
                           lon: "\(location.coordinate.longitude)")
         interactor?.getWeather(for: coord)
     }
+    
     func getCityForecast() {
         activity.startAnimating()
         interactor?.getPlaceForecast()
@@ -200,6 +203,7 @@ extension HomeViewController: UICollectionViewDataSource {
 
 //MARK: UICollectionViewDelegateFlowLayout
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
+    
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -219,6 +223,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
                         referenceSizeForFooterInSection section: Int) -> CGSize {
         Screen.Home.referenceSizeForFooterInSection(section: section)
     }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         Screen.Home.minimumLineSpacingForSectionAt(section)
     }
@@ -237,6 +242,7 @@ extension HomeViewController: CLLocationManagerDelegate {
         print(error)
         
     }
+    
     func locationManager(_ manager: CLLocationManager,
                          didChangeAuthorization status: CLAuthorizationStatus) {
         switch status {

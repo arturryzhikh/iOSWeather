@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Coord: NSObject  {
+final class Coord: NSObject  {
     let lat: String
     let lon: String
     var isValid: Bool {

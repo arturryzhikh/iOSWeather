@@ -7,9 +7,8 @@
 
 import UIKit
 
-class PlaceCell: UITableViewCell, ViewRepresentable {
+class PlaceCell: UITableViewCell, ViewModelRepresentable {
         
-    
     var viewModel: Search.ViewModels.PlaceViewModel? {
         didSet {
             if let viewModel = viewModel {
@@ -21,11 +20,13 @@ class PlaceCell: UITableViewCell, ViewRepresentable {
     func populateSubviews(with viewModel: Search.ViewModels.PlaceViewModel) {
         nameLabel.text = viewModel.name
     }
+    
     let nameLabel: UILabel = {
         $0.numberOfLines = 0
         $0.textColor = .white
         return $0
     }(UILabel(alignment: .left, font: .place ))
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .value1, reuseIdentifier: reuseIdentifier)
         clipsToBounds = true
@@ -34,6 +35,7 @@ class PlaceCell: UITableViewCell, ViewRepresentable {
         activateConstratints()
        
     }
+    
     private func activateConstratints() {
         contentView.addSubview(nameLabel)
         nameLabel.snp.makeConstraints { make in
@@ -41,6 +43,7 @@ class PlaceCell: UITableViewCell, ViewRepresentable {
             make.bottom.trailing.equalToSuperview().offset(-16)
         }
     }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

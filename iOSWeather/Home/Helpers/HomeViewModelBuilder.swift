@@ -12,6 +12,7 @@ protocol ViewModelBuilding {
     func buildViewModel() -> V
     func stringTemp(_ temperature: Double) -> String
 }
+
 extension ViewModelBuilding {
     ///Constructs temperature string from double
     func stringTemp(_ temperature: Double) -> String {
@@ -27,10 +28,12 @@ extension ViewModelBuilding {
 public final class HomeViewModelBuilder: ViewModelBuilding {
     let model: Home.Responses.Response
     var placeName: String?
+    
     init(model: Home.Responses.Response, placeName: String?) {
         self.model = model
         self.placeName = placeName
     }
+    
     func buildViewModel() -> Home.ViewModels.ViewModel {
         let current = buildCurrentHourlySectionViewModel()
         let daily = buildDailySectionViewModel()
@@ -52,6 +55,7 @@ public final class HomeViewModelBuilder: ViewModelBuilding {
             headerViewModel: header,
             footerViewModel: footer)
     }
+    
     private func buildCurrentHeaderViewModel() -> Home.ViewModels.CurrentHeaderViewModel {
         var location: String {
             if let placeName = placeName?.components(separatedBy: String.comma).first {
@@ -86,6 +90,7 @@ public final class HomeViewModelBuilder: ViewModelBuilding {
             return .emptyString
             
         }
+        
         return Home.ViewModels.CurrentHeaderViewModel(
             location: location,
             outline: outline,
@@ -101,16 +106,19 @@ public final class HomeViewModelBuilder: ViewModelBuilding {
         return Home.ViewModels.HourlyFooterViewModel(itemViewModels: items)
         
     }
+    
     private func buildHourlyItemViewModel(model: Home.Responses.Current) -> Home.ViewModels.HourlyItemViewModel {
         var hour: String  {
             guard let dt = model.dt else {
                 return .underScore
             }
+            
             let hourlyDate = Date(timeIntervalSince1970: Double(dt))
             if Calendar.current.isDate(hourlyDate, equalTo: Date(), toGranularity: .day) &&
                 Calendar.current.isDate(hourlyDate, equalTo: Date(), toGranularity: .hour) {
                 return "Now"
             }
+            
             let formatter = DateFormatter()
             formatter.dateFormat = "HH"
             return formatter.string(from: hourlyDate)
@@ -123,17 +131,20 @@ public final class HomeViewModelBuilder: ViewModelBuilding {
             return "01d" + .png
             
         }
+        
         var temperature: String {
             if let temp = model.temp {
                 return stringTemp(temp)
             }
             return .emptyString
         }
+        
         return Home.ViewModels.HourlyItemViewModel(
             hour: hour,
             iconName: IconName,
             temperature: temperature)
     }
+    
     //MARK: Daily Section
     private func buildDailySectionViewModel() -> Home.ViewModels.DailySectionViewModel {
         let items = model.daily?.compactMap { daily in
@@ -153,18 +164,21 @@ public final class HomeViewModelBuilder: ViewModelBuilding {
             return date.stringFromDate(dateFormat: "EEEE")
             
         }
+        
         var maxTemperature: String {
             guard let high = model.temp?.max else {
                 return .emptyString
             }
             return stringTemp(high)
         }
+        
         var minTemperature: String {
             guard let low = model.temp?.min else {
                 return .emptyString
             }
             return stringTemp(low)
         }
+        
         var weatherIcon: String {
             if let icon = model.weather?.first?.icon {
                 return icon + .png
@@ -172,6 +186,7 @@ public final class HomeViewModelBuilder: ViewModelBuilding {
             return "01d" + .png
             
         }
+        
         var probability: String {
             guard let prob = model.pop else {
                 return .underScore
@@ -179,6 +194,7 @@ public final class HomeViewModelBuilder: ViewModelBuilding {
             let percentage = Int(prob * 100)
             return percentage.string + .percent
         }
+        
         return Home.ViewModels.DailyCellViewModel(
             day: day,
             maxTemperature: maxTemperature,
@@ -265,10 +281,7 @@ public final class HomeViewModelBuilder: ViewModelBuilding {
                 return (.emptyString,.emptyString)
             }
         }
-        return Home.ViewModels.DetailCellViewModel(
-            title: detail.title,
-            value: detail.value
-        )
+        return Home.ViewModels.DetailCellViewModel(title: detail.title,value: detail.value)
     }
     //MARK: Today Section
     private func buildTodaySectionViewModel() -> Home.ViewModels.TodaySectionViewModel {
@@ -302,7 +315,6 @@ extension HomeViewModelBuilder {
                           "W", "WNW", "NW", "NNW"]
         
         let i = Int((Double(degree) + 11.25)/22.5)
-        
         return directions[i % 16]
     }
     

@@ -11,6 +11,7 @@
 //
 
 import UIKit
+
 protocol SectionWithItemsViewModel {
     associatedtype CellViewModel
     var itemViewModels: [CellViewModel] { get }
@@ -171,6 +172,7 @@ enum Home {
                 Section.today.rawValue,
                 Section.detail.rawValue,
             ]
+            
             var numberOfSections: Int {
                 return sections.count
             }
@@ -200,6 +202,7 @@ enum Home {
         
         //MARK: CurrentHourlySectionViewModel
         struct CurrentHourlySectionViewModel: SectionWithHeaderViewModel, SectionWithFooterViewModel {
+            
             init(headerViewModel: CurrentHeaderViewModel = .init(),
                  footerViewModel: HourlyFooterViewModel = .init()) {
                 self.headerViewModel = headerViewModel

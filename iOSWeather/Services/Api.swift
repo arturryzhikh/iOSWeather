@@ -4,7 +4,7 @@
 //
 //  Created by Artur Ryzhikh on 13.01.2022.
 //
-import Foundation
+
 enum Api {
     fileprivate static let scheme = "https://"
     enum OpenWeatherMap {

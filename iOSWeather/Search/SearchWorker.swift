@@ -13,6 +13,7 @@
 import UIKit
 
 class SearchWorker {
+    
     init(apiService: Networking = ApiService()) {
         self.apiService = apiService
     }

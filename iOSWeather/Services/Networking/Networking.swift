@@ -9,11 +9,15 @@ import Foundation
 
 
 public protocol Networking {
-    func request<Request: NetworkRequest>(_ request: Request, completion: @escaping (Result<Request.NetworkResponse, Error>) -> Void)
+    
+    func request<Request: NetworkRequest>(
+        _ request: Request,
+        completion: @escaping (Result<Request.NetworkResponse, Error>) -> Void)
     
 }
 
 extension Networking {
+    
     public func request<Request: NetworkRequest>(_ request: Request, completion: @escaping (Result<Request.NetworkResponse, Error>) -> Void) {
         
         guard var urlComponent = URLComponents(string: request.url) else {
@@ -42,9 +46,11 @@ extension Networking {
             )
             return completion(.failure(error))
         }
+        
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = request.httpMethod.rawValue
         urlRequest.allHTTPHeaderFields = request.headers
+        
         URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
             if let error = error {
                 return completion(.failure(error))

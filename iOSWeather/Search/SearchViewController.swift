@@ -91,9 +91,8 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
             self.tableView.reloadData()
             self.activityIndicator.stopAnimating()
         }
-        
-        
     }
+    
     func displayError(message: String) {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else {
@@ -118,12 +117,14 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
         tableView.dataSource = self
         
     }
+    
     private func setupSearchController(placeholder: String) {
         self.searchController = UISearchController(searchResultsController: nil)
         searchController.searchBar.tintColor = .white
         searchController.searchResultsUpdater = self
         searchController.searchBar.placeholder = placeholder
     }
+    
     private func setupNavigationController(title: String) {
         navigationItem.searchController = searchController
         navigationController?.hidesBarsOnSwipe = false
@@ -134,6 +135,7 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
         navigationController?.navigationBar.barTintColor = .darkGray.withAlphaComponent(0.3)
         navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
     }
+    
     //MARK: Constraints
     private func activateConstraints() {
         view.addMultipleSubviews(
@@ -198,7 +200,7 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let viewModel = viewModel.itemViewModel(at: indexPath)
         let coord = Coord(lat: viewModel.latitude, lon: viewModel.longitude)
-        router?.routeToHome(with: viewModel.name,and: coord)
+        router?.routeToHome(with: viewModel.name, and: coord)
         
     }
     

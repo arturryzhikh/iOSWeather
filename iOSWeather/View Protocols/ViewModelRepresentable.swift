@@ -6,7 +6,7 @@
 //
 
 import UIKit
-protocol ViewRepresentable {
+protocol ViewModelRepresentable {
     
     associatedtype T
     var viewModel: T? { get }
