@@ -23,30 +23,37 @@ final class HourlyCell: TransparentCell ,ViewModelRepresentable {
         temperatureLabel.text = viewModel.temperature
     }
     
-    
+  
     //MARK: Life Cycle
     override func setup() {
+     
         activateConstraints()
         
     }
     
     override func activateConstraints() {
-        addMultipleSubviews(hourLabel,weatherImageView,temperatureLabel)
-        hourLabel.snp.makeConstraints { make in
-            make.top.leading.trailing.equalToSuperview()
-            make.bottom.equalTo(weatherImageView.snp.top)
+      
+        let sv = UIStackView(arrangedSubviews: [
+            hourLabel,
+            weatherImageView,
+            temperatureLabel
+        ])
+        sv.axis = .vertical
+        sv.alignment = .center
+        sv.distribution = .fill
+        sv.spacing = 6
+        sv.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(sv)
+        sv.snp.makeConstraints { make in
+            make.top.leading.bottom.trailing.equalToSuperview()
         }
+        
         weatherImageView.snp.makeConstraints { make in
-            let height = Screen.isTiny ? (frame.height / 2) : (frame.height)
-            make.height.equalTo(height)
+            make.height.lessThanOrEqualTo(Screen.Home.HourlyFooter.defaultHeight/3)
             make.width.equalTo(weatherImageView.snp.height)
-            make.centerX.equalToSuperview()
         }
-        temperatureLabel.snp.makeConstraints { make in
-            make.top.equalTo(weatherImageView.snp.bottom)
-            make.leading.bottom.trailing.equalToSuperview()
-        }
-       
+ 
+  
         
     }
     let hourLabel: UILabel = {
@@ -59,7 +66,7 @@ final class HourlyCell: TransparentCell ,ViewModelRepresentable {
     
     
     private let weatherImageView: UIImageView = {
-        $0.contentMode = .scaleAspectFit
+        $0.contentMode = .scaleAspectFill
         $0.clipsToBounds = true
         return $0
     }(UIImageView())
