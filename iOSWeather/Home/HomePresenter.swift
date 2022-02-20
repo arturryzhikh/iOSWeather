@@ -30,8 +30,8 @@ class HomePresenter: NSObject, HomePresentationLogic {
             return
         }
         self.viewController?.displayWeather(viewModel)
-        
     }
+    
     
     func present(error: Error) {
         let message = "Error occured while fetching weather \(error.localizedDescription)"

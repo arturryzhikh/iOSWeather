@@ -77,14 +77,13 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
     // MARK: Search Cities
     
     //@IBOutlet weak var nameTextField: UITextField!
-    func searchCities(named: String) {
-        interactor?.searchCities(named: named)
+    func searchCities(name: String) {
+        interactor?.searchCities(name: name)
         activityIndicator.startAnimating()
     }
     //MARK: SearchDisplayLogic
     func displayCities(viewModel: Search.ViewModels.ViewModel) {
-      
-        DispatchQueue.main.async { [weak self] in
+      DispatchQueue.main.async { [weak self] in
             guard let self = self else {
                 return
             }
@@ -161,7 +160,7 @@ extension SearchViewController: UISearchResultsUpdating  {
         guard !text.isEmpty else {
             return
         }
-        searchCities(named: text)
+        searchCities(name: text)
         
     }
     

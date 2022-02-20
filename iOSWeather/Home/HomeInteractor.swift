@@ -50,10 +50,7 @@ class HomeInteractor: NSObject, HomeBusinessLogic, HomeDataStore {
     func getWeather(for coord: Coord) {
         let request = Home.Requests.Request(lat: coord.lat, lon: coord.lon)
         worker = HomeWorker()
-        guard let worker = worker else {
-            return
-        }
-        worker.request(request) { [weak self] result in
+        worker?.request(request) { [weak self] result in
             guard let self = self else {
                 return
             }
