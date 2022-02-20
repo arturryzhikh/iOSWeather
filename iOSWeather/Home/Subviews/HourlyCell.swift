@@ -41,7 +41,7 @@ final class HourlyCell: TransparentCell ,ViewModelRepresentable {
         sv.axis = .vertical
         sv.alignment = .center
         sv.distribution = .fill
-        sv.spacing = 6
+        sv.spacing = 4
         sv.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(sv)
         sv.snp.makeConstraints { make in
@@ -66,7 +66,7 @@ final class HourlyCell: TransparentCell ,ViewModelRepresentable {
     
     
     private let weatherImageView: UIImageView = {
-        $0.contentMode = .scaleAspectFill
+        $0.contentMode = .scaleAspectFit
         $0.clipsToBounds = true
         return $0
     }(UIImageView())
