@@ -10,7 +10,6 @@
 		340228FE2797444C002FA4C9 /* CGColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340228FD2797444C002FA4C9 /* CGColor+.swift */; };
 		3409F6BE2799943800E375DD /* Int+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3409F6BD2799943800E375DD /* Int+.swift */; };
 		340A400327908FC700A616FC /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 340A400227908FC700A616FC /* SnapKit */; };
-		3412E1BE2792CE48000FE043 /* HomeViewModelBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3412E1BD2792CE48000FE043 /* HomeViewModelBuilder.swift */; };
 		34170FE0279450F800AFD7A8 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34170FDF279450F800AFD7A8 /* String+.swift */; };
 		342334C62796212B00C6BC32 /* Coord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342334C52796212B00C6BC32 /* Coord.swift */; };
 		343686CA2795BB9C009928F9 /* SearchWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343686C62795BB9C009928F9 /* SearchWorker.swift */; };
@@ -39,14 +38,12 @@
 		348DC89927907E19000EDCFE /* WeatherFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348DC89627907E19000EDCFE /* WeatherFlowLayout.swift */; };
 		348DC89A27907E19000EDCFE /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348DC89727907E19000EDCFE /* HomeViewController.swift */; };
 		349B17962791DBCD00FF46BB /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349B17952791DBCD00FF46BB /* Networking.swift */; };
-		349B17982791DC0000FF46BB /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349B17972791DC0000FF46BB /* ApiService.swift */; };
 		34AF780C27B2B8D100539F93 /* HourlyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AF780B27B2B8D100539F93 /* HourlyCell.swift */; };
 		34BEF455279189B9001C765D /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BEF44F279189B9001C765D /* HomePresenter.swift */; };
 		34BEF456279189B9001C765D /* HomeWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BEF450279189B9001C765D /* HomeWorker.swift */; };
 		34BEF457279189B9001C765D /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BEF451279189B9001C765D /* HomeRouter.swift */; };
 		34BEF458279189B9001C765D /* HomeModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BEF452279189B9001C765D /* HomeModels.swift */; };
 		34BEF45A279189B9001C765D /* HomeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BEF454279189B9001C765D /* HomeInteractor.swift */; };
-		34D583B42795FA0600DD5BF3 /* SearchViewModelBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D583B32795FA0600DD5BF3 /* SearchViewModelBuilder.swift */; };
 		34E9370027906EB1003C5FD7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E936FF27906EB1003C5FD7 /* AppDelegate.swift */; };
 		34E9370227906EB1003C5FD7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E9370127906EB1003C5FD7 /* SceneDelegate.swift */; };
 		34E9370C27906EB1003C5FD7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 34E9370B27906EB1003C5FD7 /* Assets.xcassets */; };
@@ -74,7 +71,6 @@
 /* Begin PBXFileReference section */
 		340228FD2797444C002FA4C9 /* CGColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGColor+.swift"; sourceTree = "<group>"; };
 		3409F6BD2799943800E375DD /* Int+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+.swift"; sourceTree = "<group>"; };
-		3412E1BD2792CE48000FE043 /* HomeViewModelBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelBuilder.swift; sourceTree = "<group>"; };
 		34170FDF279450F800AFD7A8 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		342334C52796212B00C6BC32 /* Coord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coord.swift; sourceTree = "<group>"; };
 		343686C62795BB9C009928F9 /* SearchWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchWorker.swift; sourceTree = "<group>"; };
@@ -103,14 +99,12 @@
 		348DC89627907E19000EDCFE /* WeatherFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherFlowLayout.swift; sourceTree = "<group>"; };
 		348DC89727907E19000EDCFE /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		349B17952791DBCD00FF46BB /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
-		349B17972791DC0000FF46BB /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 		34AF780B27B2B8D100539F93 /* HourlyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyCell.swift; sourceTree = "<group>"; };
 		34BEF44F279189B9001C765D /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
 		34BEF450279189B9001C765D /* HomeWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWorker.swift; sourceTree = "<group>"; };
 		34BEF451279189B9001C765D /* HomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
 		34BEF452279189B9001C765D /* HomeModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModels.swift; sourceTree = "<group>"; };
 		34BEF454279189B9001C765D /* HomeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInteractor.swift; sourceTree = "<group>"; };
-		34D583B32795FA0600DD5BF3 /* SearchViewModelBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModelBuilder.swift; sourceTree = "<group>"; };
 		34E936FC27906EB1003C5FD7 /* iOSWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		34E936FF27906EB1003C5FD7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		34E9370127906EB1003C5FD7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -197,7 +191,6 @@
 			isa = PBXGroup;
 			children = (
 				34AF780427B2B5D300539F93 /* Subviews */,
-				34AF780327B2B5C800539F93 /* Helpers */,
 				343686D02795BBB6009928F9 /* SearchViewController.swift */,
 				343686C62795BB9C009928F9 /* SearchWorker.swift */,
 				343686CE2795BBA9009928F9 /* SearchInteractor.swift */,
@@ -206,14 +199,6 @@
 				343686C82795BB9C009928F9 /* SearchModels.swift */,
 			);
 			path = Search;
-			sourceTree = "<group>";
-		};
-		34AF780327B2B5C800539F93 /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				34D583B32795FA0600DD5BF3 /* SearchViewModelBuilder.swift */,
-			);
-			path = Helpers;
 			sourceTree = "<group>";
 		};
 		34AF780427B2B5D300539F93 /* Subviews */ = {
@@ -235,7 +220,6 @@
 		34AF780627B2B61B00539F93 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				34AF780827B2B67600539F93 /* Helpers */,
 				34AF780727B2B62B00539F93 /* Subviews */,
 				348DC89727907E19000EDCFE /* HomeViewController.swift */,
 				34BEF454279189B9001C765D /* HomeInteractor.swift */,
@@ -263,20 +247,11 @@
 			path = Subviews;
 			sourceTree = "<group>";
 		};
-		34AF780827B2B67600539F93 /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				3412E1BD2792CE48000FE043 /* HomeViewModelBuilder.swift */,
-			);
-			path = Helpers;
-			sourceTree = "<group>";
-		};
 		34AF780927B2B6A700539F93 /* Services */ = {
 			isa = PBXGroup;
 			children = (
 				34AF780A27B2B6C100539F93 /* Networking */,
 				348DC84E27907D70000EDCFE /* Api.swift */,
-				349B17972791DC0000FF46BB /* ApiService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -470,12 +445,10 @@
 				348DC83B27907D1A000EDCFE /* DailyCell.swift in Sources */,
 				34170FE0279450F800AFD7A8 /* String+.swift in Sources */,
 				343686CD2795BB9C009928F9 /* SearchRouter.swift in Sources */,
-				34D583B42795FA0600DD5BF3 /* SearchViewModelBuilder.swift in Sources */,
 				34E9370027906EB1003C5FD7 /* AppDelegate.swift in Sources */,
 				343686D12795BBB6009928F9 /* SearchViewController.swift in Sources */,
 				348DC88827907DEE000EDCFE /* UICollectionView+.swift in Sources */,
 				348DC89027907DEE000EDCFE /* UIColor+.swift in Sources */,
-				3412E1BE2792CE48000FE043 /* HomeViewModelBuilder.swift in Sources */,
 				34AF780C27B2B8D100539F93 /* HourlyCell.swift in Sources */,
 				348DC83927907D0F000EDCFE /* CurrentHeader.swift in Sources */,
 				349B17962791DBCD00FF46BB /* Networking.swift in Sources */,
@@ -494,7 +467,6 @@
 				348DC88B27907DEE000EDCFE /* ViewModelRepresentable.swift in Sources */,
 				348DC85327907D70000EDCFE /* Api.swift in Sources */,
 				343686CB2795BB9C009928F9 /* SearchModels.swift in Sources */,
-				349B17982791DC0000FF46BB /* ApiService.swift in Sources */,
 				34BEF45A279189B9001C765D /* HomeInteractor.swift in Sources */,
 				348DC84327907D24000EDCFE /* HourlyFooter.swift in Sources */,
 				348DC88D27907DEE000EDCFE /* UIView+.swift in Sources */,

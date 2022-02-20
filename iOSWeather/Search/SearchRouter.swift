@@ -12,12 +12,12 @@
 
 import UIKit
 
-@objc protocol SearchRoutingLogic {
+@objc
+protocol SearchRoutingLogic {
     func showAlert(message: String)
-    func routeToHome(with placeName: String,and coord: Coord)
+    func routeToHome(with placeName: String, and coord: Coord)
     func navigateToHome(source: SearchViewController?,
                         destination: HomeViewController?)
-    
 }
 
 protocol SearchDataPassing {

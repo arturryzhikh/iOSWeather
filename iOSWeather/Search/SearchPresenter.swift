@@ -11,6 +11,7 @@
 //
 
 import UIKit
+
 enum SearchPresentationError: Error , CustomStringConvertible{
     case build
     var description: String {
@@ -20,29 +21,39 @@ enum SearchPresentationError: Error , CustomStringConvertible{
         }
     }
 }
+
 protocol SearchPresentationLogic {
+    typealias Response = [Search.Responses.Place]
     func present(error: Error)
-    func presentCities(response: [Search.Responses.Place])
-    
+    func presentCities(response: Response)
+   
 }
 
 class SearchPresenter: SearchPresentationLogic {
     
     weak var viewController: SearchDisplayLogic?
-    var builder: SearchViewModelBuilder? = nil
-    
     // MARK: Do something
     func present(error: Error) {
         let message = error.localizedDescription
         viewController?.displayError(message: message)
     }
+    
     func presentCities(response: [Search.Responses.Place]) {
-        builder = SearchViewModelBuilder(model: response)
-        guard let builder = builder else {
-            present(error: SearchPresentationError.build)
-            return
-        }
-        let viewModel = builder.buildViewModel()
+        let viewModel = buildViewModel(with: response)
         viewController?.displayCities(viewModel: viewModel)
+    }
+    
+}
+
+extension SearchPresenter {
+    func buildViewModel(with model: [Search.Responses.Place]) -> Search.ViewModels.ViewModel {
+        let items = model.map {
+            Search.ViewModels.PlaceViewModel(
+                lat: $0.lat,
+                lon: $0.lon,
+                name: $0.displayName
+            )
+        }
+        return Search.ViewModels.ViewModel(itemViewModels: items)
     }
 }

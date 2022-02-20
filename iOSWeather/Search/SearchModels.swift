@@ -23,6 +23,7 @@ enum Search {
                 "format": "json",
                 "accept-language": "en"
             ]
+            
             init(cityName: String) {
                 queries.updateValue(cityName, forKey: "city")
             }
@@ -40,6 +41,7 @@ enum Search {
         }
         
     }
+    
     enum ViewModels {
         class ViewModel: SectionWithItemsViewModel {
             init(itemViewModels: [PlaceViewModel] = []) {
@@ -51,6 +53,7 @@ enum Search {
                 return itemViewModels[indexPath.row]
             }
         }
+        
         struct PlaceViewModel {
             init(lat: String = .emptyString,
                  lon: String = .emptyString,

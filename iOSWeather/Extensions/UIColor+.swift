@@ -7,9 +7,11 @@
 import UIKit
 
 extension UIColor {
+    
     static var weatherWhite: UIColor {
         return .white
     }
+    
     static var weatherTransparent: UIColor {
         return white.withAlphaComponent(0.75)
     }

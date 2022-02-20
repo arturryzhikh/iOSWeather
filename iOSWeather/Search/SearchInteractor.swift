@@ -14,6 +14,9 @@ import UIKit
 
 protocol SearchBusinessLogic {
     func searchCities(named: String)
+   
+        
+    
 }
 
 protocol SearchDataStore {
@@ -30,21 +33,18 @@ class SearchInteractor: SearchBusinessLogic, SearchDataStore {
             presenter?.presentCities(response: [])
             return
         }
+        
         let request = Search.Requests.CitiesRequest(cityName: named)
         worker = SearchWorker()
-        worker?.getCities(request: request) { [weak self] result in
-            guard let self = self else {
-                return
-            }
+        
+        worker?.request(request, completion: { result in
             switch result {
             case.failure(let error):
                 self.presenter?.present(error: error)
             case.success(let response):
                 self.presenter?.presentCities(response: response)
-                
-               
             }
-        }
-        
+        })
+
     }
 }

@@ -32,11 +32,11 @@ class PlaceCell: UITableViewCell, ViewModelRepresentable {
         clipsToBounds = true
         backgroundColor = .clear
         addSeparator(to: .bottom, aboveSubview: self)
-        activateConstratints()
+        activateConstraints()
        
     }
     
-    private func activateConstratints() {
+    private func activateConstraints() {
         contentView.addSubview(nameLabel)
         nameLabel.snp.makeConstraints { make in
             make.top.leading.equalToSuperview().offset(16)

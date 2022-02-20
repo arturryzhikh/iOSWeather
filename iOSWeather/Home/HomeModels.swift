@@ -24,8 +24,6 @@ extension SectionWithItemsViewModel {
     func item(at index: Int) -> CellViewModel? {
         return itemViewModels[index]
     }
-}
-extension SectionWithItemsViewModel {
     var count: Int {
         return itemViewModels.count
     }
@@ -50,7 +48,7 @@ enum Home {
     enum Requests {
         struct Request: NetworkRequest {
             var url: String {
-                return Api.OpenWeatherMap.oneCallendpoint
+                return Api.OpenWeatherMap.oneCallEndpoint
             }
             var httpMethod: HTTPMethod = .get
             typealias NetworkResponse = Home.Responses.Response
@@ -247,13 +245,15 @@ enum Home {
         }
         //MARK: HourlyItemViewModel
         struct HourlyItemViewModel {
+            
             init(hour: String = .emptyString,
                  iconName: String = .emptyString,
                  temperature: String = .emptyString) {
-                self.hour = hour == .emptyString ? .underScore : hour
+                self.hour = (hour == .emptyString) ? .underScore : hour
                 self.iconName = iconName
                 self.temperature = (temperature == .emptyString) ? (.underScore + .degree) : temperature
             }
+            
             let hour: String
             let iconName: String
             let temperature: String

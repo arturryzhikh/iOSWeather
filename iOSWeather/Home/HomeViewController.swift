@@ -254,12 +254,14 @@ extension HomeViewController: CLLocationManagerDelegate {
     case .authorizedWhenInUse:
         locationManager.startUpdatingLocation()
         break
-        
+            
     case .authorizedAlways:
         locationManager.startUpdatingLocation()
         break
+            
     case .notDetermined:
         break
+            
     @unknown default:
         break
         

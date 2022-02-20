@@ -10,8 +10,7 @@
 //  see http://clean-swift.com
 //
 
-import UIKit
-import CoreLocation
+import Foundation
 enum HomeInteractorError: Error, CustomStringConvertible {
     case badCoordinates
     var description: String {
@@ -54,18 +53,19 @@ class HomeInteractor: NSObject, HomeBusinessLogic, HomeDataStore {
         guard let worker = worker else {
             return
         }
-        worker.getForecast(request: request) { [weak self] result in
+        worker.request(request) { [weak self] result in
             guard let self = self else {
                 return
             }
             switch result {
-                case.failure(let error):
+            case.failure(let error):
                 self.presenter?.present(error: error)
-                case.success(let response):
+            case.success(let response):
                 self.presenter?.presentWeather(for: self.placeName, with: response)
             }
         }
+        
     }
-
+    
 }
 

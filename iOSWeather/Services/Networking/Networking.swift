@@ -18,7 +18,8 @@ public protocol Networking {
 
 extension Networking {
     
-    public func request<Request: NetworkRequest>(_ request: Request, completion: @escaping (Result<Request.NetworkResponse, Error>) -> Void) {
+    public func request<Request: NetworkRequest>(_ request: Request,
+                                                 completion: @escaping (Result<Request.NetworkResponse, Error>) -> Void) {
         
         guard var urlComponent = URLComponents(string: request.url) else {
             let error = NSError(
