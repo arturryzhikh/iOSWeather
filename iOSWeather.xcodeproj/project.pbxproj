@@ -148,6 +148,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3404458A27C2C687002B436A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				34E9370B27906EB1003C5FD7 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		340A3FFC2790856F00A616FC /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -177,6 +185,7 @@
 		34AF780127B2B57200539F93 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				34E9371027906EB1003C5FD7 /* Info.plist */,
 				34E9370127906EB1003C5FD7 /* SceneDelegate.swift */,
 				34E936FF27906EB1003C5FD7 /* AppDelegate.swift */,
 				34E9370D27906EB1003C5FD7 /* LaunchScreen.storyboard */,
@@ -301,9 +310,8 @@
 		34E936FE27906EB1003C5FD7 /* iOSWeather */ = {
 			isa = PBXGroup;
 			children = (
+				3404458A27C2C687002B436A /* Resources */,
 				34AF780127B2B57200539F93 /* Supporting Files */,
-				34E9371027906EB1003C5FD7 /* Info.plist */,
-				34E9370B27906EB1003C5FD7 /* Assets.xcassets */,
 				34AF780627B2B61B00539F93 /* Home */,
 				34AF780227B2B5A600539F93 /* Search */,
 				340A40062790C32900A616FC /* Shared */,
@@ -662,7 +670,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3Z6LFXP9G2;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = iOSWeather/Info.plist;
+				INFOPLIST_FILE = "iOSWeather/Supporting Files/Info.plist";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "The App needs your locatioin to provide weather data";
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "The App needs your locatioin to provide weather data";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "The App needs your locatioin to provide weather data";
@@ -696,7 +704,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3Z6LFXP9G2;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = iOSWeather/Info.plist;
+				INFOPLIST_FILE = "iOSWeather/Supporting Files/Info.plist";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "The App needs your locatioin to provide weather data";
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "The App needs your locatioin to provide weather data";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "The App needs your locatioin to provide weather data";
